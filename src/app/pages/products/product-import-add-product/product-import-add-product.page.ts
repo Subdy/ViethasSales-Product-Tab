@@ -1,5 +1,5 @@
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { FirebaseQuery, FirebaseImage } from './../../../database/firebase.database';
+import { FirebaseQuery, FirebaseImage } from 'src/app/database/firebase.database';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router, RouterModule, NavigationExtras} from '@angular/router';
@@ -63,7 +63,7 @@ export class ProductImportAddProductPage implements OnInit {
   }
   scan () {
     this.barcode.scan().then(data => {
-      this.product.setValue({barcode: data.text});
+      this.product.controls['barcode'].setValue(data.text);
     }).catch(err => {
       alert(err);
     })
