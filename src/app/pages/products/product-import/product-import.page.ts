@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, RouterModule } from "@angular/router";
+import { Router, RouterModule, NavigationExtras } from "@angular/router";
 import { FirebaseQuery, FirebaseAuth } from "../../../database/firebase.database";
 import { Storage } from "@ionic/storage";
 import { LoadingController } from "@ionic/angular";
@@ -27,22 +27,22 @@ export class ProductImportPage implements OnInit {
         this.firebaseQuery.deleteTask('warehouses', item.id);
         console.log(item.data()); 
       }
-    }); */
-    /* this.firebaseQuery.getTasks("bill_details").then(res => {
+    });
+    this.firebaseQuery.getTasks("bill_details").then(res => {
       for (let item of res.docs) {
         this.firebaseQuery.deleteTask('bill_details', item.id);
         console.log(item.data()); 
       }
-    }); */
-    /* this.firebaseQuery.getTasks("products").then(res => {
+    });
+    this.firebaseQuery.getTasks("products").then(res => {
       for (let item of res.docs) {
         this.firebaseQuery.deleteTask('products', item.id);
         console.log(item.data()); 
       }
-    }); */
-    /* this.firebaseQuery.getTasks("bills").then(res => {
+    });
+    this.firebaseQuery.getTasks("bills").then(res => {
       for (let item of res.docs) {
-        //this.firebaseQuery.deleteTask('bills', item.id);
+        this.firebaseQuery.deleteTask('bills', item.id);
         console.log(item.data()); 
       }
     }); */
@@ -66,17 +66,21 @@ export class ProductImportPage implements OnInit {
       .then(res => {
         for (let i in res.docs) {
           this.bills.push(res.docs[i].data());
+          this.bills[this.bills.length - 1].id = res.docs[i].id;
           this.firebaseQuery
             .getTask_byID("suppliers", res.docs[i].data().id_supplier)
-            .then(res => {
-              this.bills[i].supplier_name = res.data().name;
+            .then(res1 => {
+              this.bills[i].supplier_name = res1.data().name;
+              if (this.bills.length == res.docs.length) {
+                this.dismissLoading();
+                this.show2 = true;
+                this.show1 = !this.show2;
+              }
+            }).catch(err => {
+              this.dismissLoading();
             });
         }
-        if (this.bills.length > 0) {
-          this.show2 = true;
-          this.show1 = !this.show2;
-          this.dismissLoading();
-        } else {
+        if (this.bills.length == 0) {
           this.show1 = true;
           this.show2 = !this.show1;
           this.dismissLoading();
@@ -85,10 +89,12 @@ export class ProductImportPage implements OnInit {
       })
       .catch(err => {
         console.log(err);
+        this.dismissLoading();
       });
   }
 
   ngOnInit() {}
+
   //ham tao so hoa don
   exportSoHD() {
     let date = new Date();
@@ -114,6 +120,7 @@ export class ProductImportPage implements OnInit {
         : date.getSeconds().toString());
     return soHD;
   }
+
   gotoproductsupplier() {
     let bill_code = this.exportSoHD();
     this.storage.set("soHD", bill_code);
@@ -135,11 +142,6 @@ export class ProductImportPage implements OnInit {
             id: res.id
           };
           this.storage.set(key, value);
-          /* .then(() => {
-        this.storage.get(key).then(res => {
-          console.log(res);
-        });
-      }); */
         },
         err => {
           console.log(err);
@@ -150,7 +152,14 @@ export class ProductImportPage implements OnInit {
       });
     this.router.navigateByUrl("product-import-suppliers");
   }
-
+  //xem chi tiet bill
+  gotodetail(bill){
+    console.log(bill);
+    let data: NavigationExtras = {
+      state: bill
+    }
+    this.router.navigateByUrl('product-import-detail', data);
+  }
   //ham loading
   async presentLoading() {
     const loading = await this.loadingController.create({

@@ -1,62 +1,70 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
     <ion-title>Nhập Hàng</ion-title>
+    <ion-buttons slot="end"> 
+      <ion-button (click)="deletebill()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 <div class="txt_confirm">
   <div class="txt_code">
-    <ion-label>Mã Đơn Hàng</ion-label>
+    <ion-label>Mã đơn hàng</ion-label>
     <div class="txt_code1">
       <ion-label color="primary">{{bill_code}}</ion-label>
     </div>
   </div>
-  <div class="content_date">
-    <div class="date date_start">
-       <span class="txt_date1">Ngày Nhập:</span>
-       <div ion-item no-lines class="select_date">
-          <ion-label >{{startDay | date: 'dd/MM/yyyy'}}</ion-label>
+
+  <div class="date date_start">
+      <ion-label class="txt_date">Ngày nhập</ion-label>
+      <div class="select">
+        <div ion-item no-lines class="select_date">
+          <ion-label >{{bill_date | date: 'dd/MM/yyyy'}}</ion-label>
           <ion-icon name="calendar" slot="end"></ion-icon>
-       </div>
-     </div>
-    <span class="clearfix"></span>
- </div>
+        </div>
+      </div>
+  </div>
+  
   <div class="txt_code">
-    <ion-label>Nhà Cung Cấp</ion-label>
+    <ion-label>Nhà cung cấp</ion-label>
     <div class="txt_code1">
       <ion-label>{{supplier_name}}</ion-label>
     </div>
   </div>
   <div class="txt_name_4">
-    <ion-card>
-      <ion-item *ngFor="let i of list_name">
-        <ion-icon name="close"></ion-icon>
-        <ion-label class="txt_name_title">
-          <h3 class="name_title1">{{i.name}}</h3>
-          <div class="txt_confirm_1">
-            <p>{{i.price | number: '1.0-0'}}</p>
-            <p>X</p>
-            <p>{{i.number}}</p>
-            <p class="name_total">{{i.price * i.number | number: '1.0-0'}}</p>
-          </div>
-        </ion-label>
-      </ion-item>
-      <div class="txt_name_vat">
-        <div class="txt_vat">
-          <ion-label>Thuế</ion-label>
-          <ion-label>3%</ion-label>
-        </div>
-        <div class="txt_total">
-          <ion-label>Tổng</ion-label>
-          <ion-label>{{num_total}}</ion-label>
-          <ion-label>{{total | number: '1.0-0'}}</ion-label>
+    <div class="item" *ngFor="let item of list_bill">
+      <ion-button (click)="onClick()">
+        <ion-icon name= "close"></ion-icon>
+      </ion-button>
+      <div class="info">
+        <div class="label">{{item.name}}</div>
+        <div class="sub-info">
+          <div class="cost" style="width: 25%;">{{item.price | number: "1.0-0"}}</div>
+          <div class="cost" style="width: 20%; text-align: center;" >x</div>
+          <div class="cost" style="width: 20%; text-align: center;">{{item.number}}</div>
+          <div class="total_cost" style="width: 35%;">{{item.price*item.number | number: "1.0-0"}}</div>
         </div>
       </div>
-    </ion-card>
-    <div class="button_btn1" (click)="save()">
-      <button class="txt_btn1">Lưu</button>
     </div>
+      <div class="line">
+        <div class="label">Thuế</div> 
+        <input type="number" class="number" (keyup)="taxCalculate()" [(ngModel)]="tax_percent" style="border-bottom: 1px rgb(206, 206, 206) solid; width: 15px;"><span style="margin-left: 3px;">%</span>
+        <div class="total">{{tax | number: "1.0-0"}}</div>
+      </div>
+      <div class ="line" style="color:red; font-weight: bold; font-size: 1rem;">
+        <div class="label">TỔNG</div>
+        <div class="number">{{num_total}}</div>
+        <div class="total">{{total | number: "1.0-0"}}</div>
+      </div>
+  </div>
+  <div class="save">
+    <ion-button class="save" (click)="save()" [disabled]="save_btn" >LƯU</ion-button>
   </div>
 </div>
 </ion-content>

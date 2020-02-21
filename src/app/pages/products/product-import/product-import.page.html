@@ -58,7 +58,7 @@
     
     
     <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 75vh;">
-      <div class="detail" *ngFor="let item of bills">
+      <div class="detail" *ngFor="let item of bills" (click)="gotodetail(item)">
         <div class="bill">
           <div class = "info-bill">
             <div class = "left"><b>{{item.bill_code}}</b></div>

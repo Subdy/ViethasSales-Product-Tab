@@ -1,58 +1,64 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
     <ion-title>Nhập Hàng</ion-title>
+    <ion-buttons slot="end"> 
+      <ion-button (click)="deletebill()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="conten_import_detail1">
-<div class="txt_import_detail1">
-  <div class="txt_import">
-    <ion-card class="card1">
-      <img src="../../../assets/img/download.jpg">
-    </ion-card>
+<ion-content>
+<div class="txt_confirm">
+  <div class="txt_code">
+    <ion-label>Mã đơn hàng</ion-label>
+    <div class="txt_code1">
+      <ion-label color="primary">{{bill.bill_code}}</ion-label>
+    </div>
   </div>
-  <ion-item class="txt_toggle">
-    <ion-label class="txt_name_label">Cho Phép Bán</ion-label>
-    <ion-toggle></ion-toggle>
-  </ion-item>
-  <div class="list_name1">
-    <ion-item class="name_product1">
-      <ion-label class="list_label">Tên Sản Phẩm</ion-label>
-      <div class="txt_input">
-        <ion-input></ion-input>
+
+  <div class="date date_start">
+      <ion-label class="txt_date">Ngày nhập</ion-label>
+      <div class="select">
+        <div ion-item no-lines class="select_date">
+          <ion-label >{{bill.date.toDate() | date: 'dd/MM/yyyy'}}</ion-label>
+          <ion-icon name="calendar" slot="end"></ion-icon>
+        </div>
       </div>
-    </ion-item>
-    <ion-item class="name_product1">
-      <ion-label class="list_label">Mã Sản Phẩm/SKU</ion-label>
-      <div class="txt_input">
-        <ion-input></ion-input>
-      </div>
-    </ion-item>
-    <ion-item class="name_product1">
-      <ion-label class="list_label" >Số Lượng</ion-label>
-      <div class="txt_amount">
-      <button class="btn3">+</button>
-      <span class="span1">3</span>
-      <div class="txt_minus">
-        <button class="btn4">-</button>
-      </div>
-      </div>
-    </ion-item>
-    <ion-item class="name_product1">
-      <ion-label class="list_label">Giá Nhập</ion-label>
-      <div class="txt_input">
-        <ion-input type="number"></ion-input>
-      </div>
-    </ion-item>
-    <ion-item class="name_product1">
-      <ion-label class="list_label">Giá Bán</ion-label>
-      <div class="txt_input">
-        <ion-input type="number"></ion-input>
-      </div>
-    </ion-item>
   </div>
-  <div class="button1">
-    <button class="txt_btn1">Lưu</button>
+  
+  <div class="txt_code">
+    <ion-label>Nhà cung cấp</ion-label>
+    <div class="txt_code1">
+      <ion-label>{{bill.supplier_name}}</ion-label>
+    </div>
+  </div>
+  <div class="txt_name_4">
+    <div class="item" *ngFor="let item of list_bill">
+      <div class="info">
+        <div class="label">{{item.name}}</div>
+        <div class="sub-info">
+          <div class="cost" style="width: 25%;">{{item.price | number: "1.0-0"}}</div>
+          <div class="cost" style="width: 20%; text-align: center;" >x</div>
+          <div class="cost" style="width: 20%; text-align: center;">{{item.number}}</div>
+          <div class="total_cost" style="width: 35%;">{{item.price*item.number | number: "1.0-0"}}</div>
+        </div>
+      </div>
+    </div>
+      <div class="line">
+        <div class="label">Thuế</div> 
+        <div class="number">{{(bill.tax_value / (bill.total - bill.tax_value)) * 100}}</div><span style="margin-left: 3px;">%</span>
+        <div class="total">{{bill.tax_value | number: "1.0-0"}}</div>
+      </div>
+      <div class ="line" style="color:red; font-weight: bold; font-size: 1rem;">
+        <div class="label">TỔNG</div>
+        <div class="number">{{num_total}}</div>
+        <div class="total">{{bill.total | number: "1.0-0"}}</div>
+      </div>
   </div>
 </div>
 </ion-content>
