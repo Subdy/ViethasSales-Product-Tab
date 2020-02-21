@@ -1,0 +1,37 @@
+.content-notification{
+    .item-notif{
+        margin: 1.8rem 7% 0 7%;
+        display: inline-flex;
+        width: 88%;
+        border-bottom: 1px solid gray;
+        .icon{
+            width: 3rem;
+            position: relative;
+            padding: 0rem 1.5rem 1.5rem 0rem;
+            font-size: 2rem;
+            ion-icon{
+                position: absolute;
+                top: 45%;
+                left: 0;
+                transform: translate(0,-50%);
+            }
+        }
+        .title-notif{
+            h1{
+                font-size: 1rem;
+                font-weight: bold;
+                margin: 0!important;
+            }
+            h3{
+                margin: 0.5rem 0!important;
+                font-size: 1rem;
+            }
+            h5{
+                font-weight: 100;
+                color: #777;
+                font-size: 0.9rem;
+                margin:0.5rem 0.5rem 1rem 0rem!important;
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Thêm NCC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form [formGroup]="addSupplier" (ngSubmit)="createSupplier()">
+  <ion-card class="txt_list_add">
+    <div class="txt_name">
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Tên nhà cung cấp</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Điện thoại</ion-label>
+      <ion-input type="number" formControlName="phone"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Địa chỉ </ion-label>
+      <ion-input type="text" formControlName="address"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Mã số thuế</ion-label>
+      <ion-input type="text" formControlName="tax_number"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Chính sách</ion-label>
+      <ion-input type="text" formControlName="policy"></ion-input>
+    </ion-item>
+  </div>
+  </ion-card>
+  <div class="add_btn">
+    <button type="submit">LƯU</button>
+  </div>
+</form>
+</ion-content>

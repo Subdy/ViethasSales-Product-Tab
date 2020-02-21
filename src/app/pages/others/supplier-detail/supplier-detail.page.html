@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nhà Cung Cấp</ion-title>
+    <ion-buttons slot="end" (click)="triggerPopup()">
+      <ion-icon slot="end" name="trash"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="trigger_popup"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: gray; opacity: .5; z-index: 999"
+    (click)="triggerPopup()">
+  </div>
+  <ion-grid *ngIf="trigger_popup" style="position: absolute; width: 100%;">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="10">
+        <ion-card class="ion-padding" style="z-index: 9999; background: white">
+          <div class="txt-card-tt1">
+            <h5 class="ion-text-center">Bạn muốn xóa?</h5>
+            <ion-grid class="popupContent">
+              <ion-row>
+                <ion-col>
+                  <ion-button (click)="cancel()" color="medium" style="width: 100%">HỦY</ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button (click)="deteleSupplier()" color="warning" style="width: 100%">ĐỒNG Ý</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+  
+<form [formGroup]="updateSupplier" (ngSubmit)="updateItem(updateSupplier.value)">
+  <ion-card class="txt_list_add">
+    <div class="txt_name">
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Tên nhà cung cấp</ion-label>
+      
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Điện thoại</ion-label>
+      
+      <ion-input type="number" formControlName="phone"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Địa chỉ </ion-label>
+      
+      <ion-input type="text" formControlName="address"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Email</ion-label>
+      
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Mã số thuế</ion-label>
+      
+      <ion-input type="number" formControlName="tax_number" ></ion-input>
+    </ion-item>
+    <ion-item class="txt_item1">
+      <ion-label class="name_1">Chính sách</ion-label>
+      <ion-input type="text" formControlName="policy"></ion-input>
+    </ion-item>
+  </div>
+  </ion-card>
+  <div class="add_btn">
+    <button type="submit">LƯU</button>
+  </div>
+</form>
+</ion-content>

@@ -1,0 +1,199 @@
+ion-header {
+    ion-searchbar {
+        --background: white;
+        border: 1px rgba(112, 112, 112, 0.2) solid;
+        border-radius: 5px;
+        width: 80vw;
+        height: 32px;
+        padding: 0 ; 
+        margin: 0 3vw;
+        
+        
+
+    }
+    
+    ion-toolbar {
+        --border-color: white;
+    }
+}
+ion-content {
+    font-family: Arial, Helvetica, sans-serif;
+    .no-bill {
+        font-size: 1rem;
+        text-align: center;
+        ion-button {
+            width: 202px;
+            height: 38px;
+            text-align: center;
+            --background: none;
+            --background-focused: none;
+            --background-activated: none;
+            --color: black;
+            --color-focused: black;
+            --color-activated: black;
+            border-radius: 100px;
+            box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
+        }
+        p{
+            font-size: 0.9rem;
+            margin-top: 28px;
+        }
+        margin-top: 35vh;
+        
+    }
+
+    .bills {
+        
+        //text-align: center;
+        .add-bill {
+            margin: 0px 12px;
+            display: flex;
+            .add{
+                flex-grow: 2;
+                text-align: right;
+            .btn-add {
+                --background: none;
+                --background-focused: none;
+                --background-activated: none;
+                --color: black;
+                --color-focused: black;
+                --color-activated: black;
+                box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
+                height: 32px;
+                width: 175px;
+                font-size: 1rem;
+                text-align: center;
+                border-radius: 100px;
+                margin-top: 10px;
+            }
+            }
+            .txt_select3 {
+                flex-grow: 1;
+                margin-top: 10px;
+                text-align: right;
+                font-size: 0.7rem;
+                justify-content: right;
+                .txt_name_select3 {
+                  overflow: hidden;
+                  .select_1 {
+                    --border-color:white;
+                  }
+                }
+              }
+        }
+        .content_date{
+            padding: 1.5vh 1vh 0vh 1vh;
+            margin: 0px 12px 30px 12px;
+            display: flex;
+            .date{
+                width: 50%;
+                .txt_date{
+                font-size: 2vh;
+                font-weight: bold;
+                }
+            .select_date{
+                font-weight: bold;
+                display: flex;
+                width: fit-content;
+                box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
+                border-radius:10px ;
+                padding: 0.6vh;
+                min-height: 0;
+                vertical-align: middle;
+                .item-inner{
+                    padding: 0;
+                }
+            }
+            ion-icon{
+                color: #098cf7;
+                font-size: 2.5vh;
+                // padding-left:1vw;
+                // vertical-align: middle;
+                margin: auto;
+            }
+            
+            ion-datetime{
+                // display: inline-flex;
+                font-size: 2vh; 
+                padding: 0vw 0vw 0vw 0vw;
+                text-align: center;
+                margin: auto;
+                .datetime-text {
+                  color: #35be1b;
+                }
+            }
+            }  
+            .date_start{
+               
+                display: flex;
+                justify-content: space-around;
+                .txt_date1{
+                   
+                    font-size: 2vh;
+                    margin: auto;
+                }
+                .select_date{
+                    color: #00A859;
+                    float: right;
+                    margin-right: 1.2vh;
+                    width: 70%;
+                }
+            }
+            .date_end{
+                display: flex;
+                justify-content: space-around;
+                .txt_date2{
+                   
+                    font-size:2vh;
+                    margin: auto;
+                }
+                .select_date{
+                    color: #00A859;
+                    float: right;
+                    margin-right: 0vh;
+                    width: 70%;
+                }
+            }      
+        }
+        // p {
+        //     font-size: 12px;
+        //     span {
+        //         color:red;
+        //     }
+        // }
+        .scroll {
+            position: relative;
+            overflow-x: auto;
+            .detail {
+                margin: 20px 12px 0 12px;
+               .bill {
+                    border-bottom: 1px rgba(112, 112, 112, 0.2) solid;
+                    .info-bill{  
+                       display: flex;
+                       font-size: 1rem;
+                       padding-bottom: 4px;
+                   }
+                   .status-bill{
+                       display: flex;
+                       font-size: 0.7rem;
+                       padding-bottom: 9px;
+                       opacity: 0.5;
+                   }
+                   .date {
+                       text-align: left;
+                   }
+               } 
+               .left {
+                flex-grow: 1;
+                text-align: left;
+                }
+                .right {
+                    flex-grow: 1;
+                    text-align: right;
+                }
+            }
+        }
+        
+    }
+
+}

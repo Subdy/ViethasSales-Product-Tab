@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Cấu Hình</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="content-report">
+  <div class="container">
+    <ion-grid >
+      <ion-row class="row-report">
+        <ion-col size="6" class="content-row">
+          <div class="txt-title1">
+            <ion-card (click)="gotosystemstoreinfo()">
+              <ion-icon name="logo-usd"></ion-icon>
+              <div class="txt-card-tt1">
+                Thông tin cửa hàng
+            </div>
+            </ion-card>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="content-row">
+          <div class="txt-title1">
+            <ion-card (click)="gotosystemprinter()">
+              <ion-icon name="cash"></ion-icon>
+              <div class="txt-card-tt1">
+                Thiết lập máy in
+              </div>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-report">
+        <ion-col size="6" class="content-row">
+          <div class="txt-title1">
+            <ion-card>
+              <ion-icon name="logo-buffer"></ion-icon>
+              <div class="txt-card-tt1">
+                Chân trang hóa đơn
+            </div>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>  
+    </ion-grid>
+    </div>
+</ion-content>

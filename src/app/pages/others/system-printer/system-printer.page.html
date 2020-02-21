@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Cấu hình</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content_printer" padding>
+  <div *ngIf="trigger_popup"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: gray; opacity: .5; z-index: 999"
+    (click)="triggerPopup()">
+  </div>
+  <ion-grid *ngIf="trigger_popup" style="position: absolute; width: 100%;">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="10">
+        <ion-card class="ion-padding" style="z-index: 9999; background: white">
+          <div class="txt-card-tt1">
+            <h5 class="ion-text-center">Bạn muốn xóa?</h5>
+            <ion-grid class="popupContent">
+              <ion-row>
+                <ion-col>
+                  <ion-button (click)="cancel()" color="medium" style="width: 100%">HỦY</ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button (click)="deleteItem()" color="warning" style="width: 100%">ĐỒNG Ý</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <form [formGroup]="printer_form" (submit)="checkIp(printer_form.value)">
+    <div>
+      <h3>Thêm Máy In</h3>
+
+      <ion-card>
+
+        <ion-item>
+          <ion-label class="name_id" color="medium">Địa Chỉ IP:</ion-label>
+          <ion-input formControlName="ip" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="name_id" color="medium">Tên Máy In:</ion-label>
+          <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
+        <br>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-chip color="primary" [ngStyle]="{'display':isUpdate === true ? 'block' : 'none' }"
+                (click)="updateItem(printer_form.value)" style="text-align: center;">
+                <label>Cập nhật</label>
+              </ion-chip>
+            </ion-col>
+            <ion-col>
+              <ion-chip color="primary" (click)="triggerPopup()"
+                [ngStyle]="{'display':isUpdate === true ? 'block' : 'none' }" style="text-align: center;">
+                <label>Xóa</label>
+              </ion-chip>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+      </ion-card>
+    </div>
+    <div>
+      <h3>Danh Sách Máy in</h3>
+
+      <ion-card>
+
+        <ion-item *ngFor="let item of items" (click)="selectItem(item.id,item)"
+          [ngStyle]="{'background':isUpdate === true ? 'red' : 'white' }">
+          {{item.name}}<br>{{item.ip}}
+
+        </ion-item>
+
+      </ion-card>
+    </div>
+    <div class="button_printer1">
+      <button class="add_printer1" type="submit">Lưu</button>
+    </div>
+  </form>
+</ion-content>

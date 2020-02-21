@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Doanh thu theo nhà cung cấp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-report-supplier">
+  <div class="general-content1">
+    <ion-segment class="chart-revenue" (ionChange)="segmentChanged($event)">
+      <ion-segment-button checked class="revenue-button" value="hours">
+        <ion-label>Giờ</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="revenue-button" value="day">
+        <ion-label>Ngày</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="revenue-button" value="mouth">
+        <ion-label>Tháng</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="revenue-button" value="year">
+        <ion-label>Năm</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="calendar">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" class="col1">
+          <div class="div-cal1"  >
+            <span style="float: left;">Từ </span>
+            <ion-item class="cal1" style="float: right;">
+              
+              <ion-datetime displayFormat="DD-MM-YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
+              <ion-icon name="calendar"></ion-icon>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col2">
+          <div class="div-cal2">
+            <span>đến</span>
+            <ion-item class="cal2">
+              
+              <ion-datetime displayFormat="DD-MM-YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
+              <ion-icon name="calendar"></ion-icon>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="chart-horizontal">
+    <div class="ct3_bg">
+      <canvas height="240" width="200" #barChart class="chart"></canvas>
+    </div>
+  </div>
+  <div class="button">
+    <button>Xuất báo cáo</button>
+  </div>
+</ion-content>

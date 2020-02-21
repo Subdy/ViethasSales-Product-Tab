@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+  </ion-buttons>
+    <ion-title>Danh sách thu chi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-report-cost">
+    <div class="calendar">
+      <div class="col1">
+        <div class="div-cal1">
+          <span>Từ</span>
+          <ion-item class="cal1">
+            <ion-datetime displayFormat="DD/MM/YYYY" min="2005" max="2016" value="2008/09/02"></ion-datetime>
+            <ion-icon name="calendar"></ion-icon>
+          </ion-item>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="div-cal2">
+          <span>Đến</span>
+          <ion-item class="cal2">
+            <ion-datetime displayFormat="DD/MM/YYYY" min="2005" max="2016" value="2008/09/02"></ion-datetime>
+            <ion-icon name="calendar"></ion-icon>
+          </ion-item>
+        </div>
+      </div>
+      <div class="col3">
+        <ion-select value="01" interface="popover">
+          <ion-select-option  value="01">Tất cả</ion-select-option>
+          <ion-select-option value="02">Tuần này</ion-select-option>
+          <ion-select-option value="03">Tháng này</ion-select-option>
+          <ion-select-option value="04">Năm này</ion-select-option>
+      </ion-select>
+      </div>
+  </div>
+  <div class="table">
+    <table class="table-title">
+      <thead>
+        <tr class="header">
+          <th witdh="20%">Số HD</th>
+          <th width="30%">Thời gian</th>
+          <th width="30%">Thu ngân</th>
+          <th width="20%">Số tiền</th>
+        </tr>
+      </thead>
+    </table>
+
+    <div class="container-table">
+      <table class="table-content">
+          <tbody>
+              <tr class="row-item" *ngFor="let item of data" >
+                  <td width="20%" >
+                      {{item.day}}
+                  </td>
+                  <td width="30%">
+                      {{ item.money }}
+                  </td>
+                  <td width="30%">
+                      {{ item.revenue }}
+                  </td>
+                  <td width="20%">
+                      {{ item.total }}
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="footer-cost">
+    <div class="col1">
+      <p>Tổng thu</p>
+      <p>Tổng chi</p>
+      <p class="total-col">Số dư</p>
+    </div>
+    <div class="col2">
+      <p>132234354</p>
+      <p>243233243</p>
+      <p class="total-col">76756747</p> 
+    </div>
+  </div>
+</ion-content>

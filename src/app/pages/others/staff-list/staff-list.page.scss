@@ -1,0 +1,63 @@
+ion-content{
+    .list-staff1{
+        .search{
+            display: flex;
+            font-size: 1rem;
+            ion-searchbar{
+                margin: 2vh;
+                width: 85vw;
+                height: 30px;
+                --background: white;
+                padding: 0;
+                border: 1px rgba(112, 112, 112, 0.2) solid;
+                border-radius: 5px;
+            }
+            .select-option{
+                margin-top: 1.5vh;
+                font-size: 1rem;
+                min-width: 10vh;
+            }
+        }
+        .txt_tt{
+            margin: 2vh;
+            font-size: 1rem;
+            span{
+                font-size: 1rem;
+                color: red;
+            }
+        }
+        .name-list-staff{
+            .txt-imgs{
+                img{
+                    border-radius: 10px;
+                    height: 3rem;
+                    width: 3rem;
+                }
+            }
+            ion-label{
+                .txt-name-staff1{
+                    display: flex;
+                    justify-content: space-between;
+                        h3{
+                            font-size: 1rem;
+                            color: #00A859;
+                            margin-left: 2vh;
+                        }
+                        h2{
+                            font-size: 0.8rem;
+                            color: #222;
+                        }
+
+                    }
+                    p{
+                        font-size: 0.8rem;
+                        color: #222;
+                        margin-left: 2vh;
+                    }
+            }
+            
+        }
+       
+        
+    }
+}

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+  </ion-buttons>
+    <ion-title>Nhập Tồn Đầu Kỳ</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-grid>
+  <ion-row>
+          <ion-col offset-4>
+            <div class="div-cal1"  >
+              <span style="float: left;">Tháng</span>
+              <ion-item class="cal1" style="float: right;">
+                <ion-datetime displayFormat="MM-YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
+                <ion-icon name="calendar"></ion-icon>
+              </ion-item>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="buttonadd">
+              <button cl class="btn-add" (click)="gotoproductscan2()">+ Tạo sản phẩm đầu kỳ</button>
+            </div>
+          </ion-col>
+        </ion-row>
+</ion-grid>
+<div class="list_item">
+  <ion-item *ngFor="let i of list_pro" class="total_item">
+    <ion-label>Tổng <span>{{i.id}}</span> sản phẩm</ion-label>
+    <ion-badge slot="end">22</ion-badge>
+  </ion-item>
+  <div class="list-opening">
+    <ion-item *ngFor="let i of listgoods" (click)="gotoproductdetail2()">
+      <ion-thumbnail slot="start">
+        <img src="../../../assets/img/download.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{i.name}}</h3>
+        <div class="txt_name2">
+          <p>SKU:<span class="span1">{{i.sku}}</span></p>
+          <div class="ionicon1">
+        <ion-icon class="icon1" name="arrow-forward"></ion-icon>
+          </div>
+        </div>
+        <div class="txt_name1">
+          <p>Giá nhập:<span class="span2">{{i.entryprice}}</span></p>
+        <p class="txtprice">Giá bán:<span class="span3" >{{i.price}}</span></p>
+        </div>
+      </ion-label>
+    </ion-item>
+  </div>
+</div>
+</ion-content>

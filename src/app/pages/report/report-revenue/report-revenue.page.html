@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Báo cáo doanh thu/lợi nhuận</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-report-revenue">
+  <div class="general-content1">
+    <ion-segment class="chart-revenue" (ionChange)="segmentChanged($event)">
+      <ion-segment-button checked class="revenue-button" value="hours">
+        <ion-label>Giờ</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="revenue-button" value="day">
+        <ion-label>Ngày</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="revenue-button" value="mouth">
+        <ion-label>Tháng</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="revenue-button" value="year">
+        <ion-label>Năm</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="calendar">
+    <ion-item class="cal1">
+      <ion-datetime displayFormat="DD-MM-YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
+      <ion-icon name="calendar"></ion-icon>
+    </ion-item>
+  </div>
+  <div class="chart-bar">
+    <div class="ct3_bg">
+      <canvas height="240" width="240" #barChart class="chart"></canvas>
+    </div>
+  </div>
+  <div class="note-chart">
+    <p><ion-icon style="color: #FF9900;" name="medical"></ion-icon>Chỉ xuất hiện tối đa 30 ngày</p>
+  </div>
+  <div class="button">
+    <button>Xuất báo cáo</button>
+  </div>
+</ion-content>

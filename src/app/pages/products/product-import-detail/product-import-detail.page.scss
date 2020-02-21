@@ -1,0 +1,85 @@
+.conten_import_detail1{
+    .txt_import_detail1{
+        .txt_import{
+            text-align: -webkit-center;
+            .card1{
+                border-radius: 10px;
+                height: 20vh;
+                    width: 27vw;
+                    text-align: center;
+                img{
+                    height: 20vh;
+                    width: 27vw;
+                }
+            }
+        }
+        .txt_toggle{
+            .txt_name_label{
+                text-align: end;
+            }
+        }
+        .list_name1{
+            .name_product1{
+                font-size: 2vh;
+                .list_label{
+                    width: 30vh;
+                }
+                .txt_input{
+                    font-size: 2vh;
+                    text-align: end;
+                    width: 35vh;
+                }
+                .txt_amount{
+                    display: flex;
+                  width: 15vh;
+                    .span1{
+                        margin: auto;
+                    }
+                    .btn3{
+                        font-size: 3vh;
+                        border-radius: 10px;
+                     }
+                    .txt_minus{
+                        margin: inherit;
+                        
+                        
+                        .btn4{
+                            font-size: 3vh;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+                
+            }
+        }
+        @media screen and(min-width:600px) {
+            .name_product1{
+                font-size: 2vh;
+                .list_label{
+                    width: 30vh;
+                }
+                .txt_input{
+                    font-size: 2vh;
+                    text-align: end;
+                    width: 50vh !important;
+                }
+               
+                
+            }
+            
+        }
+        .button1{
+            text-align: center;
+            margin-top: 4vh;
+            .txt_btn1{
+                border-radius: 10px;
+                padding: 2vh;
+                font-size: 2vh;
+                background-color: orange;
+                width: 20vh;
+                color: #fff;
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+  </ion-buttons>
+    <ion-title>Chi Tiết Sản Phẩm</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+  <div class="list-content">
+  <div class="card-img">
+    <ion-card class="load-img">
+      <img src="../../../assets/img/download.jpg">
+    </ion-card>
+  </div>
+  <div class="txt-toggle">
+    <ion-item>
+      <ion-label>Cho Phép Bán</ion-label>
+      <ion-toggle slot="start" name="blueberry" checked></ion-toggle>
+    </ion-item>
+  </div>
+ <div class="infor" *ngFor="let item of listitem">
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Tên sản Phẩm</ion-label>
+       <div class="txt_name_item">
+        <ion-label class="label1">{{item.name}}</ion-label>
+       </div>
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Mã Sản Phẩm/SKU</ion-label>
+       <div class="txt_name_item">
+        <ion-label class="label1">{{item.codeitem}}</ion-label>
+       </div>
+       
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Barcode</ion-label>
+       <div class="txt_name_item1">
+        <ion-label class="label2">{{item.barcode}}</ion-label>
+        <ion-icon name="barcode"></ion-icon>
+       </div>
+      
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Đơn Vị</ion-label>
+       <div class="txt_name_item">
+        <ion-label class="label1">{{item. unti}}</ion-label>
+       </div>
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item" >
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Kích Thước</ion-label>
+       <div class="txt_name_item">
+        <ion-label class="label1">{{item. size}}</ion-label>
+       </div>
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Màu Sắc</ion-label>
+       <div class="txt_name_item">
+        <ion-label class="label1">{{item. color}}</ion-label>
+       </div>
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Giá Nhập</ion-label>
+       <div class="txt_name_item">
+        <ion-label class="label1">{{item.entryprice}}</ion-label>
+       </div>
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Giá Bán</ion-label>
+       <div class="txt_name_item">
+        <ion-label class="label1">{{item. price}}</ion-label>
+       </div>
+       
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item>
+       <ion-label >Ngày Nhập Kho</ion-label>
+       <div class="txt_name_item">
+        <ion-label  slot="end" class="label1">{{item. dateadded}}</ion-label>
+       </div>
+       
+      </ion-item>
+    </div>
+   </div>
+   <div class="txt_select1">
+    <div class="txt_select2">
+      <ion-item class="txt_item">
+       <ion-label>Phân Loại</ion-label>
+       <ion-select>
+      <ion-select-option *ngFor="let item of listedit2">{{item.name}}</ion-select-option>
+    </ion-select>
+      </ion-item>
+    </div>
+   </div>
+   <div class="name-item">
+    <div class="id-item">
+      <ion-item class="txt_item">
+       <ion-label >Nhà Cung Cấp</ion-label>
+       <div class="txt_name_item">
+        <ion-label class="label1">{{item.supplier}}</ion-label>
+       </div>
+       
+      </ion-item>
+    </div>
+   </div>
+ </div>
+ <div class="btn-button1">
+  <button class="btn_1">Lưu</button>
+</div>
+</div>
+
+</ion-content>

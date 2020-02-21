@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary" *ngIf="show1">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nhập Hàng</ion-title>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="show2" class="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar placeholder="Tìm đơn hàng nhập theo mã, NCC"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class = "no-bill" *ngIf="show1">
+    <ion-button (click)="gotoproductsupplier()" >
+      <ion-icon name="add"></ion-icon>
+      Tạo đơn nhập hàng
+    </ion-button>
+    <p>Bạn chưa có đơn nhập hàng nào!</p>
+  </div>
+
+  <div class="bills" *ngIf="show2" >
+    <div class="add-bill">
+      <div class="add">
+        <ion-button class="btn-add" (click)="gotoproductsupplier()" >
+          <ion-icon name="add"></ion-icon>
+          Tạo đơn nhập hàng
+        </ion-button>
+      </div>
+     
+      <div class="txt_select3">
+        <ion-select class="txt_name_select3" interface="popover" value="Mới nhất">
+          <ion-select-option class="select_1" value="Mới nhất">Mới nhất</ion-select-option>
+          <ion-select-option class="select_1" value="Cũ nhất">Cũ nhất</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+    <div class="content_date">
+      <div class="date date_start">
+         <span class="txt_date1">Từ</span>
+         <div ion-item no-lines class="select_date">
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="startDay"></ion-datetime>
+            <ion-icon item-content name="calendar" slot="end" color="primary"></ion-icon>
+         </div>
+       </div>
+      <div class="date date_end">
+         <span class="txt_date2">đến</span>
+         <div ion-item no-lines class="select_date">
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="endDay"></ion-datetime>
+            <ion-icon item-content name="calendar" slot="end" color="primary"></ion-icon>
+         </div>
+      </div>
+      <span class="clearfix"></span>
+   </div >
+    <!-- <p>Tổng <span>{{ number }}</span> đơn hàng trong ngày</p> -->
+    
+    
+    <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 75vh;">
+      <div class="detail" *ngFor="let item of bills">
+        <div class="bill">
+          <div class = "info-bill">
+            <div class = "left"><b>{{item.bill_code}}</b></div>
+            <div class = "right" style="color:#00A859"><b>{{item.total | number: "1.0-0"}}</b></div>
+          </div>
+          <div class = "status-bill">
+            <div class = "left">{{item.supplier_name}}</div>
+            <!-- <div class = "right">{{item.status}}</div> -->
+            <div class = "date">{{item.date.seconds | date: 'dd/MM/yyyy hh:mm'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+  </div>
+</ion-content>

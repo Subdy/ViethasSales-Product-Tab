@@ -1,0 +1,133 @@
+// .error-message {
+//     color: var(--ion-color-danger);
+// }
+
+// .go-to-register {
+//     text-align: center;
+//     margin-top: 20px;
+// }
+
+// .submit-btn {
+//     margin-top: 40px;
+// }
+
+
+ion-content{
+    font-size: 1rem !important;
+}
+
+
+.input-password-root{
+    position: relative;
+    
+    
+}
+.input-password{
+    width: 85%;
+}
+
+
+.input-password-icon{
+    position: absolute;
+    right: 5px;
+    top: 27px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.input{
+    margin-top:15%;
+    margin-bottom: 5%;
+}
+
+.login-logo {
+    margin-top:10%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 200px;
+        // height: 70px;
+    }
+    @media only screen and (min-width: 1024px) {
+        img {
+            width: 300px;
+            // height: 70px;
+        }
+    }
+}
+
+ion-button {
+    margin-top:5%;
+    margin-bottom: 5%;
+    border-radius: 8vh;
+    font-size: 1rem !important;
+    font-weight: 500;
+    background-color: var(--ion-color_second, #ff7800);
+    color: white;
+    width: 80%;
+    height: 40px;
+    margin-left: 10%;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.input-card {
+    border-radius: 5rem;
+    background: #F5F6F7;
+    box-shadow: 0 3px 80px rgba(39, 68, 74, 0.2);
+}
+
+form.input-box {
+    border: 2px solid #C5CCCD;
+    border-radius: 1rem;
+    background: #FFFFFF;
+    transition: .2s all;
+}
+
+form.input-box:focus-within {
+    border: 2px solid #02C4D9;
+}
+
+form.input-box:focus-within.error {
+    border: 2px solid #F54D3D;
+}
+
+input {
+    border: none;
+    background: transparent;
+    padding: 1.125rem 1rem;
+    width: 95%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    transition: .2s all;
+}
+
+input:not(:last-child) {
+    border-bottom: 2px solid #ECEEEE;
+}
+
+input::placeholder {
+    color: #9DA8AB;
+}
+
+input:focus {
+    outline: none;
+    color: #08242A;
+    padding: 2rem 1rem;
+}
+
+input:focus::placeholder {
+    color: #758589;
+}
+
+input.error {
+    color: #F54D3D;
+}
+
+input.success {
+    color: #02C4D9;
+}
+
+

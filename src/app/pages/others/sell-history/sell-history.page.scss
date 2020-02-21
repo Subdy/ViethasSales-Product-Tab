@@ -1,0 +1,182 @@
+ion-content{
+    .search{
+        display: flex;
+        font-size: 1rem;
+        ion-searchbar{
+            margin: 2vh;
+            width: 85vw;
+            height: 30px;
+            --background: white;
+            padding: 0;
+            border: 1px rgba(112, 112, 112, 0.2) solid;
+            border-radius: 5px;
+        }
+        .select-option{
+            margin-top: 1.5vh;
+            font-size: 1rem;
+            min-width: 10vh;
+        }
+    }
+    .general-content1 {
+        position: relative;
+        height: 5vh;
+        margin-top: 1.5vh;
+        margin-bottom: 1.5vh;
+        width: 96vw;
+        margin-left: 2vw;
+        .chart-revenue{
+            background-color: #777777;
+            border: 0px solid #eee;
+            border-radius: 10vh;
+            height: 100%;
+            width: 100%;
+            font-size: 1rem;
+            .revenue-button{
+                color: white;
+                text-align: center !important;
+                align-items: center;
+                justify-content: center;
+                min-height: 5vh;
+                border: none;
+                line-height: 5vh;
+
+                text-transform: none;
+                white-space: normal;
+            }
+            ion-segment-button.segment-button-checked{
+                background-color:#00BB00;
+                color: white;
+                border-radius: 10vh;
+            }
+            ion-segment-button.segment-button-checked:first-child{
+                background-color:#00BB00;
+                color: white;
+                border-radius: 10vh;
+            }
+        }      
+    }
+    .calendar{
+        .col1{
+            span{
+                line-height: 5vh;
+                font-size: 1rem;
+            }
+            .cal1{
+                width: 35vw;
+                border: 1px solid #eee;
+                box-shadow: 0vh 0.1vh 0vh 0.1vh #ddd;
+                border-radius: 10vh;
+                float: left;
+                height: 5vh;
+                item-native{
+                    padding-left: 0!important;
+                }
+                ion-datetime{
+                    font-size: 0.8rem;
+                    color: green;
+                    padding: 0!important;
+                    min-height: 5vh;
+                    line-height: 4.6vh!important;
+                    padding-bottom: 1.1vw!important;
+                }
+                ion-icon{
+                    font-size: 1rem;
+                    padding-left: 0.5vw;
+                    padding-bottom: 1vh;
+                    color: green;
+                }
+            }
+            
+        }
+        .col2{
+            span{
+                font-size: 1rem;
+                line-height: 5vh;
+            }
+            .cal2{
+                box-shadow: 0vh 0.1vh 0vh 0.1vh #ddd;
+                float: right;
+                width: 35vw;
+                border: 1px solid #EEEEEE;
+                border-radius: 10vh;
+                height: 5vh;
+                ion-datetime{
+                    font-size: 0.8rem;
+                    color: green;
+                    padding: 0!important;
+                    min-height: 5vh;
+                    line-height: 4.6vh!important;
+                    padding-bottom: 1.1vw!important;
+                }
+                ion-icon{
+                    font-size: 1rem;
+                    color: green;
+                    padding-left: 0.5vw;
+                    padding-bottom: 1vh;
+                }
+            }
+        }
+        
+    }
+    .bills {
+        //text-align: center;
+        .title_1{
+            display: flex;
+            justify-content: space-between;
+            p {
+                font-size: 12px;
+                margin-top: 30px;
+                span {
+                    color:red;
+                }
+            }
+            button{
+                font-size: 1rem;
+                height: 2rem;
+                background-color: orange;
+                border-radius: 10px;
+                margin-top: 3vh;
+                color: white;
+            }
+        }
+        .scroll {
+            overflow-x: auto ;
+            position: relative;
+        }
+        padding: 0 11px;
+       
+        .detail{
+            margin-top: 23px;
+           .bill {
+                border-bottom: 1px rgba(112, 112, 112, 0.2) solid;
+               .info-bill1{  
+                  display: flex;
+                  justify-content: space-between;
+                   font-size: 15px;
+                   padding-bottom: 5px;
+               }
+               .status-bill1{
+                   display: flex;
+                   justify-content: space-between;
+                   font-size: 12px;
+                   padding-bottom: 5px;
+               }
+               .date {
+                   text-align: left;
+                   font-size: 12px;
+                   opacity: 0.5;
+                   padding-bottom: 5px;
+               }
+           } 
+           .left {
+            flex-grow: 1;
+            text-align: left;
+            }
+            .right {
+                flex-grow: 1;
+                text-align: right;
+            }
+        }
+        
+    }
+}

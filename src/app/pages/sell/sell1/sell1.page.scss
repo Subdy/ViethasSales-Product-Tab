@@ -1,0 +1,168 @@
+.list-full {
+    margin: 1vh;
+    .content_date{
+        padding: 1.5vh 1vh 0vh 1vh;
+        display: flex;
+        justify-content: space-between;
+        ion-label{
+            margin-right: 1vh;
+        }
+        .date-day{
+            display: flex;
+            border: 1px solid #FFFFFF;
+            box-shadow: 1px 0px 3px 0px grey;
+            border-radius: 20px;
+            padding: 0rem;
+           width: 17vh;
+            ion-icon{
+                margin: auto;
+                font-size: 1rem;
+                color: #00A859;
+                margin-top: 0vh;
+            }
+            ion-datetime{
+              
+                margin: auto;
+                    font-size: 1rem; 
+                    padding: 0vw 0vw 0vw 0vw;
+                    color: #00A859;
+                    
+                }
+        }
+        .btn_add{
+           button{
+             margin-top: 1.5vh;
+            font-size: 1rem;
+            height: 2rem;
+            color: #222;
+            background-color:#FFFFFF;
+            width: 22vh;
+            border-radius: 20px;
+            box-shadow: 1px 0px 3px 0px grey;
+           }
+        }
+    }
+      .txt_name_pro{
+          display: flex;
+          justify-content: space-between;
+          h1{
+              font-size: 1rem;
+              margin-top: 4vw;
+           
+          }
+          ion-badge{
+              background-color: white;
+              color: #FF0000;
+              margin-top: 2vw;
+              font-size: 1rem;
+          }
+          @media screen and(min-width:600px){
+            h1{
+              font-size: 1rem;
+              margin-block-start: auto !important;
+          }
+          ion-badge{
+            background-color: white;
+            color: #FF0000;
+            margin-top: 1vw;
+            font-size: 1rem;
+        }
+          }
+          .txt_select {
+            display: flex;
+            .txt_name_select {
+              color: #35be1b;
+              font-size: 1rem;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              overflow: hidden;
+              max-width: 100%;
+              .select_1 {
+                font-size: 1rem;
+                color: #35be1b;
+              }
+            }
+            .select {
+              padding: 11px 8px 11px 0px;
+            }
+            
+          }
+      }
+      .list-product1{
+          ion-item{
+            height: 15vh;
+            width: 94vw;
+              ion-thumbnail{
+                height: 10vh;
+                width: 15vw;
+                  img{
+                      height: 10vh;
+                      width: 15vw;
+                      border-radius: 10px;
+                  }
+              }
+              .txt_name2{
+                  display: flex;
+                  justify-content: space-between;
+                  .ionicon1{
+                    display: flex;
+                    .name{
+                      margin-right: 4vw;
+                    }
+                  }
+                  .span1{
+                    color: #222;
+                    margin-left: 6vh;
+                  }
+              }
+              .txt_name1{
+                  display: flex;
+                  justify-content: space-between;
+                .span2{
+                  color: #FF0000;
+                  margin-left: 1vh;
+                }
+                }
+          }
+          @media screen and(min-width:600px){
+            ion-item{
+              height: 15vh;
+              width: 94vw;
+                ion-thumbnail{
+                  height: 10vh;
+                  width: 15vw;
+                    img{
+                        height: 10vh;
+                        width: 15vw;
+                        border-radius: 10px;
+                    }
+                }
+                .txt_name2{
+                    display: flex;
+                    justify-content: space-between;
+                    .ionicon1{
+                      display: flex;
+                      .name{
+                        margin-right: 4vw;
+                      }
+                    }
+                    // .span1{
+                    //   color: #222;
+                    //   margin-left: 5vh;
+                    // }
+                }
+                .txt_name1{
+                    display: flex;
+                    justify-content: space-between;
+                    .span2{
+                      color: #FF0000;
+                      margin-left: 2vh !important;
+                    }
+                  }
+            }
+          }
+         
+      }
+      }

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nhập Tồn Đầu Kỳ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="list-full">
+    <div class="content_date">
+      <!-- <div class="date date_start">
+         <span class="txt_date1">Tháng</span>
+         <div ion-item no-lines class="select_date">
+            <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="startDay"></ion-datetime>
+            <ion-icon item-content name="calendar" slot="end"></ion-icon>
+         </div>
+       </div> -->
+       <ion-item>
+        <ion-label>Tháng</ion-label>
+        <div class="date-day">
+          <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="startDay"></ion-datetime>
+          <ion-icon item-content name="calendar" slot="end"></ion-icon>
+        </div>
+      </ion-item>
+      <span class="clearfix"></span>
+      <div class="btn_add">
+        <button>+ Tạo Sản Phẩm</button>
+      </div>
+   </div>
+<div class="txt_name_pro" *ngFor="let i of list_pro">
+  <ion-item>
+    <h1>Tổng<span  style="color: #FF0000;"> {{ i.id}}</span> Sản Phẩm</h1>
+  <ion-badge slot="end">22</ion-badge>
+  </ion-item>
+</div>
+  <div class="list-product1">
+    <ion-item *ngFor="let i of listgoods" (click)="gotoproductdetail()">
+      <ion-thumbnail slot="start">
+        <img src="../../../assets/img/download.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{i.name}}</h3>
+        <div class="txt_name2">
+          <p>SKU:<span class="span1">{{i.sku}}</span></p>
+          <div class="ionicon1">
+        <ion-icon class="icon1" name="arrow-forward"></ion-icon>
+          </div>
+        
+        </div>
+        <div class="txt_name1">
+          <p>Giá Nhập:<span class="span2">{{i.entryprice}}</span></p>
+        <p>Giá Bán:<span class="span2" >{{i.price}}</span></p>
+        </div>
+      </ion-label>
+    </ion-item>
+  </div>
+  </div>
+</ion-content>

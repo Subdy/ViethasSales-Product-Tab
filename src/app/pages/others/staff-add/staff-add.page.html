@@ -1,0 +1,140 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Thêm Nhân Viên</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="conteiner_add_pro">
+ 
+  
+    <div  class="content">
+      <div class="txt_list_addproduct">
+        
+        <ion-card class="txt_icon" (click) = "openImagePicker()">
+          <ion-icon name="add"></ion-icon>
+        </ion-card>
+      </div>
+      <form class="form" [formGroup]="validations_form" (ngSubmit)="createStaff(validations_form.value)">
+        <div class="txt_name_2">
+          <ion-item  class="txt_item1">
+            <ion-label class="name_1" position="floating">Họ & tên</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
+          
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.name">
+                  <div class="error-message" *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('name').dirty || validations_form.get('name').touched)">
+                      {{ validation.message }}
+                  </div>
+              </ng-container>
+          </div>
+       
+        <ion-item class="txt_item1">
+          <ion-label position="floating" class="name_1" position="floating">Mã nhân viên</ion-label>
+          <ion-input type="text" formControlName="id_staff"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.id_staff">
+              <div class="error-message" *ngIf="validations_form.get('id_staff').hasError(validation.type) && (validations_form.get('id_staff').dirty || validations_form.get('id_staff').touched)">
+                  {{ validation.message }}
+              </div>
+          </ng-container>
+      </div>
+        <ion-item  class="txt_item1">
+          <ion-label class="name_1" position="floating">Email</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+                <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-item  class="txt_item1">
+          <ion-label class="name_1" position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+                <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+     
+         
+       <ion-item class="txt_item1">
+          <ion-label class="name_1" position="floating">Địa chỉ</ion-label>
+          <ion-input type="text" formControlName="address"></ion-input>
+        </ion-item>
+
+ 
+         
+        <ion-item class="txt_item1">
+          <ion-label class="name_1" position="floating">Điện thoại</ion-label>
+          <ion-input type="number" formControlName="phone"></ion-input>
+        </ion-item>
+
+       
+
+        <ion-item class="txt_item1">
+          <ion-label class="name_1" position="floating">Tổng doanh thu</ion-label>
+          <ion-input type="text" formControlName="revenue"></ion-input>
+        </ion-item> 
+
+
+        <ion-item class="txt_item1"> 
+          <ion-label  class="name_4">Ngày vào làm <ion-text color="danger"></ion-text></ion-label>
+          <!-- <ion-datetime displayFormat="MM/DD/YYYY"  [(ngModel)]="date" (ionStyle)="showdate()"></ion-datetime><ion-icon name="calendar" class="icon_calenda"></ion-icon> -->
+          <ion-datetime #myPicker displayFormat='DD/MM/YYYY' min="2019-03-14" max="2030-12-09" [(value)]="date" (ionChange)="updateMyDate(myPicker.value)"></ion-datetime><ion-icon name="calendar" class="icon_calenda"></ion-icon>
+        </ion-item>
+
+        <ion-item class="txt_item1">
+          <ion-label class="name_1" position="floating">Hợp đồng   <ion-icon name="arrow-down"></ion-icon>
+          </ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <div class="txt_name_3">
+          <ion-item class="title">
+            <ion-label class="txt_title">Phân quyền</ion-label>
+          </ion-item>
+
+
+        <ion-item>
+          <ion-label class="name_3">Xem báo cáo</ion-label>
+          <ion-toggle class="toggle" slot="end" name="kiwi" color="success" checked="{{isSeeReport}}" (ionChange)="changeSeeRepor()"></ion-toggle>
+          
+        </ion-item>
+        <ion-item>
+          <ion-label class="name_3">Sửa báo cáo</ion-label>
+          <ion-toggle class="toggle" slot="end" name="kiwi" color="success" checked="{{isChangeReport}}" (ionChange)="changeChangeReport()"></ion-toggle>          
+        </ion-item>
+        <ion-item>
+          <ion-label class="name_3">Thu nhập chi khác</ion-label>
+          <ion-toggle class="toggle" slot="end" name="kiwi" color="success" checked="{{isIncome}}" (ionChange)="changeIncome()"></ion-toggle>   
+        </ion-item>
+        <ion-item>
+          <ion-label class="name_3">Sửa thu chi khác</ion-label>
+          <ion-toggle class="toggle" slot="end" name="kiwi" color="success" checked="{{isChangeIcome}}" (ionChange)="changeChangeIcome()"></ion-toggle>             
+        </ion-item>
+        <ion-item>
+          <ion-label class="name_3">Nhập hàng/thêm sản phẩm</ion-label>
+        <ion-toggle class="toggle" slot="end" name="kiwi" color="success" checked="{{isEnter}}" (ionChange)="changeEnter()"></ion-toggle>        
+        </ion-item>
+      </div>
+      <div class="add_btn">
+        <ion-button class="submit-btn" expand="block" type="submit">Lưu</ion-button>
+      </div>
+      </div>
+      
+  </form>
+</div>
+
+
+</ion-content>

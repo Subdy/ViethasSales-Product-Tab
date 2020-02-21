@@ -1,0 +1,79 @@
+ion-content {
+  .content-full {
+    .txt-card {
+      margin-bottom: 3vh;
+      ion-card {
+        border-radius: 10px;
+        box-shadow: 2px 4px 7px 3px grey;
+        ion-label {
+          font-size: 0.9rem;
+          font-weight: bold;
+        }
+        ion-item {
+          .toggle.toggle-checked .toggle-inner {
+            -webkit-transform: translate3d(16px, 0, 0);
+            transform: translate3d(16px, 0, 0);
+            background-color: #35be1b;
+            font-size: 100%;
+          }
+          .toggle.toggle-checked .toggle-icon {
+            background-color: #d6d6c2;
+          }
+        }
+
+        .datetime {
+          font-size: 1rem;
+        }
+        .txt-item1 {
+          .txtname-1 {
+            font-size: 0.8rem;
+          }
+        }
+        .time {
+          display: flex;
+          justify-content: flex-end;
+          .txt-name {
+            margin: auto;
+            margin-left: initial;
+          }
+          label {
+            white-space: normal;
+            font-size: 0.8rem;
+          }
+          .clock1 {
+            .datetime {
+              font-size: 0.8rem;
+            }
+            .date-time {
+              margin-left: 15px;
+            }
+          }
+          p {
+            font-size: 0.8rem;
+            margin-top: 13px;
+          }
+          @media screen and (min-width: 600px) {
+            p {
+              font-size: 0.8rem !important;
+              margin-top: 12px !important;
+            }
+            .date-time {
+              margin-left: 40vh !important;
+            }
+          }
+          @media screen and (min-width: 375px) {
+            p {
+              font-size: 0.8rem;
+              margin-top:12px;
+            }
+          }
+          .clock2 {
+            .datetime {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

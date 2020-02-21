@@ -1,0 +1,111 @@
+.content-report-inventory{
+    .row1{
+        .content-time{
+            position: relative;
+            .title{
+                font-size: 1rem;
+                margin: 3vw 2vw 2vw 2vw;
+            }
+            .time{
+                margin: 2vw 0vw 2vw 1vw;
+                display: inline-flex; 
+                width: 10rem;
+                border: 1px solid #eee;
+                box-shadow: 0vh 0.1vh 0vh 0.1vh #ddd;
+                border-radius: 10vh;
+                height: 5vw;
+                .cal{
+                    padding-left: 1.5vw;
+                    ion-datetime{
+                        font-size: 0.9rem;
+                        color: green;
+                        padding: 0!important;
+                    }
+                    @media only screen and (min-width: 600px)  {
+                        ion-datetime{
+                            font-size: 0.9rem;
+                            line-height: 3vh!important;
+                        }
+                    }
+                    ion-icon{
+                        font-size: 1.4rem;
+                        padding-left: 0.5vw;
+                        padding-bottom: 2vh;
+                        color: green;
+                    }
+                    @media only screen and (min-width: 1024px){
+                        ion-datetime{
+                            line-height: 7vh!important;
+                        }
+                        ion-icon{
+                            padding-bottom: 1vh;
+                        }
+                    }
+                }
+                item-native{
+                    padding-left: 0!important;
+                }
+                
+            }
+        }
+        .button{
+            margin: 2vw 0vw 2vw 4vw;
+            button{
+                border-radius: 10vh;
+                background-color: orange;
+                color: white;
+                font-size: 1rem;
+                padding: 1.4vw;
+            }
+        }
+        .r1-select{
+            ion-select{
+                width: auto;
+                float: right;
+                font-size: 1rem;
+                margin: 0.75rem 0vw 2vw 0;
+            }
+        }
+        @media screen and (min-width:1024px){
+            ion-select{
+                margin: 1.7rem 0vw 2vw 0!important;
+            }
+        }
+    }
+    .table-scroll {
+        display: block;
+        position:relative;
+        max-width:100vw;
+        margin:auto;
+        .table-wrap {
+            overflow-y: scroll;
+            width:100%;
+            table {
+                width:100%;
+                margin:auto;
+                border-collapse:separate;
+                border-spacing:0;
+                th,td{
+                    font-size: 1rem!important;
+                    text-align: center;
+                    padding:1vw 2vw;
+                    border:0.016px solid #DDDDDD;
+                    white-space:nowrap;
+                }
+                thead{
+                    background-color:#EE9A00;
+                    color:white;
+                }
+                tbody{
+                    tr:first-child{
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+}
+
+button{
+    border-bottom: 0 !important;
+}

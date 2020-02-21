@@ -1,0 +1,48 @@
+.content-cost-detail{
+    .box{
+        width: 94%;
+        margin: 2.5rem 3%;
+        border: 1px solid #ccc;
+        border-radius: 1rem;
+        box-shadow: 0 0.2rem 0.2rem 0.2rem #eee;
+        .title{
+            margin: 2rem;
+            text-align: center;
+        }
+        .table{
+            margin: 2rem 15%;
+            width: 70%;
+            tr{
+                text-align: left;
+                border-bottom: 1px solid #eee;
+                td{
+                    padding: 0.75rem;
+                }
+            }
+            tr:last-child{
+                border-bottom: 0!important;
+            }
+        }
+    }
+    .button{
+        margin-top: 10vh;
+        text-align: center;
+        .btn1{
+            margin-right: 1rem;
+            padding: 0.5rem 3rem;
+            background-color: #ddd;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            border-width: 600;
+        }
+        .btn2{
+            padding: 0.5rem 3rem;
+            background-color:orange ;
+            color: white;
+            border-radius: 0.5rem;
+            margin-left: 1rem;
+            font-size: 1rem;
+            border-width: 600;
+        }
+    }
+}

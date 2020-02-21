@@ -1,0 +1,200 @@
+.content-report-cost{
+    .calendar{
+        height: 5vh;
+        margin: 1rem 0.5rem 0.5rem 0.5rem;
+        display: inline-flex;
+        .col1{
+            .div-cal1{
+                display: block;
+                span{
+                    font-size: 0.9rem;
+                    margin-top: 0.6rem;
+                    float: left;
+                    margin-right: 0.4rem;
+                }
+                .cal1{
+                    height: 2rem;
+                    width: 7rem;
+                    border: 1px solid #ddd;
+                    border-radius: 10vh;
+                    float:right;
+                    position: relative;
+                    item-native{
+                        padding-left: 0!important;
+                    }
+                    ion-datetime{
+                        color: #00A859;
+                        padding: 0!important;
+                        position: absolute;
+                        width: 6rem;
+                        top: 23%;
+                        left: 0;
+                        font-size: 0.8rem;
+                    }
+                    ion-icon{
+                        color: #00A859;
+                        right: 10%;
+                        top: 17%;
+                        position: absolute;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+        .col2{
+            .div-cal2{
+                display: block;
+                span{
+                    font-size: 0.9rem;
+                    margin-top: 0.6rem;
+                    float: left;
+                    margin-left: 0.5rem;
+                    margin-right: 0.4rem;
+                }
+                .cal2{
+                    height: 2rem;
+                    width: 7rem;
+                    border: 1px solid #ddd;
+                    border-radius: 10vh;
+                    float:right;
+                    position: relative;
+                    item-native{
+                        padding-left: 0!important;
+                    }
+                    ion-datetime{
+                        color: #00A859;
+                        padding: 0!important;
+                        position: absolute;
+                        width: 6rem;
+                        top: 23%;
+                        left: 0;
+                        font-size: 0.8rem;
+                    }
+                    ion-icon{
+                        color: #00A859;
+                        right: 10%;
+                        top: 17%;
+                        position: absolute;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+        .col3{
+            position: absolute;
+            right:0.5%;
+            ion-select{
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    @media screen and(min-height:1024px){
+        .calendar{
+            margin: 1.5rem 0.5rem 0rem 0.5rem!important;
+            .col1{
+                padding-right: 4rem;
+                .cal1{
+                    width: 7rem!important;
+                    ion-icon{
+                        padding-bottom: 0.7rem;
+                        padding-left: 1rem!important;
+                    }
+                }
+            }
+            .col2{
+                .cal2{
+                    width: rem!important;
+                    ion-icon{
+                        padding-bottom: 0.7rem!important;
+                        padding-left: 1rem!important;
+                    }
+                }
+            }
+            .col3{
+                ion-select{
+                    font-size: 1rem!important;
+                }
+            }
+        }
+    }
+
+    .table{
+        display: block;
+        position:relative;
+        width: 100vw;
+        padding: 0.5rem;
+        .table-title{
+            width: 100%;
+            text-align: center;
+            th{
+                font-size: 1rem;
+                background-color: orange;
+                color: white;
+                padding: 0.5rem;
+            }
+        }
+        .container-table{
+            height: 68vh;
+            overflow-y: scroll;
+            .table-content{
+                width: 100%;
+                
+                td{
+                    text-align: center;
+                    padding: 0.5rem;
+                }
+            }
+        }
+        @media screen and(min-height:1024px){
+            .container-table{
+                height: 72vh;
+                .table-content{
+                    td{
+                        padding: 0.75rem;
+                    }
+                }
+            }
+        }
+    }
+    .footer-cost{
+        padding:0 1rem;
+        background-color: #00A859;
+        color:white;
+        position: fixed;
+        height: 12vh;
+        top: 88%;
+        left: 0;
+        width: 100%;
+        display: inline-flex;
+        .col1{
+            font-size: 1rem;
+            width: 50%;
+            line-height: 0.5rem;
+            .total-col{
+                color: #EE0000;
+                font-weight: 600;
+            }
+        }
+        .col2{
+            text-align: right;
+            font-size: 1em;
+            width: 50%;
+            line-height: 0.5rem;
+            .total-col{
+                color: #EE0000;
+                font-size: 600;
+            }
+        }
+    }
+    @media screen and(min-height:1024px){
+        .footer-cost{
+            .col1{
+                line-height: 1rem;
+            }
+            .col2{
+                line-height: 1rem;
+            }
+        }
+    }
+}

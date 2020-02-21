@@ -1,0 +1,31 @@
+ion-content{
+    .txt_list_add{
+        border-radius: 10px;
+        .txt_item1{
+            margin: 2vh;
+            .name_1{
+                font-size: 1rem;
+                color: gray;
+                // font-weight: 600;
+               
+            }
+            ion-input{
+                text-align: end;
+                font-size: 1rem;
+            }
+        }
+       
+    }
+    .add_btn{
+        text-align: center;
+        button{
+            font-size: 1rem;
+            color: white;
+            width: 20vh;
+            background-color: orange;
+            border-radius: 10px;
+            height: 2rem;
+          
+        }
+    }
+}

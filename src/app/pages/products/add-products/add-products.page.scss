@@ -1,0 +1,55 @@
+.container-add-product{
+.txt_list_addproduct{
+    text-align: -webkit-center;
+    .txt_icon{
+        border-radius: 10px;
+        height: 15vh;
+        width: 15vh;
+        ion-icon{
+            font-size: 15vh;
+            color: #A1A1A1;
+        }
+    }
+}
+.txt_add_2{
+    border-radius: 10px;
+    .txt_item2{
+        margin: 2vh;
+        .name_2{
+            font-size: 1rem;
+            font-weight: 600;
+           
+        }
+        ion-input{
+            text-align: end;
+            font-size: 1rem;
+        }
+        ion-icon{
+            margin-left: 1vh;
+        }
+        .txt_allow{
+            text-align: end;
+        }
+        // .name_total_1{
+        //     text-align: start;
+        // }
+        // .total-1{
+        //     text-align: end;
+        //     font-size: 1rem;
+        // }
+    }
+   
+}
+.add_btn{
+    text-align: center;
+    button{
+        font-size: 1rem;
+        color: white;
+        width: 20vh;
+        background-color: orange;
+        border-radius: 10px;
+        height: 3rem;
+      
+    }
+}
+}

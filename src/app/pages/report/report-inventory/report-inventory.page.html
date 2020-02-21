@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Báo cáo theo nhập tồn</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-report-inventory">
+  <ion-grid>
+    <ion-row class="row1">
+      <ion-col size="6">
+        <div class="content-time">
+          <span class="title">Tháng</span>
+          <div class="time">
+            <ion-item class="cal">
+              <ion-datetime displayFormat="DD-MM-YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
+              <ion-icon name="calendar"></ion-icon>
+            </ion-item>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div class="button">
+          <button>Xuất báo cáo</button>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="r1-select">
+        <ion-select value="01" interface="popover">
+          <ion-select-option  value="01">Xuất hàng</ion-select-option>
+          <ion-select-option value="02">Nhập hàng</ion-select-option>
+          <ion-select-option value="03">Xuất nhập hàng</ion-select-option>
+          <ion-select-option value="04">Xuất nhập tồn</ion-select-option>
+      </ion-select>
+      </ion-col> 
+    </ion-row>
+  </ion-grid>
+  <div id="table-scroll" class="table-scroll">
+    <div class="table-wrap">
+      <table class="main-table">
+        <thead>
+          <tr>
+            <th rowspan="2">STT</th>
+            <th rowspan="2">SKU</th>
+            <th rowspan="2">Tên sản phẩm</th>
+            <th rowspan="2">Đơn vị</th>
+            <th colspan="4">Tổng đầu kỳ</th>
+            <th colspan="4">Nhập trong kỳ</th>
+            <th colspan="4">Xuất trong kỳ</th>
+            <th colspan="4">Tồn kỳ cuối</th>
+            <th rowspan="2">Đơn giá trung bình</th>
+          </tr>
+          <tr>
+            <td colspan="2">SL</td>
+            <td colspan="2">Thành tiền</td>
+            <td colspan="2">SL</td>
+            <td colspan="2">Thành tiền</td>
+            <td colspan="2">SL</td>
+            <td colspan="2">Thành tiền</td> 
+            <td colspan="2">SL</td>
+            <td colspan="2">Thành tiền</td> 
+          </tr>
+        </thead>  
+        <tbody>
+          <tr>
+            <th></th>
+            <td></td>
+            <td>Tổng cộng</td>
+            <td></td>
+            <td colspan="2">2000</td>
+            <td colspan="2">100012000</td>
+            <td colspan="2">201</td>
+            <td colspan="2">167000000</td>
+            <td colspan="2">223</td>
+            <td colspan="2">154000000</td>
+            <td colspan="2">260</td>
+            <td colspan="2">120000000</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <th>1</th>
+            <td>1751010</td>
+            <td>Bao cao su nhập khấu</td>
+            <td>123</td>
+            <td colspan="2">2000</td>
+            <td colspan="2">100012000</td>
+            <td colspan="2">201</td>
+            <td colspan="2">167000000</td>
+            <td colspan="2">223</td>
+            <td colspan="2">154000000</td>
+            <td colspan="2">260</td>
+            <td colspan="2">120000000</td>
+            <td colspan="2">12334</td>
+          </tr>
+          
+      
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ion-content>

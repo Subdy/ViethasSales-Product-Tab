@@ -1,0 +1,51 @@
+.container_system{
+    .txt_img{
+        text-align: center;
+        margin: 2vh;
+        img{
+            height: 15vh;
+            width: 15vh;
+            border-radius: 20vh;
+        }
+        h1{
+            font-size: 1rem;
+            font-weight: 600;
+            color: #222;
+        }
+    }
+    .list_info{
+        margin: 2vh;
+        border-radius: 3vh;
+        .list_name_system{
+            margin: 1vh;
+            h2{
+                margin: 2vh;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #222;
+            }
+            .txtname{
+                font-size: 1rem;
+            }
+            .txtinfo_1{
+                .txtname_1{
+                    font-size: 1rem;
+                    color: #222;
+                    text-align: end;
+                }
+            }
+           
+        }
+    }
+    .button_save{
+        text-align: center;
+        .btn_save1{
+            color: #ffffff;
+            font-size: 1rem;
+            border-radius: 10px;
+            width: 20vh;
+            height: 2rem;
+            background-color: #F29500;
+        }
+    }
+}

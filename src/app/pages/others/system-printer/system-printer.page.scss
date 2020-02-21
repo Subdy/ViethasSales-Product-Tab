@@ -1,0 +1,70 @@
+
+.error-message {
+    color: var(--ion-color-danger);
+}
+.popupContent{
+    margin-top: 20%;
+}
+
+.content_printer{
+    font-size: 1rem;
+    h3{
+        margin-left: 3vh;
+        font-weight: bold;
+    }
+    form{
+        margin-top: 10%;
+    }
+   
+    ion-card{
+        
+        border-radius: 3vh;
+        .button_printer{
+            margin: 3vh;
+            .add_printer{
+               
+                border-radius: 10px;
+                font-size: 1rem;
+                height: 2rem;
+                width: 20vh;
+                background-color: #ffffff;
+                box-shadow: 0px 0px 3px 0px grey;
+            }
+        }
+        .list_printer{
+            margin: 2vh;
+            .name_id{
+                font-size: 1rem;
+            }
+            ion-input{
+                text-align: end;
+                font-size: 1rem;
+            }
+            .name_list{
+                margin: 2vh;
+                h1{
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: #222;
+                }
+            }
+        }
+    }
+    .button_printer1{
+        text-align: center;
+        .add_printer1{
+            margin: 12vh;
+            border-radius: 20px;
+            font-size: 1rem;
+            height: 2rem;
+            width: 20vh;
+            color: #ffffff;
+            background-color: #F29500;
+           
+            box-shadow: 0px 0px 3px 0px grey;
+        }
+    }
+    
+
+   
+}

@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar *ngIf="show">
+    <ion-buttons slot="start" >
+      <ion-button (click)="delete_bill()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-searchbar placeholder="Tìm nhà cung cấp" ></ion-searchbar>
+    <ion-buttons slot="end" (click)= "gotoproductaddsupplier()">
+      <ion-icon slot="end" name="add"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="primary" *ngIf="!show">
+    <ion-buttons slot="start" >
+      <ion-button (click)="delete_bill()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Nhà Cung Cấp</ion-title>
+    <ion-buttons slot="end" (click)= "gotoproductaddsupplier()">
+      <ion-icon slot="end" name="add"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="conten_suppliers">
+  <div class = "no-supplier" *ngIf="!show">
+    <p>Bạn chưa có nhà cung cấp nào!</p>
+  </div>
+  <div class="txt_suppliers" *ngIf="show">
+    <div class="add-bill">
+      <div class="add">
+        <p><span style="color:red;">* </span>Bạn chưa chọn NCC cho đơn nhập hàng</p>
+      </div>
+     
+      <div class="txt_select3">
+        <ion-select class="txt_name_select3" interface="popover" value="Mới nhất">
+          <ion-select-option class="select_1" value="Mới nhất">Mới nhất</ion-select-option>
+          <ion-select-option class="select_1" value="Cũ nhất">Cũ nhất</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+    
+     
+    <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 85vh; ">
+      <div class="txt_name1" *ngFor="let i of list_suppliers" (click)="gotoproductimportcart(i)">
+          <div class="txt_name">
+            <h1>{{i.name}}</h1>
+            <div class="txt_icon" style="float: right;">
+              <ion-icon  name="chevron-forward"></ion-icon>
+             </div>
+          </div>
+          <div class="txt_id_smat">
+            <h2>{{i.phone}}</h2>
+           <div class="txt_gmail">
+            <p>{{i.email}}</p>
+           </div>
+          </div>
+        </div>
+    </div>
+
+
+  </div>
+  <div *ngIf="trigger_popup"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: gray; opacity: .5; z-index: 999"
+    (click)="cancel()">
+  </div>
+  <ion-grid *ngIf="trigger_popup" style="position: absolute; top: 30% ; width: 100%;">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="10">
+        <ion-card class="ion-padding" style="z-index: 9999; background: white">
+          <div class="txt-card-tt1">
+            <h5 class="ion-text-center">Bạn muốn xóa?</h5>
+            <ion-grid class="popupContent">
+              <ion-row>
+                <ion-col>
+                  <ion-button (click)="cancel()" color="medium" style="width: 100%">HỦY</ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button (click)="deteleSupplier()" color="warning" style="width: 100%">ĐỒNG Ý</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

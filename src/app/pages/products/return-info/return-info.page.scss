@@ -1,0 +1,159 @@
+
+ion-header{
+    ion-toolbar {
+        --background: #00A859;
+    }
+    ion-title{
+        --color: #ffffff;
+    }
+    ion-button{
+        --background: none;
+        --background-activated: none;
+    }
+
+}
+ion-content{
+    .list {
+        border-radius: 20px;
+        padding: 0;
+        margin: 10px 8px 20px 8px;
+        background: white;
+        box-shadow: 0px 1px 10px -2px rgba(0,0,0,0.18);
+        div {
+            position: relative;
+            overflow-x: auto;
+            .item1 {
+                font-size: 1rem;
+                ion-button{
+                    --background: none;
+                    --background-activated: none;
+                    --color: red;
+                    --color-activated: red;
+                    font-size: 2rem;
+                    --padding-start: 0;
+                    --padding-end: 0;
+                    margin: 0;
+                }   
+                .sub {
+                    margin-top: 17px;
+                    display: flex;
+                    font-size: 0.8rem;
+                }
+                .cost {
+                    flex-grow: 1.5;
+                }
+                .x {
+                    flex-grow: 1;
+                }
+                .quantity{
+                    flex-grow: 1;
+                }
+                .total {
+                    flex-grow: 1.5;
+                    text-align: right;
+                }
+            }
+        }
+        
+        .item2 {
+            --border-color: white;
+            .total1{
+                display: flex;
+                font-size: 1rem;
+                color: red;
+                font-weight: bold;
+            }
+            .tamtinh{
+                flex-grow: 1;
+            }
+            .quantity{
+                flex-grow: 1;
+                text-align: center;
+            }
+            .totalcost{
+                flex-grow: 1;
+                text-align: right;
+            }
+        }
+    }
+    .paytype {
+        border-radius: 20px;
+        padding: 0;
+        margin: 10px 8px;
+        background: white;
+        box-shadow: 0px 1px 10px -2px rgba(0,0,0,0.18);
+        ion-item {
+            --border-color:white;
+            span {
+                ion-icon{
+                    width: 1rem;
+                    height: 1rem;
+                }
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+    ion-radio {
+        --color-checked: #00A859;
+        width: 20px;
+        height: 20px;
+    }
+    .customer {
+        border-radius: 20px;
+        padding: 10px 0 20px 0;
+        margin: 10px 8px 20px 8px;
+        background: white;
+        box-shadow: 0px 1px 10px -2px rgba(0,0,0,0.18);
+        ion-item{
+            --border-color: white;
+        }
+        ion-input {
+            width: 12rem;
+            text-align: center;
+            left: 50vw;
+            margin-left: -6rem;
+            border-bottom: 1px rgba(112, 112, 112,0.2) solid;
+        }
+        ion-select{
+            width: 12rem;
+            text-align: center;
+            left: 50vw;
+            margin-left: -6rem;
+            border-bottom: 1px rgba(112, 112, 112,0.2) solid;
+        }
+        ion-datetime{
+            width: 12rem;
+            text-align: center;
+            left: 50vw;
+            margin-left: -6rem;
+            border-bottom: 1px rgba(112, 112, 112,0.2) solid;
+        }
+    }
+    .btn {
+        margin: 20px 10px;
+        display: flex;
+        font-size: 0.5rem;
+        .add{
+            flex-grow: 1;
+            text-align: left;
+        }
+        .save{
+            flex-grow: 1;
+            text-align: center;
+        }
+        .pay{
+            flex-grow: 1;
+            text-align: right;
+        }
+        ion-button{
+            width: 7rem;
+            height: 2rem;
+            --background-activated: #F5A62F;
+            --background: #F5A62F;
+            font-weight: bold;
+            --border-radius: 5px;
+        }
+    }
+    
+}

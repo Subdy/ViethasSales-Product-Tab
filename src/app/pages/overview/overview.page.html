@@ -1,0 +1,138 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Tổng quan
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+    <ion-grid>
+        <ion-row class="row1">
+            <div class="col1-r1">
+                <h2><span style="color: #009933; font-size: 1.2rem;">86.76</span> triệu</h2>
+                <h4>6 Hóa đơn</h4>
+            </div> 
+            <div class="col2-r1"> 
+                <h2><span style="color: #009933; font-size: 1.2rem;">0</span> triệu</h2>
+                <h4>0 phiếu trả</h4>
+            </div> 
+            <div class="col3-r1">
+                <ion-select value="01" interface="popover">
+                    <ion-select-option  value="01">Hôm nay</ion-select-option>
+                    <ion-select-option value="02">Tuần này</ion-select-option>
+                    <ion-select-option value="03">Tháng này</ion-select-option>
+                    <ion-select-option value="04">Năm này</ion-select-option>
+                </ion-select>
+            </div>          
+        </ion-row>
+
+        <ion-row class="row7">
+            <ion-col size="12" class="col4">
+                <div class="ct3_bg">
+                    <canvas height="189" width="386" #barChart class="chart"></canvas>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="row2">
+            <ion-col size="6" class="row2-col1">
+                <div>
+                    Tồn kho:
+                    <span style="color: #009933; font-size: 1.2rem;">1.133.333đ</span>
+                </div>
+            </ion-col>
+            <ion-col size="6" class="row2-col2">
+                <div class="col2-prd">555 sản phẩm</div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="row3">
+            <ion-col class="row3-col">
+                <div class="number">45</div>
+                <div class="name">Khách mời</div>
+                <div class="change">
+                    <ion-icon name="arrow-round-up" class="r3-icon"></ion-icon>
+                    <span>15% lên</span>
+                </div>
+            </ion-col>
+            <ion-col class="row3-col">
+                <div class="number">6.7 triệu</div>
+                <div class="name">Doanh thu</div>
+                <div class="change">
+                    <ion-icon name="arrow-round-up" class="r3-icon"></ion-icon>15% lên
+                </div>
+            </ion-col>
+            <ion-col class="row3-col">
+                <div class="number">45</div>
+                <div class="name">Đơn đã đặt</div>
+                <div class="change">
+                    <ion-icon name="arrow-round-up" class="r3-icon"></ion-icon>15% lên
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="row4">
+            <ion-col class="row4-col">
+                <div class="number">45</div>
+                <div class="name">Đơn đặt hàng</div>
+                <div class="change">
+                    <ion-icon name="arrow-round-up" class="r3-icon"></ion-icon>15% lên
+                </div>
+            </ion-col>
+            <ion-col class="row4-col">
+                <div class="number">45</div>
+                <div class="name">Đơn hủy</div>
+                <div class="change">
+                    <ion-icon name="arrow-round-up" class="r3-icon"></ion-icon>15% lên
+                </div>
+            </ion-col>
+            <ion-col class="row4-col">
+                <div class="number">45</div>
+                <div class="name">Đơn trả</div>
+                <div class="change">
+                    <ion-icon name="arrow-round-up" class="r3-icon"></ion-icon>15% lên
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="row5">
+            <ion-col size="12" class="title">THÔNG TIN KHO</ion-col>
+        </ion-row>
+
+        <ion-row class="row6">          
+            <ion-col size="12" class="r6-col">
+                <div class="title-col">Sản phẩm định mức tồn dưới 10</div>
+                <ion-item-group class="r6-gr">
+                    <ion-item lines="none">
+                        <ion-label>ABC</ion-label>
+                        <ion-label class="text-right">Hàng gạo tẻ</ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label>BNN</ion-label>
+                        <ion-label class="text-right">Hàng ma túy</ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label>1JU</ion-label>
+                        <ion-label class="text-right">Hàng tiêu dùng</ion-label>
+                    </ion-item>
+                </ion-item-group>
+            </ion-col>
+            <ion-col size="12" class="r6-col">
+                <div class="title-col">Sản phẩm định mức tồn dưới 0</div>
+                <ion-item-group class="r6-gr">
+                    <ion-item lines="none">
+                        <ion-label>ABC</ion-label>
+                        <ion-label class="text-right">Hàng gạo tẻ</ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label>BNN</ion-label>
+                        <ion-label class="text-right">Hàng ma túy</ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label>1JU</ion-label>
+                        <ion-label class="text-right">Hàng tiêu dùng</ion-label>
+                    </ion-item>
+                </ion-item-group>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

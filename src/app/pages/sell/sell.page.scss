@@ -1,0 +1,121 @@
+ion-header {
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 19px 0px;
+    text-align: left;
+    ion-searchbar{
+        width: 75.3vw;
+        height: 7.7vw;
+        --background: white;
+        padding: 0;
+        border: 1px rgba(112, 112, 112, 0.2) solid;
+        border-radius: 5px;
+    }
+    ion-icon {
+        color: black;
+        padding: 0;
+        margin: 0;
+    }
+    ion-button {
+        --color: black;
+        --color-focused: black;
+        --color-activated: black;
+        padding: 0;
+        margin: 0;
+        --background: white;
+        --background-focused: white;
+        --background-activated: white;
+        height: 8vw;
+        width: 14vw;
+    }
+}   
+ion-content {
+    font-family: Arial, Helvetica, sans-serif;
+    .no-bill {
+        margin: 276px 118px 0px 119px;
+        text-align: center;
+        ion-button {
+            text-align: center;
+            --background: none;
+            --background-focused: none;
+            --background-activated: none;
+            --color: black;
+            --color-focused: black;
+            --color-activated: black;
+            border-radius: 100px;
+            box-shadow: 0px 2px 4px 0px rgb(148, 148, 148);
+            height: 38px;
+            width: 177px;
+        }
+        p {
+            font-size: 0.8rem;
+        }
+        
+        
+    }
+
+    .bills {
+        //text-align: center;
+        .scroll {
+            overflow-x: auto ;
+            position: relative;
+        }
+        padding: 0 11px;
+        .add-bill {
+            text-align: center;
+            ion-button {
+                text-align: center;
+                --background: none;
+                --background-focused: none;
+                --background-activated: none;
+                --color: black;
+                --color-focused: black;
+                --color-activated: black;
+                border-radius: 100px;
+                height: 38px;
+                width: 178px;
+                margin: 31px 0px 0px 0px;
+                box-shadow: 0px 2px 4px 0px rgb(148, 148, 148)
+            }
+        }
+        p {
+            font-size: 12px;
+            margin-top: 30px;
+            span {
+                color:red;
+            }
+        }
+        .detail {
+            margin-top: 23px;
+           .bill {
+                border-bottom: 1px rgba(112, 112, 112, 0.2) solid;
+               .info-bill{  
+                   display: flex;
+                   font-size: 15px;
+                   padding-bottom: 5px;
+               }
+               .status-bill{
+                   display: flex;
+                   font-size: 12px;
+                   padding-bottom: 5px;
+               }
+               .date {
+                   text-align: left;
+                   font-size: 12px;
+                   opacity: 0.5;
+                   padding-bottom: 5px;
+               }
+           } 
+           .left {
+            flex-grow: 1;
+            text-align: left;
+            }
+            .right {
+                flex-grow: 1;
+                text-align: right;
+            }
+        }
+        
+    }
+
+}

@@ -1,0 +1,226 @@
+ion-content{
+    ion-grid{
+        .div-cal1{
+            display: flex;
+          //   width: 25vh;
+          span{
+              line-height: 5vh;
+              font-size: 0.9rem;
+          }
+          .cal1{
+              width: 27vw;
+              border: 1px solid #eee;
+              box-shadow: 0vh 0.1vh 0vh 0.1vh #ddd;
+              border-radius: 10vh;
+              float: left;
+              height: 5vh;
+              margin-left: 1vh;
+            //   margin: auto;
+              item-native{
+                  padding-left: 0!important;
+              }
+              ion-datetime{
+                  font-size: 0.9rem;
+                  color: green;
+                  padding: 0!important;
+                  min-height: 6vh;
+                  line-height: 4.6vh!important;
+                  padding-bottom: 1.1vw!important;
+              }
+              ion-icon{
+                  padding-left: 0.5vw;
+                  padding-bottom: 2vh;
+                  color: green;
+                  font-size: 1rem;
+              }
+          }
+        }
+        .buttonadd{
+          
+            .btn-add{
+                height: 2rem;
+                width: 50vw;
+                font-size: 1rem;
+                border-radius: 10px;
+                background-color: #ffffff;
+                box-shadow: 0px 1px 1px 1px grey;
+            }
+        }
+        @media screen and(min-width:600px) {
+            .div-cal1{
+                display: flex;
+              //   width: 25vh;
+              span{
+                  line-height: 5vh;
+                  font-size: 0.9rem;
+              }
+              .cal1{
+                  width: 27vw;
+                  border: 1px solid #eee;
+                  box-shadow: 0vh 0.1vh 0vh 0.1vh #ddd;
+                  border-radius: 10vh;
+                  float: left;
+                  height: 5vh;
+                  margin-left: 1vh;
+                //   margin: auto;
+                  item-native{
+                      padding-left: 0!important;
+                  }
+                  ion-datetime{
+                      font-size: 0.9rem;
+                      color: green;
+                      padding: 0!important;
+                      min-height: 6vh;
+                      line-height: 4.6vh!important;
+                      padding-bottom: 1.1vw!important;
+                  }
+                  ion-icon{
+                      padding-left: 0.5vw;
+                      padding-bottom: 2vh;
+                      color: green;
+                      font-size: 1rem;
+                  }
+              }
+            }
+            .buttonadd{
+              margin-top: 1vh;
+                .btn-add{
+                    height: 2rem;
+                    width: 50vw;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    background-color: #ffffff;
+                    box-shadow: 0px 1px 1px 1px grey;
+                }
+            }
+        }
+    }
+    
+    .list_item{
+        .total_item{
+            ion-label{
+                font-size: 1rem;
+                span{
+                    font-size: 1rem;
+                    color: red;
+                }
+            }
+            ion-badge{
+                background-color: #ffffff;
+                color: red;
+                font-size: 1rem;
+                margin-right: 15vh;
+            }
+        }
+        .list-opening{
+            ion-item{
+              height: 15vh;
+              width: 94vw;
+                ion-thumbnail{
+                  height: 10vh;
+                  width: 10vh;
+                    img{
+                        height: 10vh;
+                        width: 10vh;
+                        border-radius: 10px;
+                    }
+                }
+                ion-label{
+                  h3{
+                    font-weight: 600;
+                    font-size: 1rem;
+                  }
+                  .txt_name2{
+                    display: flex;
+                    justify-content: space-between;
+                    p{
+                      color: black;
+                      .span1{
+                        color: black;
+                        margin-left: 5vh;
+                        font-size: 0.8rem;
+                      }
+                     
+                    }
+                
+                    .ionicon1{
+                      display: flex;
+                      .name{
+                        margin-right: 4vw;
+                      }
+                    }
+                   
+                }
+                .txt_name1{
+                    display: flex;
+                    justify-content: space-between;
+                  p {
+                      font-size: 0.8rem;
+                    .span2{
+                      color: red;
+                      margin-left: 1vh;
+                      font-size: 0.8rem;
+                    }
+                  }
+                  .txtprice{
+                      font-size: 0.8rem;
+                    margin-right: 0vh;
+                    .span3{
+                      color: red;
+                      margin-left: 1vh ;
+                      font-size: 0.8rem;
+                    }
+                  }
+                      
+                  }
+                }
+                
+            }
+            @media screen and(min-width:600px){
+              ion-item{
+                height: 15vh;
+                width: 94vw;
+                  ion-thumbnail{
+                    height: 10vh;
+                    width: 10vh;
+                      img{
+                          height: 10vh;
+                          width: 10vh;
+                          border-radius: 10px;
+                      }
+                  }
+                  .txt_name2{
+                      display: flex;
+                      justify-content: space-between;
+                      .ionicon1{
+                        display: flex;
+                        .name{
+                          margin-right: 4vw;
+                        }
+                      }
+                      .span1{
+                        color: #222;
+                        margin-left: 6vh;
+                      }
+                  }
+                  .txt_name1{
+                      display: flex;
+                      justify-content: space-between;
+                      .span2{
+                        color: red;
+                        margin-left: 2vh !important;
+                      }
+                      .txtprice{
+                        margin-right: 3vh !important;
+                        .span3{
+                          color: red;
+                          margin-left: 2vh !important;
+                        }
+                      }
+                    }
+              }
+            }
+           
+        }
+    }
+}

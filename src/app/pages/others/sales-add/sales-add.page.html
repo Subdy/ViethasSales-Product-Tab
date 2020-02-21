@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chương Trình Giảm Giá</ion-title>
+    <ion-button slot="end">
+      <ion-icon name="checkmark"></ion-icon>                   
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content-full">
+    <div class="txt-card">
+      <ion-card>
+        <div class="txt-staff">
+          <ion-item>
+            <ion-label>Tên chương trình</ion-label>
+            <ion-label class="name-staff1">Giáng sinh</ion-label>
+          </ion-item>
+         </div>
+         <div class="txt-staff">
+          <!-- <ion-item>
+            <ion-label>Thời Gian Bắt Đầu</ion-label>
+            <ion-label class="name-staff">25/04/2019</ion-label>
+            <ion-icon name="calendar"></ion-icon>
+          </ion-item> -->
+          <ion-item>
+            <ion-label style="font-weight: bold;">Thời gian bắt đầu</ion-label>
+            <ion-datetime class="name-staff" id="dynamicDisabled" displayFormat="MM/DD/YYYY"  value="2020-12-15"></ion-datetime>
+            <ion-icon name="calendar"></ion-icon>
+          </ion-item>
+         </div>
+         <div class="txt-staff">
+          <!-- <ion-item>
+            <ion-label>Thời Gian Kết Thúc</ion-label>
+            <ion-label class="name-staff">25/04/2019</ion-label>
+            <ion-icon name="calendar"></ion-icon>
+          </ion-item> -->
+          <ion-item>
+            <ion-label style="font-weight: bold;">Thời gian kết thúc</ion-label>
+            <ion-datetime class="name-staff" id="dynamicDisabled" displayFormat="MM/DD/YYYY"  value="2020-12-15"></ion-datetime>
+            <ion-icon name="calendar"></ion-icon>
+          </ion-item>
+         </div>
+        <div class="txt-staff">
+          <ion-item>
+            <ion-label style="font-weight: bold;">Loại chương trình</ion-label>
+            <ion-select  interface="popover">
+              <ion-select-option value="nes">Tất Cả</ion-select-option>
+              <ion-select-option value="n64">Chưa chọn</ion-select-option>
+              <ion-select-option value="ps">chọn rồi</ion-select-option>
+            </ion-select>
+            <!-- <ion-label class="name-staff">Đang Áp Dụng</ion-label> -->
+          </ion-item>
+         </div>
+         <div class="txt-staff">
+          <ion-item>
+            <ion-label>% off</ion-label>
+            <!-- <ion-label class="name-staff">Giảm 20% </ion-label> -->
+            <!-- <div class="ijk"> -->
+              <button > 20%</button>
+            <!-- </div> -->
+          </ion-item>
+         </div>
+      </ion-card>
+    </div>
+    <div class="txt-price">
+      <ion-card>
+        <div class="name_price1">
+          <ion-label>
+            Sản Phẩm Giảm Giá
+          </ion-label>
+          <ion-label >146/150</ion-label>
+            <ion-select interface="popover">
+              <ion-select-option value="nes">NES</ion-select-option>
+              <ion-select-option value="n64">Nintendo64</ion-select-option>
+              <ion-select-option value="ps">PlayStation</ion-select-option>
+            </ion-select>
+        </div>
+         
+      </ion-card>
+    </div>
+    <div class="content1">
+      <ion-segment [(ngModel)]="chart" class="btn">
+        <ion-segment-button value="all" class="btnc">
+          Tất Cả
+        </ion-segment-button>
+        <ion-segment-button value="dd" class="btnc">
+          Đã chọn
+        </ion-segment-button>
+        <ion-segment-button value="mm" class="btnc">
+          Chưa chọn
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div class="txt-search">
+      <ion-searchbar (ionInput)="getItems" placeholder=""></ion-searchbar>
+    </div>
+    <div class="list_product_list">
+      <ion-item *ngFor="let i of listds">
+        <ion-checkbox  checked slot="start"></ion-checkbox>
+            <img src="../../../assets/imgs/images (1).png">
+            <ion-label class="list_txtname">
+              <h3>{{i.name}}</h3>
+            </ion-label>
+      </ion-item>
+    </div>
+    <div class="btn1">
+      <button class="txtbtn1">LƯU</button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,154 @@
+.conteiner-list{
+    
+        .list-full {
+          margin: 1vh;
+          .scroll-content {
+            padding: 0px;
+          }
+          .searchbar-tt {
+            display: flex;
+            .searchbar-input {
+              border-radius: 10px;
+              font-size: 2vh;
+              font-weight: 600;
+              width: 100%;
+              color: #000;
+              background-color: #fff;
+              height: 6vh;
+              padding-left: 10%;
+            }
+            .searchbar-search-icon {
+              left: 2%;
+              width: 6vh;
+              height: 6vh;
+              top: 25%;
+              background-size: 3vh;
+            }
+            .searchbar {
+              padding: 0 8px;
+              min-height: 44px;
+              border-top: 0.55px solid transparent;
+              border-bottom: 0.55px solid rgba(0, 0, 0, 0.05);
+              background: #fff;
+            }
+            
+          .txt-barcode{
+            ion-icon{
+              font-size: 2rem;
+              margin-top: 2vh;
+            }
+          }
+        
+            }
+            .txt_name_pro{
+                display: flex;
+                justify-content: space-between;
+                h1{
+                    font-size: 2vh;
+                    margin-top: 4vw;
+                 
+                }
+                @media screen and(min-width:600px){
+                  h1{
+                    font-size: 2vh;
+                    margin-block-start: auto !important;
+                }
+                }
+                .txt_select {
+                  display: flex;
+                  .txt_name_select {
+                    color: #35be1b;
+                    font-size: 2vh;
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    overflow: hidden;
+                    max-width: 100%;
+                    .select_1 {
+                      font-size: 2vh;
+                      color: #35be1b;
+                    }
+                  }
+                  .select {
+                    padding: 11px 8px 11px 0px;
+                  }
+                }
+            }
+            .list-product1{
+                ion-item{
+                  height: 15vh;
+                  width: 94vw;
+                    ion-thumbnail{
+                      height: 10vh;
+                      width: 10vh;
+                        img{
+                            height: 10vh;
+                            width: 10vh;
+                            border-radius: 10px;
+                        }
+                    }
+                    .txt_name2{
+                        display: flex;
+                        justify-content: space-between;
+                        .ionicon1{
+                          display: flex;
+                          .name{
+                            margin-right: 4vw;
+                          }
+                        }
+                        .span1{
+                          color: #222;
+                          margin-left: 5vh;
+                        }
+                    }
+                    .txt_name1{
+                        display: flex;
+                        justify-content: space-between;
+                      .span2{
+                        color: red;
+                        margin-left: 0vh;
+                      }
+                      }
+                }
+                @media screen and(min-width:600px){
+                  ion-item{
+                    height: 15vh;
+                    width: 94vw;
+                      ion-thumbnail{
+                        height: 10vh;
+                        width: 10vh;
+                          img{
+                              height: 10vh;
+                              width: 10vh;
+                              border-radius: 10px;
+                          }
+                      }
+                      .txt_name2{
+                          display: flex;
+                          justify-content: space-between;
+                          .ionicon1{
+                            display: flex;
+                            .name{
+                              margin-right: 4vw;
+                            }
+                          }
+                          .span1{
+                            color: #222;
+                            margin-left: 6vh;
+                          }
+                      }
+                      .txt_name1{
+                          display: flex;
+                          justify-content: space-between;
+                          .span2{
+                            color: red;
+                            margin-left: 2vh !important;
+                          }
+                        }
+                  }
+                }
+               
+            }
+            }
+}

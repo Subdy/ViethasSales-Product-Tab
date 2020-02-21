@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoCreateProduct()">
+      <ion-icon name="search"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" style="font-size: 2rem;" (click)="scan()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoCreateProduct()">
+      <ion-icon name="add"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" style="font-size: 2rem;" *ngIf="show" (click)="gotoProductConfirm()">
+      <ion-icon name="checkmark" color="primary"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="conteiner_import_cart">
+<div class="txt_scan">
+  <ion-icon name="barcode"></ion-icon>
+</div>
+<div class="txt_list_name">
+  <div class="txt_supplier_name">
+    <ion-label>Nhà Cung Cấp</ion-label>
+    <ion-label><span>{{ supplier.name }} - {{ supplier.phone }}</span></ion-label>
+  </div>
+  <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 250px;">
+    <ion-item *ngFor="let item of list_product">
+      <button class="icon" (click)="deleteItem(item)"><ion-icon name="close"></ion-icon></button>
+    <ion-label>
+      <h3 class="name_title1">{{item.name}}</h3>
+      <div class="txt_money">
+        <h2 class="name_title">{{item.price | number: '1.0-0'}}</h2>
+        <p class="name_title" style="width: 10%;">x</p>
+        <!-- <div class="down_up"> -->
+          <button class="btn_icon1" (click)="decrease(item)">
+            <ion-icon name="arrow-down"></ion-icon>
+          </button>
+         <span class="name_title2">{{item.number}}</span>
+         <button class="btn_icon1" (click)="increase(item)">
+          <ion-icon name="arrow-up"></ion-icon>
+        </button>
+        <!-- </div> -->
+      <ion-label class="txtname_title">{{item.price * item.number | number: '1.0-0'}}</ion-label>
+      </div>
+      
+    </ion-label>
+  </ion-item> 
+  </div>
+</div>
+</ion-content>

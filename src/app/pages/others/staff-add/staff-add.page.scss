@@ -1,0 +1,133 @@
+.content {
+    border-radius: 16px;
+    border: 1px solid #e1e5ed;
+    padding: 30px;
+    margin-bottom: 10px;
+    margin: 10px;
+    max-width: 700px;
+    margin-top: 15px;
+    box-shadow: -1px 2px 4px #e1e5ed;
+    text-align: center;
+}
+
+
+
+
+
+.conteiner_add_pro{
+    .txt_list_addproduct{
+        text-align: -webkit-center;
+        .txt_icon{
+            border-radius: 10px;
+            height: 15vh;
+            width: 15vh;
+            ion-icon{
+                font-size: 15vh;
+                color: #A1A1A1;
+            }
+        }
+    }
+    .txt_name_2{
+        border-radius: 10px;
+        
+        .txt_item1{
+            .name_1{
+                font-size: 0.8rem;
+                font-weight: 30;
+                color: grey;
+            }
+            ion-input{
+                font-size: 0.8rem;
+            }
+            ion-icon{
+                margin-left: 1vh;
+            }
+            ion-datetime{
+                font-size: 0.8rem;
+            }
+            .txt_allow{
+                text-align: end;
+            }
+            .name_4{
+                padding-top: 3vw;
+                padding-bottom: 3vw;
+                font-size: 0.8rem;
+                font-weight: 30;
+                color: grey;
+                .icon_calenda{
+                    size: 4vw;
+                }
+            }
+        }
+        .txt_name_3{
+            border-radius: 10px;
+            --border-color:white;
+            .name_3{
+                font-size: 0.8rem;
+                font-weight: 30;
+                color: black;
+                float: left;
+            }
+            ion-item{
+                --border-color:white;
+                margin-left: 5vw;
+            }
+            ion-toggle{
+                zoom: 0.6;
+                float: right;
+            }
+            .title{
+                .txt_title{
+                    font-size: 0.9rem;
+                   
+                }
+                --border-color:white;
+                margin-left: 0vw;
+            }
+            
+        }
+    }
+    .add_btn{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        ion-button{
+            font-size: 0.9rem;
+            --color: white;
+            width: 20vh;
+            --background	: orange;
+            border-radius: 10px;
+            height: 1.7rem;
+            margin-top: 5vw;
+            margin-bottom: 8vw;
+            text-align: center;
+        }
+    }
+}
+
+.error-message {
+    color: var(--ion-color-danger);
+    font-size: 0.7rem;
+    text-align: start;;
+    margin-left: 3vw;
+}
+
+.go-to-register {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+ion-header{
+    ion-toolbar {
+        --background: #00A859;
+    }
+    ion-title{
+        --color: #ffffff;
+    }
+    ion-button{
+        --background: none;
+        --background-activated: none;
+    }
+
+}

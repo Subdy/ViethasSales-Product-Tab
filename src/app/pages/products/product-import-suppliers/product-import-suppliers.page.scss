@@ -1,0 +1,115 @@
+ion-header {
+  ion-searchbar {
+      --background: white;
+      border: 1px rgba(112, 112, 112, 0.2) solid;
+      border-radius: 5px;
+      height: 32px;
+      padding: 0 ; 
+      margin: 0 1vw;
+  }
+  ion-icon {
+    font-size: 2rem;
+  }
+  ion-toolbar {
+      --border-color: white;
+  }
+  ion-buttons {
+    margin-top: 1vw;
+  }
+}
+.conten_suppliers{
+    .no-supplier {
+      text-align: center;
+      font-size: 0.8rem;
+      margin-top: 40vh;
+    }
+    .txt_suppliers{
+      .add-bill {
+        display: flex;
+        .add{
+            margin-top: 0;
+            flex-grow: 2;
+            text-align: center;
+            p {
+              font-size: 0.6rem;
+            }
+        .btn-add {
+            --background: none;
+            --background-focused: none;
+            --background-activated: none;
+            --color: black;
+            --color-focused: black;
+            --color-activated: black;
+            box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
+            height: 32px;
+            width: 175px;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 100px;
+            margin-top: 10px;
+        }
+        }
+        .txt_select3 {
+            flex-grow: 1;
+            margin-top: 10px;
+            text-align: right;
+            font-size: 0.7rem;
+            justify-content: right;
+            .txt_name_select3 {
+              overflow: hidden;
+              .select_1 {
+                --border-color:white;
+              }
+            }
+          }
+    }
+      .scroll {
+        position: relative;
+        overflow-x: auto;
+        .txt_name1{
+          border-bottom: 1px rgba(112, 112, 112, 0.2) solid;
+          margin: 0 12px;
+          .txt_name{
+              display: flex;
+              padding-top: 22px;
+                h1{
+                    font-size: 1rem;
+                    font-weight: bold;
+                    flex-grow: 2;
+                    margin: 0;
+                    width: 80%
+                }
+                .txt_icon{
+                    font-size: 0.7rem;
+                    flex-grow: 1;
+                    margin: 0;
+                    width: 20%;
+                    text-align: right;
+                }
+            }
+          .txt_id_smat{
+              display: flex;
+                margin-top: 3px;
+                margin-bottom: 12px;
+                h2{
+                    font-size: 0.8rem;
+                    flex-grow: 1;
+                    margin: 0;
+                    width: 40%
+                    
+                }
+              .txt_gmail{
+                width: 60%;
+                text-align: right;
+                p{
+                    font-size: 0.8rem;
+                    flex-grow: 1;
+                    margin: 0;
+                    
+                }
+              }
+            }
+      }  
+      }
+    }
+}

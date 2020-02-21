@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-button slot="start">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    <ion-title>Trả Hàng</ion-title>
+    <ion-button slot="end">
+      <ion-icon name="trash"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list class="list">
+    <div scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 250px;">
+      <ion-item class="item1" *ngFor="let item of items">
+        <ion-button slot="start">
+          <ion-icon name="close">
+          </ion-icon>
+        </ion-button>
+        <ion-label >
+          <div style="padding-top: 10px;"><b>Áo khoác chống tia UV</b></div>
+          <div class="sub">
+            <div class="cost">{{item.cost | number:'1.0-0'}}</div>
+            <div class="x">x</div>
+            <div class="quantity">{{item.quantity}}</div>
+            <div class="total"><b>{{item.cost * item.quantity | number:'1.0-0'}}</b></div>
+          </div>
+        </ion-label>  
+      </ion-item>
+    </div>
+    <ion-item class="item2">
+      <ion-label>
+        <div class="total1">
+          <div class="tamtinh">TẠM TÍNH</div>
+          <div class="quantity">8</div>
+          <div class="totalcost">{{total | number:'1.0-0' }}</div>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <div class="paytype">
+    <ion-radio-group value="cash">
+      <ion-list-header>
+        <ion-label>
+          Phương thức thanh toán
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-radio slot="start" value="cash" mode="md"></ion-radio>
+        <ion-label><span><ion-icon name="cash"></ion-icon></span>Tiền mặt</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-radio slot="start" value="card" mode="md"></ion-radio>
+        <ion-label><span><ion-icon name="card"></ion-icon></span>Quét thẻ tín dung/ ghi nợ/ ATM</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-radio slot="start" value="cod" mode="md"></ion-radio>
+        <ion-label><span><ion-icon name="airplane"></ion-icon></span>COD</ion-label>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+  <div class="customer">
+    <ion-radio-group value="guess">
+      <ion-list-header>
+        <ion-label>
+          Thông tin khách hàng
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-radio value="guess" mode="md"></ion-radio>
+        <ion-label>Khách lẻ</ion-label>
+        <ion-radio value="member" mode="md"></ion-radio>
+        <ion-label>Thành viên</ion-label>
+      </ion-item>
+    </ion-radio-group>
+    <form *ngIf="show">
+      <ion-input placeholder="Họ và tên" required></ion-input>
+      <ion-input placeholder="Số điện thoại" required></ion-input>
+      <ion-input placeholder="Mã khách hàng"></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Ngày, tháng, năm sinh"></ion-datetime>
+      <ion-select placeholder="Giới tính">
+        <ion-select-option value="f">Nữ</ion-select-option>
+        <ion-select-option value="m">Nam</ion-select-option>
+      </ion-select>
+      <ion-input placeholder="Email"></ion-input>
+      <ion-input placeholder="Số nhà, tên đường"></ion-input>
+      <ion-select placeholder="Quận, huyện">
+        <ion-select-option value="f">Nữ</ion-select-option>
+        <ion-select-option value="m">Nam</ion-select-option>
+      </ion-select>
+      <ion-select placeholder="Tỉnh, Thành phố">
+        <ion-select-option value="f">Nữ</ion-select-option>
+        <ion-select-option value="m">Nam</ion-select-option>
+      </ion-select>
+    </form>
+    
+  </div>
+
+  <div class="btn">
+    <div class="add">
+      <ion-button>THÊM</ion-button>
+    </div>
+    <div class="save">
+      <ion-button>LƯU TẠM</ion-button>
+    </div>
+    <div class="pay">
+      <ion-button>THANH TOÁN</ion-button>
+    </div>
+  </div>
+</ion-content>

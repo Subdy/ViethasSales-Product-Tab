@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Quản Lý Kho</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="search">
+    <ion-searchbar placeholder="Tìm tên,mã,barcode sản phẩm" (ionChange)="searchStaff($event)"></ion-searchbar>
+    <div class="select-icon">
+        <ion-icon name="barcode"></ion-icon>
+    </div>
+  </div>
+  <div class="txt_check">
+    <div lines="none" class="checked-1">
+
+      <label class="txt_all">tất cả</label>
+      <ion-checkbox class="txtcheck_all" color="primary" checked slot="start"></ion-checkbox>
+    </div>
+    <div lines="none" class="checked-1">
+      <label>Đang bán</label>
+      <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
+    </div>
+    <div lines="none" class="checked-1">
+      <label>Chưa bán</label>
+      <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
+    </div>
+    <div class="select_1">
+         <ion-select interface="popover">
+            <ion-select-option value="nes">Tất cả</ion-select-option>
+            <ion-select-option value="n64">thời trang nữ</ion-select-option>
+            <ion-select-option value="nes">thời trang nam</ion-select-option>
+          </ion-select>
+    </div>
+  </div>
+  <div class="list-product1">
+    <ion-list class="list-scroll">
+      <ion-item *ngFor="let i of listgoods" (click)="gotoproductdetail()">
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/images (1).png">
+          <ion-checkbox></ion-checkbox>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>{{i.name}}</h3>
+          <div class="txt_name2">
+            <p>SKU:<span class="span1">{{i.sku}}</span></p>
+            <div class="ionicon1">
+          <ion-icon class="icon1" name="arrow-forward"></ion-icon>
+            </div>
+          </div>
+          <div class="txt_name1">
+            <p>Giá Nhập:<span class="span2">{{i.entryprice}}</span></p>
+          <p>Giá Bán:<span class="span2" >{{i.price}}</span></p>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="txt_total">
+    <ion-label>Tổng số tồn kho</ion-label>
+    <ion-label>1500</ion-label>
+    <ion-label>300,000,00</ion-label>
+  </div>
+</ion-content>

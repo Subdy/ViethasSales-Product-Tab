@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+      <ion-searchbar placeholder="Tìm tên, mã, barcode sản phẩm"></ion-searchbar>
+    <ion-buttons slot="end" style="font-size: 2rem;">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="conteiner_import_cart">
+<div class="txt_scan">
+  <ion-icon name="barcode"></ion-icon>
+</div>
+<div class="txt_list_name">
+  <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 230px;">
+    <ion-item *ngFor="let i of list_cart">
+      <button class="icon"><ion-icon name="close"></ion-icon></button>
+    <ion-label>
+      <h3 class="name_title1">{{i.name}}</h3>
+      <div class="txt_money">
+        <h2 class="name_title">{{i.money}}</h2>
+        <p class="name_title">x</p>
+        <!-- <div class="down_up"> -->
+          <button class="btn_icon1">
+            <ion-icon name="arrow-down"></ion-icon>
+          </button>
+         <span class="name_title2">2</span>
+         <button class="btn_icon1">
+          <ion-icon name="arrow-up"></ion-icon>
+        </button>
+        <!-- </div> -->
+      <ion-label class="txtname_title">{{i.total}}</ion-label>
+      </div>
+      
+    </ion-label>
+  </ion-item> 
+  </div>
+</div>
+</ion-content>

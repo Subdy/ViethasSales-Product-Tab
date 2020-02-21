@@ -1,0 +1,73 @@
+
+.content-report{  
+    .container{
+        .row-report{
+            height: 27vh;
+            .content-row{
+                position: relative;
+                .txt-title1{
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    position: absolute;
+                    ion-card{
+                        height: 21vh;
+                        width: 21vh;
+                        border-radius: 100%;
+                        margin-top: 35%;
+                        ion-icon{
+                            color: #00A859;
+                            font-size: 7.5vh;
+                            font-size: 7.5vh;
+                            padding-top: 20%;
+                            padding-left: 33%;
+                        }
+                        .txt-card-tt1{   
+                                text-align: center;
+                                font-size: 2vh;
+                                font-weight: 600;
+                                margin-top: 1.5vh;
+                                padding: 0 2vh;
+                                color: black;
+                        }     
+                    }
+                }      
+            }
+        }
+    }
+    @media screen and(min-width:600px){
+        .txt_report{
+            margin: 4vh !important;
+            .txt-title1{
+                margin: 4vh;
+                ion-card{
+                    height: 17vh;
+                    width: 17vh;
+                    border-radius: 35vh;
+                    position: relative;
+                    ion-icon{
+                        color: #00A859;
+                        font-size: 7.5vh;
+                        font-size: 7.5vh;
+                        position: relative;
+                        left: 30%;
+                        top: 7vh;
+                        transform: translate(0%, -50%);
+                    }
+                    .txt-card-tt1{   
+                        .card-title {
+                            text-align: center;
+                            font-size: 2vh;
+                            font-weight: 600;
+                            margin-top: 3vh;
+                            color: black;
+                        }
+                    }
+                    
+                }
+            }
+        
+                
+        }
+    }
+}

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nhập Hàng</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="txt_confirm">
+  <div class="txt_code">
+    <ion-label>Mã Đơn Hàng</ion-label>
+    <div class="txt_code1">
+      <ion-label color="primary">{{bill_code}}</ion-label>
+    </div>
+  </div>
+  <div class="content_date">
+    <div class="date date_start">
+       <span class="txt_date1">Ngày Nhập:</span>
+       <div ion-item no-lines class="select_date">
+          <ion-label >{{startDay | date: 'dd/MM/yyyy'}}</ion-label>
+          <ion-icon name="calendar" slot="end"></ion-icon>
+       </div>
+     </div>
+    <span class="clearfix"></span>
+ </div>
+  <div class="txt_code">
+    <ion-label>Nhà Cung Cấp</ion-label>
+    <div class="txt_code1">
+      <ion-label>{{supplier_name}}</ion-label>
+    </div>
+  </div>
+  <div class="txt_name_4">
+    <ion-card>
+      <ion-item *ngFor="let i of list_name">
+        <ion-icon name="close"></ion-icon>
+        <ion-label class="txt_name_title">
+          <h3 class="name_title1">{{i.name}}</h3>
+          <div class="txt_confirm_1">
+            <p>{{i.price | number: '1.0-0'}}</p>
+            <p>X</p>
+            <p>{{i.number}}</p>
+            <p class="name_total">{{i.price * i.number | number: '1.0-0'}}</p>
+          </div>
+        </ion-label>
+      </ion-item>
+      <div class="txt_name_vat">
+        <div class="txt_vat">
+          <ion-label>Thuế</ion-label>
+          <ion-label>3%</ion-label>
+        </div>
+        <div class="txt_total">
+          <ion-label>Tổng</ion-label>
+          <ion-label>{{num_total}}</ion-label>
+          <ion-label>{{total | number: '1.0-0'}}</ion-label>
+        </div>
+      </div>
+    </ion-card>
+    <div class="button_btn1" (click)="save()">
+      <button class="txt_btn1">Lưu</button>
+    </div>
+  </div>
+</div>
+</ion-content>

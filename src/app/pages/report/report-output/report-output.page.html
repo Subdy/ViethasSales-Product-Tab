@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Báo cáo trả hàng</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-report-output">
+  <ion-grid>
+    <ion-row class="row1">
+      <ion-col size="3">
+        <div class="content-time">
+          <span class="title">Từ </span>
+          <div class="time">
+            <ion-item class="cal">
+              <ion-datetime displayFormat="DD/MM/YYYY" min="2005" max="2016" value="2008/09/02"></ion-datetime>
+              <ion-icon name="calendar"></ion-icon>
+            </ion-item>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div class="content-time">
+          <span class="title">đến </span>
+          <div class="time">
+            <ion-item class="cal">
+              <ion-datetime displayFormat="DD/MM/YYYY" min="2005" max="2016" value="2008/09/02"></ion-datetime>
+              <ion-icon name="calendar"></ion-icon>
+            </ion-item>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div class="button">
+          <button>Xuất báo cáo</button>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="r1-select">
+        <ion-select value="01" interface="popover">
+          <ion-select-option  value="01">Xuất hàng</ion-select-option>
+          <ion-select-option value="02">Nhập hàng</ion-select-option>
+          <ion-select-option value="03">Xuất nhập hàng</ion-select-option>
+          <ion-select-option value="04">Xuất nhập tồn</ion-select-option>
+      </ion-select>
+      </ion-col> 
+    </ion-row>
+  </ion-grid>
+  <div id="table-scroll" class="table-scroll">
+    <div class="table-wrap">
+      <table class="main-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>SKU</th>
+            <th>Ngày nhập</th>
+            <th>Tên sản phẩm</th>
+            <th>Đơn vị</th>
+            <th>SL</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+          </tr>
+        </thead>  
+        <tbody>
+          <tr>
+            <th></th>
+            <td></td>
+            <td></td>
+            <td>Tổng cộng</td>
+            <td></td>
+            <td>2345</td>
+            <td>20000000</td>
+            <td>167000000</td>
+          </tr>
+          <tr>
+            <th>1</th>
+            <td>1751010</td>
+            <td>12/05/1999</td>
+            <td>Bao cao su nhập khấu</td>
+            <td>Hộp</td>
+            <td>123</td>
+            <td>2000000</td>
+            <td>123000000</td>
+          </tr>
+          <tr>
+            <th>1</th>
+            <td>1751010</td>
+            <td>12/05/1999</td>
+            <td>Bao cao su nhập khấu</td>
+            <td>Hộp</td>
+            <td>456</td>
+            <td>2000000</td>
+            <td>123000000</td>
+          </tr>
+          
+      
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ion-content>

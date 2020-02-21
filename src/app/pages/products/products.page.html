@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>
+          Sản phẩm
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="conteiner-product">
+<div class="content-product">
+ <ion-card (click)="gotoproductlist()">
+   <div class="tt">
+    <ion-icon name="briefcase"></ion-icon>
+    <div class="txt_name">
+      <h1>Danh sách Sản Phẩm</h1>
+    </div>
+   </div>
+ </ion-card>
+ <ion-card>
+  <div class="tt" (click)="gotoproductimport()">
+   <ion-icon name="cube"></ion-icon>
+   <div class="txt_name">
+     <h1>Nhập Hàng</h1>
+   </div>
+  </div>
+</ion-card>
+<ion-card>
+  <div class="tt">
+    <ion-icon name="folder"></ion-icon>
+   <div class="txt_name">
+     <h1>Trả Hàng</h1>
+   </div>
+  </div>
+</ion-card>
+<ion-card>
+  <div class="tt">
+    <ion-icon name="home"></ion-icon>
+   <div class="txt_name">
+     <h1>Nhập Tồn Đầu Kỳ</h1>
+   </div>
+  </div>
+</ion-card>
+</div>
+</ion-content>

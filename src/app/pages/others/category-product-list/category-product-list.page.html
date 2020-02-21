@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tất Cả Sản Phẩm</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="navigate"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="list_category">
+  <div class="search">
+    <ion-searchbar placeholder="Tìm tên,mã,barcode sản phẩm"></ion-searchbar>
+    <div class="select-icon">
+        <ion-icon name="barcode"></ion-icon>
+    </div>
+  </div>
+  <div class="select_1">
+    <ion-label>Tổng <span>552</span> sản phẩm</ion-label>
+       <ion-select interface="popover">
+          <ion-select-option value="nes">Tất cả</ion-select-option>
+          <ion-select-option value="n64">Thời trang nam</ion-select-option>
+          <ion-select-option value="nes">thời trang nữ</ion-select-option>
+          <ion-select-option value="n64">thời trang bé trai</ion-select-option>
+          <ion-select-option value="nes">thời trang bé gái</ion-select-option>
+        </ion-select>
+  </div>
+  <div class="list_product_list">
+    <ion-item *ngFor="let i of list_pro">
+      <ion-checkbox   slot="start"></ion-checkbox>
+          <img src="../../../assets/imgs/images (1).png">
+          <ion-label class="list_txtname">
+            <h3>{{i.name}}</h3>
+            <div class="txtpro1">
+              <p>SKU : <span>{{i.sku}}</span></p>
+              <ion-icon name="arrow-forward"></ion-icon>
+            </div>
+            <p>Danh Mục : <span>{{i.category}}</span></p>
+          </ion-label>
+    </ion-item>
+  </div>
+</div>
+</ion-content>

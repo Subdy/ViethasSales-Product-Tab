@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nhập Tôn Đầu Kỳ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container-add-product">
+  <div class="txt_list_addproduct">
+    <ion-card class="txt_icon">
+      <ion-icon name="add"></ion-icon>
+    </ion-card>
+  </div>
+    <div class="txt_add_2">
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Tên Sản Phẩm</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Mã Sản Phẩm/SKU</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Barcode</ion-label>
+      <ion-input type="text"></ion-input>
+      <ion-icon name="barcode"></ion-icon>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Đơn Vị</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Kích Thước</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Màu Sắc</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label>Phân Loại</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option value="f">Tất Cả</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Kỳ Nhập</ion-label>
+        <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="startDay"></ion-datetime>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Lượng Tồn Đầu Kỳ</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Giá Nhập</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Giá Bán</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="txt_item2">
+      <ion-label class="name_2">Tổng Tiền Nhập Hàng</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <!-- <ion-item class="txt_item2">
+      <ion-label>Phân Loại</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option value="f">Tất Cả</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+      <ion-item class="txt_item2">
+        <ion-label class="txt_allow">Cho Phép Bán</ion-label>
+        <ion-checkbox slot="end"></ion-checkbox>
+      </ion-item>
+  </div>
+  <div class="add_btn">
+    <button>Lưu</button>
+  </div>
+</ion-content>

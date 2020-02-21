@@ -1,0 +1,25 @@
+ion-header {
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 19px 0px;
+    text-align: left;
+    ion-searchbar{
+        width: 80vw;
+        height: 7.7vw;
+        --background: white;
+        padding: 0;
+        border: 1px rgba(112, 112, 112, 0.2) solid;
+        border-radius: 5px;
+    }
+    ion-icon{
+        font-size: 2rem;
+    }
+}
+ion-content {
+    .scan{
+        text-align: center;
+        ion-icon {
+            font-size: 20rem;
+        }
+    }
+}

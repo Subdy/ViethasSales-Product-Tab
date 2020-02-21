@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Quản Lý</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="content-report">
+    <div class="container">
+        <ion-grid>
+            <ion-row class="row-report">
+                <ion-col size="6" class="content-row">
+                    <div class="txt-title1">
+                        <ion-card (click)="gotoinventory()">
+                            <ion-icon name="logo-usd"></ion-icon>
+                            <div class="txt-card-tt1">
+                                Kho
+                            </div>
+                        </ion-card>
+                    </div>
+                </ion-col>
+                <ion-col size="6" class="content-row">
+                    <div class="txt-title1">
+                        <ion-card (click)="gotosupplier()">
+                            <ion-icon name="cash"></ion-icon>
+                            <div class="txt-card-tt1">
+                                Nhà Cung Cấp
+                            </div>
+                        </ion-card>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="row-report">
+                <ion-col size="6" class="content-row">
+                    <div class="txt-title1">
+                        <ion-card (click)="translateStaffList()">
+                            <ion-icon name="logo-buffer"></ion-icon>
+                            <div class="txt-card-tt1">
+                                Nhân Viên
+                            </div>
+                        </ion-card>
+                    </div>
+                </ion-col>
+                <ion-col size="6" class="content-row">
+                    <div class="txt-title1">
+                        <ion-card>
+                            <ion-icon name="cube"></ion-icon>
+                            <div class="txt-card-tt1">
+                                Khách Hàng
+                            </div>
+                        </ion-card>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="row-report">
+                <ion-col size="6" class="content-row">
+                    <div class="txt-title1">
+                        <ion-card (click)="addStaff()">
+                            <ion-icon name="logo-buffer"></ion-icon>
+                            <div class="txt-card-tt1">
+                                Đơn hàng
+                            </div>
+                        </ion-card>
+                    </div>
+                </ion-col>
+                <ion-col size="6" class="content-row">
+                    <div class="txt-title1">
+                        <ion-card>
+                            <ion-icon name="cube"></ion-icon>
+                            <div class="txt-card-tt1">
+                                Danh mục
+                            </div>
+                        </ion-card>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

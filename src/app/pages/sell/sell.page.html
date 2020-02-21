@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-button slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-button>
+  <ion-searchbar placeholder="Tìm tên, mã, barcode sản phẩm"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <div class = "no-bill" style="display: none;" >
+    <ion-button (click)= "gotoscan()">
+      <ion-icon name="add"></ion-icon>
+      Tạo đơn hàng
+    </ion-button>
+    <p>Bạn chưa có đơn hàng nào!</p>
+  </div>
+
+  <div class="bills" >
+    <div class="add-bill">
+      <ion-button (click)= "gotoscan()">
+        <ion-icon name="add"></ion-icon>
+        Tạo đơn hàng
+      </ion-button>
+    </div>
+    <p>Tổng <span>{{ number }}</span> đơn hàng trong ngày</p>
+    
+    <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 75vh; width: 95vw;">
+      <div class="detail" *ngFor="let item of bills">
+        <div class="bill">
+          <div class = "info-bill">
+            <div class = "left"><b>{{item.id_bill}}</b></div>
+            <div class = "right" style="color:#00A859"><b>{{item.cost | number: '1.0-0'}}</b></div>
+          </div>
+          <div class = "status-bill">
+            <div class = "left">{{item.customer}}</div>
+            <div class = "right">{{item.status}}</div>
+          </div>
+          <div class = "date">{{item.date | date: 'dd/MM/yyyy hh:mm'}}</div>
+        </div>
+      </div>
+    </div>
+        
+  </div>
+</ion-content>

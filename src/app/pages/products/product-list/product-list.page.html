@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+  </ion-buttons>
+    <ion-title>Danh Mục Sản Phẩm</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="conteiner-list">
+  <div class="list-full">
+    <div class="searchbar">
+      <div class="searchbar-tt">
+        <ion-searchbar  placeholder="Tìm Sản Phẩm">
+        </ion-searchbar>
+        <div class="txt-barcode">
+          <ion-icon name="barcode"></ion-icon>
+        </div>
+        <ion-list>
+          <ion-item *ngFor="let item of items">
+            {{ item }}
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+<div class="txt_name_pro" *ngFor="let i of list_pro">
+  <h1>Tổng <span  style="color: red;">{{ i.id}} </span> Sản Phẩm</h1>
+  <div class="txt_select">
+    <ion-item>
+      <ion-select class="txt_name_select" submitText="Đồng Ý" cancelText="Thoát">
+        <ion-select-option class="select_1" value="dos">Tất Cả Sản Phẩm</ion-select-option>
+        <ion-select-option class="select_1" value="win95">Chưa Chọn</ion-select-option>
+        <ion-select-option class="select_1" value="win98">Đã Chọn</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+</div>
+  <div class="list-product1">
+    <ion-item *ngFor="let i of listgoods" (click)="gotoproductdetail()">
+      <ion-thumbnail slot="start">
+        <img src="../../../assets/img/download.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{i.name}}</h3>
+        <div class="txt_name2">
+          <p>SKU:<span class="span1">{{i.sku}}</span></p>
+          <div class="ionicon1">
+        <ion-icon class="icon1" name="arrow-forward"></ion-icon>
+          </div>
+        
+        </div>
+        <div class="txt_name1">
+          <p>Giá Nhập:<span class="span2">{{i.entryprice}}</span></p>
+        <p>Giá Bán:<span class="span2" >{{i.price}}</span></p>
+        </div>
+      </ion-label>
+    </ion-item>
+  </div>
+  </div>
+</ion-content>

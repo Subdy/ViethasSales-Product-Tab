@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chi Tiết Sản Phẩm</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon  name="trash"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content_detail2">
+  <div class="txt_list_detail2">
+    <ion-card class="txt_icon">
+     <img src="../../../assets/img/download.jpg">
+    </ion-card>
+  </div>
+  <div class="list_detail2">
+    <ion-item class="name_detail2">
+      <ion-label>Tên Sản Phẩm</ion-label>
+      <div class="list-name1">
+        <p>Áo Khoát Chống Nắng</p>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label class="txt_detail2">Mã Sản Phẩm/SKU</ion-label>
+      <div class="list-name1">
+        <p class="txt_detail2">JA12345</p>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail3">
+      <ion-label style="font-weight: 600;">Barcode</ion-label>
+      <div class="list-name3">
+        <ion-label class="txt_detai3">1234554334567</ion-label>
+        <ion-icon name="barcode"></ion-icon>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label>Đơn Vị</ion-label>
+      <div class="list-name1">
+        <p class="txt_detail2">Cái</p>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label>Kích Thước</ion-label>
+      <div class="list-name1">
+        <p class="txt_detail2">M</p>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label>Màu Sắc</ion-label>
+      <div class="list-name1">
+        <p class="txt_detail2">Tím</p>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label>Giá Nhập</ion-label>
+      <div class="list-name1">
+        <p class="txt_detail2">400,000</p>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label>Giá Bán</ion-label>
+      <div class="list-name1">
+        <p class="txt_detail2">500,000</p>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label>Ngày Nhập Kho</ion-label>
+      <div class="date-day">
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="startDay"></ion-datetime>
+      </div>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label>Phân Loại</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option value="f">Tất Cả</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="name_detail2">
+      <ion-label>Nhà Cung Cấp</ion-label>
+      <div class="list-name1">
+        <p class="txt_detail2">XMEN-Clear</p>
+      </div>
+    </ion-item>
+    <ion-item >
+      <ion-label slot="end">Cho Phép Bán</ion-label>
+      <ion-checkbox slot="end" ></ion-checkbox>
+    </ion-item>
+  </div>
+  <div class="detail_button"> 
+    <button class="detail_btn">Lưu</button>
+  </div>
+</ion-content>
