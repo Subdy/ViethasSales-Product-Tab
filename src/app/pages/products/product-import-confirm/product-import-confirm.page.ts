@@ -14,7 +14,7 @@ export class ProductImportConfirmPage implements OnInit {
   bill;
   supplier_name;
   bill_detail;
-  startDay = new Date();
+  startDay = new Date;
   list_bill:Array<any>;
   num_total = 0;
   total = 0;
@@ -58,18 +58,23 @@ export class ProductImportConfirmPage implements OnInit {
   }
 
   save(){
-    let data = {...this.bill};
-    data.total = this.total;
-    delete data.id;
-    console.log(data);
-    console.log(this.bill_detail);
-    console.log
-    this.firebaseQuery.updateTask("bills", this.bill.id, data)
-    .then(res => {
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
-    });
+    this.firebaseQuery.getTask_byID("bill", this.bill.id).then(res=> {
+      if (!res.empty) {
+        let data = {...res.data()};
+        data.total = this.total;
+        data.id_supplier = this.supplier_id;
+        delete data.id;
+        console.log(data);
+        console.log(this.bill_detail);
+        this.firebaseQuery.updateTask("bills", this.bill.id, data)
+        .then(res => {
+          //console.log(res);
+        }).catch(err => {
+          console.log(err);
+        });
+      }
+    })
+    
     for (let item of this.bill_detail) {
       this.firebaseQuery.createTask("bill_details", {
         name: item.id,
@@ -83,7 +88,7 @@ export class ProductImportConfirmPage implements OnInit {
       });
       
       this.firebaseQuery.createTask("warehouses", {
-        date: new Date(),
+        date: this.startDay,
         id_product: item.id,
         price: item.price_import,
         number: item.number
