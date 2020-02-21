@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule, NavigationExtras } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-import-cart',
@@ -11,20 +12,15 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
   styleUrls: ['./product-import-cart.page.scss'],
 })
 export class ProductImportCartPage implements OnInit {
-  list_product: Array<any>; /* =[
-    {
-      id:1,
-      name:'Áo Khoát Chống Tia Uv',
-      money:'250,000',
-      total:'500,000'
-    }
-  ] */
+  list_product: Array<any>;
+  trigger_popup = false;
   supplier;
   show = false;
   constructor( private router: Router,
     private storage: Storage,
     private barcode: BarcodeScanner,
-    private firebaseQuery: FirebaseQuery
+    private firebaseQuery: FirebaseQuery,
+    private navCtrl: NavController
     ) {
     this.supplier = this.router.getCurrentNavigation().extras.state;
     console.log(this.supplier);
@@ -53,10 +49,23 @@ export class ProductImportCartPage implements OnInit {
     });
   }
 
+  back() {
+    this.trigger_popup = true;
+  }
+
+  deteleBillDetail() {
+    this.storage.remove("list_prod");
+    this.navCtrl.pop();
+  }
+  cancel(){
+    this.trigger_popup = false;
+  }
+
   deleteItem(item) {
     let index = this.findIndex(item);
     this.list_product.splice(index, 1);
     if (this.list_product.length == 0) this.show = false;
+    this.storage.set("list_prod", this.list_product);
   }
 
   increase(item) {

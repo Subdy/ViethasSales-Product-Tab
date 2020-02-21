@@ -50,27 +50,8 @@ export class ProductImportSuppliersPage implements OnInit {
     this.router.navigate(['/product-import-cart'], data);
     this.storage.set("supplier", item);
   }
+  
   delete_bill() {
-    // this.alertCtrl.create({
-    //   header: 'Thoát',
-    //   message: 'Hành động sẽ xóa',
-    //   buttons: [{
-    //     text : 'Cancel',
-    //     handler: () => {
-    //       this.storage.get("id_bill").then(res => {
-    //         this.firebaseQuery.deleteTask("bills", res).then(res => {
-    //           console.log(res);
-    //         }, err => {
-    //           console.log(err);
-    //         }).catch(err=> {
-    //           console.log(err);
-    //         })
-    //       })
-          
-    //     }
-    //   }]
-    // });
-    //console.log("ssss")
     this.trigger_popup = true;
   }
   deteleSupplier() {

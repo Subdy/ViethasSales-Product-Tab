@@ -19,6 +19,7 @@ export class ProductImportAddProductPage implements OnInit {
   bill_detail;
   id_bill;
   thumbnail = "/assets/imgs/add.png";
+  save_btn = false;
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
@@ -72,6 +73,7 @@ export class ProductImportAddProductPage implements OnInit {
     if (this.product.value.barcode == '') {
       alert('Vui lòng nhập barcode sản phẩm');
     } else {
+      this.save_btn = true;
       console.log(this.product.value);
       //luu san pham chuyen di
       this.firebaseQuery.createTask('products', {

@@ -14,10 +14,13 @@ export class ProductImportConfirmPage implements OnInit {
   bill;
   supplier_name;
   bill_detail;
-  startDay = new Date;
+  bill_date;
   list_bill:Array<any>;
   num_total = 0;
   total = 0;
+  save_btn = false;
+  tax = 0;
+  tax_percent = 0;
   constructor(
     private storage: Storage,
     private firebaseQuery: FirebaseQuery,
@@ -36,6 +39,7 @@ export class ProductImportConfirmPage implements OnInit {
     });
     this.storage.get("bill").then(res=>{
       this.bill = res;
+      this.bill_date = res.date;
       this.bill.id_supplier = this.supplier_id;
     })
     this.list_bill = new Array();
@@ -54,15 +58,23 @@ export class ProductImportConfirmPage implements OnInit {
       this.total += parseInt(item.price) * item.number;
       this.num_total += item.number;
     }
-    console.log(this.num_total, this.total);
+    //console.log(this.num_total, this.total);
+  }
+
+  taxCalculate(){
+    this.tax = (this.tax_percent * this.total) / 100;
+    this.total += this.tax;
   }
 
   save(){
+    //disable btn
+    this.save_btn = true;
     this.firebaseQuery.getTask_byID("bill", this.bill.id).then(res=> {
       if (!res.empty) {
         let data = {...res.data()};
         data.total = this.total;
         data.id_supplier = this.supplier_id;
+        data.tax_value = this.tax;
         delete data.id;
         console.log(data);
         console.log(this.bill_detail);
@@ -77,7 +89,7 @@ export class ProductImportConfirmPage implements OnInit {
     
     for (let item of this.bill_detail) {
       this.firebaseQuery.createTask("bill_details", {
-        name: item.id,
+        name: item.name,
         id_bill: this.bill.id,
         price: item.price,
         number: item.number
@@ -88,12 +100,12 @@ export class ProductImportConfirmPage implements OnInit {
       });
       
       this.firebaseQuery.createTask("warehouses", {
-        date: this.startDay,
+        date: new Date(),
         id_product: item.id,
         price: item.price_import,
         number: item.number
       }).then(res=>{
-        console.log(res);
+        //console.log(res);
         //delete storage
         this.storage.remove("bill");
         this.storage.remove("soHD");

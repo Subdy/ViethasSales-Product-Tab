@@ -9,9 +9,9 @@
 <ion-content class="conteiner_add_pro">
 <form [formGroup]="product" (ngSubmit)="save()">
   <div class="txt_list_addproduct">
-    <ion-card class="txt_icon" (click)="openImagePicker()">
+    <div class="txt_icon" (click)="openImagePicker()">
       <img [src]="thumbnail" alt="image">
-    </ion-card>
+    </div>
   </div>
     <div class="txt_name_2">
     <ion-item class="txt_item1">
@@ -65,7 +65,7 @@
       </ion-item>
   </div>
   <div class="add_btn">
-    <button type="submit">LƯU</button>
+    <button type="submit" [disabled]="save_btn">LƯU</button>
   </div>
 </form>
 </ion-content>
