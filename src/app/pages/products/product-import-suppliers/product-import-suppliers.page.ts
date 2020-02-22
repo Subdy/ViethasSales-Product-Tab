@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { FirebaseQuery } from '../../../database/firebase.database';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -18,7 +18,8 @@ export class ProductImportSuppliersPage implements OnInit {
     private firebaseQuery: FirebaseQuery,
     private alertCtrl: AlertController,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private loadingController: LoadingController
     ) {
       //this.getDataSuppliers();
     }
@@ -73,5 +74,17 @@ export class ProductImportSuppliersPage implements OnInit {
   cancel(){
     this.trigger_popup = false;
   }
-
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: "Please wait..."
+    });
+    await loading.present();
+    await loading.onDidDismiss();
+    console.log("Loading dismissed!");
+  }
+  //ham dismiss loading
+  async dismissLoading() {
+    await this.loadingController.dismiss();
+  }
 }
+

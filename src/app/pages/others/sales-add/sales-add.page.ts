@@ -14,9 +14,11 @@ export class SalesAddPage implements OnInit {
     {name:'giày thể thao nike'},
     {name:'giày thể thao ah dũng ao sen'}
 ];
+chart;
   constructor() { }
-
+  
   ngOnInit() {
   }
+  getItems(){}
 
 }

@@ -93,5 +93,7 @@ export class SellHistoryPage implements OnInit {
 
   ngOnInit() {
   }
-
+  segmentChanged(event){
+    
+  }
 }

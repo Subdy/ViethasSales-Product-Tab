@@ -2,7 +2,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FirebaseQuery, FirebaseImage } from 'src/app/database/firebase.database';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Router, RouterModule, NavigationExtras} from '@angular/router';
+import { Router, RouterModule, NavigationExtras } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ToastController, LoadingController } from '@ionic/angular';
@@ -31,38 +31,38 @@ export class ProductImportAddProductPage implements OnInit {
     private firebaseImage: FirebaseImage,
     private webview: WebView,
     private storage: Storage
-    ) {
-      //get id_bill
-      this.storage.get('id_bill').then(res => {
-        this.id_bill = res;
-      })
-      //get list bill_detail 
-      this.storage.get("list_prod").then(res => {
-        this.bill_detail = res;
-      })
-      //nha cung cap 
-      this.supplier = this.router.getCurrentNavigation().extras.state;
-      
-      //khoi tao form
-      this.product = this.formBuilder.group({
-        name: ['', Validators.required],
-        id_category: ['', Validators.required],
-        size: ['', Validators.required],
-        price: ['', Validators.required],
-        id_discount: ['', Validators.required],
-        SKU: ['', Validators.required],
-        unit: ['', Validators.required],
-        color: ['', Validators.required],
-        barcode: ['', Validators.compose([Validators.minLength(10), Validators.required])],
-        price_import: ['', Validators.required],
-        id_supplier: [this.supplier.name],
-        allow_sell: [true]
-      });
-    }
+  ) {
+    //get id_bill
+    this.storage.get('id_bill').then(res => {
+      this.id_bill = res;
+    })
+    //get list bill_detail 
+    this.storage.get("list_prod").then(res => {
+      this.bill_detail = res;
+    })
+    //nha cung cap 
+    this.supplier = this.router.getCurrentNavigation().extras.state;
+
+    //khoi tao form
+    this.product = this.formBuilder.group({
+      name: ['', Validators.required],
+      id_category: ['', Validators.required],
+      size: ['', Validators.required],
+      price: ['', Validators.required],
+      id_discount: ['', Validators.required],
+      SKU: ['', Validators.required],
+      unit: ['', Validators.required],
+      color: ['', Validators.required],
+      barcode: ['', Validators.compose([Validators.minLength(10), Validators.required])],
+      price_import: ['', Validators.required],
+      id_supplier: [this.supplier.name],
+      allow_sell: [true]
+    });
+  }
 
   ngOnInit() {
   }
-  scan () {
+  scan() {
     this.barcode.scan().then(data => {
       this.product.controls['barcode'].setValue(data.text);
     }).catch(err => {
@@ -105,33 +105,33 @@ export class ProductImportAddProductPage implements OnInit {
       }).catch(err => {
         console.log(err);
       });
-      }
+    }
   }
 
-  openImagePicker(){
+  openImagePicker() {
     this.imagePicker.hasReadPermission()
-    .then((result) => {
-      if(result == false){
-        // no callbacks required as this opens a popup which returns async
-        this.imagePicker.requestReadPermission();
-      }
-      else if(result == true){
-        this.imagePicker.getPictures({
-          maximumImagesCount: 1
-        }).then(
-          (results) => {
-            for (var i = 0; i < results.length; i++) {
-              this.uploadImageToFirebase(results[i]);
-            }
-          }, (err) => console.log(err)
-        );
-      }
-    }, (err) => {
-      console.log(err);
-    });
+      .then((result) => {
+        if (result == false) {
+          // no callbacks required as this opens a popup which returns async
+          this.imagePicker.requestReadPermission();
+        }
+        else if (result == true) {
+          this.imagePicker.getPictures({
+            maximumImagesCount: 1
+          }).then(
+            (results) => {
+              for (var i = 0; i < results.length; i++) {
+                this.uploadImageToFirebase(results[i]);
+              }
+            }, (err) => console.log(err)
+          );
+        }
+      }, (err) => {
+        console.log(err);
+      });
   }
 
-  async uploadImageToFirebase(image){
+  async uploadImageToFirebase(image) {
     const loading = await this.loadingCtrl.create({
       message: 'Please wait...'
     });
@@ -145,17 +145,17 @@ export class ProductImportAddProductPage implements OnInit {
 
     //uploads img to firebase storage
     this.firebaseImage.uploadThumbnail(image_src, randomId, 128, 128)
-    .then(photoURL => {
-      this.thumbnail = photoURL;
-      loading.dismiss();
-      toast.present();
-    }, err =>{
-      console.log(err);
-    })
+      .then(photoURL => {
+        this.thumbnail = photoURL;
+        loading.dismiss();
+        toast.present();
+      }, err => {
+        console.log(err);
+      })
   }
 
   async presentLoading(loading) {
     return await loading.present();
   }
-  
+
 }

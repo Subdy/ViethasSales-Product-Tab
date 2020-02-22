@@ -16,16 +16,22 @@ export class ProductImportCartPage implements OnInit {
   trigger_popup = false;
   supplier;
   show = false;
-  constructor( private router: Router,
+  show_prod;
+  constructor(private router: Router,
     private storage: Storage,
     private barcode: BarcodeScanner,
     private firebaseQuery: FirebaseQuery,
     private navCtrl: NavController
-    ) {
+  ) {
     this.supplier = this.router.getCurrentNavigation().extras.state;
     console.log(this.supplier);
     this.storage.get('list_prod').then(res => {
-      if (res == null ) this.storage.set('list_prod', []);
+      if (res == null) {
+        this.show_prod = false;
+        this.storage.set('list_prod', []);
+      } else {
+        this.show_prod = true;
+      }
     });
   }
 
@@ -39,12 +45,18 @@ export class ProductImportCartPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.storage.get('list_prod').then(res=> {
-      if (res.length > 0) {
+    this.storage.get('list_prod').then(res => {
+      if (res != null) {
+        delete this.list_product;
         this.list_product = new Array();
         this.list_product = res;
+        this.show_prod = true;
         //show V
-        this.show = true;
+        if (res.length == 0) {
+          this.show = false;
+        } else {
+          this.show = true;
+        }
       }
     });
   }
@@ -57,7 +69,7 @@ export class ProductImportCartPage implements OnInit {
     this.storage.remove("list_prod");
     this.navCtrl.pop();
   }
-  cancel(){
+  cancel() {
     this.trigger_popup = false;
   }
 
@@ -70,21 +82,23 @@ export class ProductImportCartPage implements OnInit {
 
   increase(item) {
     let index = this.findIndex(item);
-    this.list_product[index].number ++;
+    this.list_product[index].number++;
+    this.storage.set("list_prod", this.list_product);
   }
 
   decrease(item) {
     let index = this.findIndex(item);
-    if (this.list_product[index].number == 0) 
+    if (this.list_product[index].number == 0)
       return;
     else {
-      this.list_product[index].number --;
+      this.list_product[index].number--;
+      this.storage.set("list_prod", this.list_product);
     }
   }
 
   findIndex(i) {
-    let index = this.list_product.findIndex((item)=> {
-      return (item.name == i.name) && (item.id == i.id); 
+    let index = this.list_product.findIndex((item) => {
+      return (item.name == i.name) && (item.id == i.id);
     });
     return index;
   }
@@ -96,12 +110,51 @@ export class ProductImportCartPage implements OnInit {
 
 
   scan() {
-    this.barcode.scan().then(res => {
-      this.firebaseQuery.getTasks_Field("products", "barcode", res.text, "==")
-      .then(res=> {
-        console.log(res);
-      })
-    })
+    if (this.list_product == undefined) {
+      this.list_product = new Array();
+    }
+    this.storage.get("bill").then(bill => {
+      //console.log(bill.id);
+      this.barcode.scan().then(res => {
+        if (!res.cancelled) {
+          this.firebaseQuery.getTasks_Field("products", "barcode", res.text, "==")
+          .then(res1 => {
+            if (res1.empty) {
+              alert('Sản phẩm không tồn tại!');
+            } else {
+              //console.log(res1.docs[0].data());
+              this.firebaseQuery.getTasks_Field("warehouses", "id_product", res1.docs[0].id, "==").then(res2 => {
+                if (res2.empty) {
+                  alert('Sản phẩm không chứa kho!');
+                } else {
+                  //show V
+                  this.show_prod = true;
+                  this.show = true;
+                  //console.log(res2.docs[0].data());
+                  this.list_product.push({
+                    name: res1.docs[0].data().name,
+                    id: res1.docs[0].id,
+                    id_bill: bill.id,
+                    price: res1.docs[0].data().price,
+                    price_import: res2.docs[0].data().price,
+                    number: 1
+                  });
+                  this.storage.set('list_prod', this.list_product);
+                }
+              }).catch(err => {
+                alert("warehouses: " + err);
+              });
+            }
+          }).catch(err => {
+            alert("products: " + err);
+          });
+        } else {
+          this.router.navigateByUrl('product-import-cart');
+        }
+      }).catch(err => {
+        alert(err);
+      });
+    });
   }
 
 }

@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button text=""></ion-back-button>
+    <ion-buttons slot="start" >
+      <ion-button (click)="back()" class="back">
+        <ion-icon name="chevron-back" style="font-size: 2rem;"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>Nhập Hàng</ion-title>
     <ion-buttons slot="end"> 
@@ -20,6 +22,7 @@
       <ion-label color="primary">{{bill_code}}</ion-label>
     </div>
   </div>
+  
 
   <div class="date date_start">
       <ion-label class="txt_date">Ngày nhập</ion-label>
@@ -39,7 +42,7 @@
   </div>
   <div class="txt_name_4">
     <div class="item" *ngFor="let item of list_bill">
-      <ion-button (click)="onClick()">
+      <ion-button (click)="deleteItem(item)">
         <ion-icon name= "close"></ion-icon>
       </ion-button>
       <div class="info">
