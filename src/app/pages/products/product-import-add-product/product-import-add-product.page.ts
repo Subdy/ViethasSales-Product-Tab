@@ -96,7 +96,8 @@ export class ProductImportAddProductPage implements OnInit {
           id_bill: this.id_bill,
           price: this.product.value.price,
           price_import: this.product.value.price_import,
-          number: 1
+          number: 1,
+          barcode: this.product.value.barcode
         });
         this.storage.set('list_prod', this.bill_detail);
         this.router.navigateByUrl('product-import-cart');

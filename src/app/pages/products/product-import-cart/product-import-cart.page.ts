@@ -74,20 +74,20 @@ export class ProductImportCartPage implements OnInit {
   }
 
   deleteItem(item) {
-    let index = this.findIndex(item);
+    let index = this.findIndex(this.list_product,item);
     this.list_product.splice(index, 1);
     if (this.list_product.length == 0) this.show = false;
     this.storage.set("list_prod", this.list_product);
   }
 
   increase(item) {
-    let index = this.findIndex(item);
+    let index = this.findIndex(this.list_product, item);
     this.list_product[index].number++;
     this.storage.set("list_prod", this.list_product);
   }
 
   decrease(item) {
-    let index = this.findIndex(item);
+    let index = this.findIndex(this.list_product, item);
     if (this.list_product[index].number == 0)
       return;
     else {
@@ -96,8 +96,8 @@ export class ProductImportCartPage implements OnInit {
     }
   }
 
-  findIndex(i) {
-    let index = this.list_product.findIndex((item) => {
+  findIndex(array, i) {
+    let index = array.findIndex((item) => {
       return (item.name == i.name) && (item.id == i.id);
     });
     return index;
@@ -131,15 +131,23 @@ export class ProductImportCartPage implements OnInit {
                   this.show_prod = true;
                   this.show = true;
                   //console.log(res2.docs[0].data());
-                  this.list_product.push({
-                    name: res1.docs[0].data().name,
-                    id: res1.docs[0].id,
-                    id_bill: bill.id,
-                    price: res1.docs[0].data().price,
-                    price_import: res2.docs[0].data().price,
-                    number: 1
+                  let index = this.list_product.findIndex( (item) => {
+                    return item.barcode == res.text;
                   });
-                  this.storage.set('list_prod', this.list_product);
+                  if (index == -1) {
+                    this.list_product.push({
+                      name: res1.docs[0].data().name,
+                      id: res1.docs[0].id,
+                      id_bill: bill.id,
+                      price: res1.docs[0].data().price,
+                      price_import: res2.docs[0].data().price,
+                      number: 1,
+                      barcode: res1.docs[0].data().barcode
+                    });
+                    this.storage.set('list_prod', this.list_product);
+                  } else {
+                    alert ("Sản phẩm đã tồn tại trong danh sách!");
+                  }
                 }
               }).catch(err => {
                 alert("warehouses: " + err);
