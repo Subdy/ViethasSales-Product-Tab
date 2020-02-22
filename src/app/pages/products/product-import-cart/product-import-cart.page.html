@@ -29,7 +29,7 @@
     <ion-label>Nhà Cung Cấp</ion-label>
     <ion-label><span>{{ supplier.name }} - {{ supplier.phone }}</span></ion-label>
   </div>
-  <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 250px;" *ngIf="show_prod">
+  <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 45vh;" *ngIf="show_prod">
     <ion-item *ngFor="let item of list_product">
       <button class="icon" (click)="deleteItem(item)"><ion-icon name="close"></ion-icon></button>
     <ion-label>

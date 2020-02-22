@@ -37,6 +37,8 @@ export class ProductImportDetailPage implements OnInit {
       .then(res => {
         if (res.empty) {
           console.log('empty');
+          this.dismissLoading();
+          this.show = true;
         } else {
           console.log(res)
           for (let i in res.docs) {
@@ -51,6 +53,8 @@ export class ProductImportDetailPage implements OnInit {
             }
           }
         }
+      }).catch(err => {
+        this.dismissLoading();
       });
   }
   deletebill() {
