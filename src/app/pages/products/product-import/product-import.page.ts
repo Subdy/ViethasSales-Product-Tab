@@ -24,23 +24,23 @@ export class ProductImportPage implements OnInit {
   ) {
     /* this.firebaseQuery.getTasks("warehouses").then(res => {
       for (let item of res.docs) {
-        this.firebaseQuery.deleteTask('warehouses', item.id);
+        //this.firebaseQuery.deleteTask('warehouses', item.id);
         console.log(item.data()); 
       }
-    });
-    this.firebaseQuery.getTasks("bill_details").then(res => {
+    }); */
+   /*  this.firebaseQuery.getTasks("bill_details").then(res => {
       for (let item of res.docs) {
-        this.firebaseQuery.deleteTask('bill_details', item.id);
+        //this.firebaseQuery.deleteTask('bill_details', item.id);
         console.log(item.data()); 
       }
-    });
-    this.firebaseQuery.getTasks("products").then(res => {
+    }); */
+    /* this.firebaseQuery.getTasks("products").then(res => {
       for (let item of res.docs) {
         this.firebaseQuery.deleteTask('products', item.id);
         console.log(item.data()); 
       }
-    });
-    this.firebaseQuery.getTasks("bills").then(res => {
+    }); */
+    /* this.firebaseQuery.getTasks("bills").then(res => {
       for (let item of res.docs) {
         this.firebaseQuery.deleteTask('bills', item.id);
         console.log(item.data()); 
@@ -93,7 +93,7 @@ export class ProductImportPage implements OnInit {
       });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   //ham tao so hoa don
   exportSoHD() {
@@ -104,7 +104,7 @@ export class ProductImportPage implements OnInit {
         .toString()
         .slice(2, 4) +
       ((date.getMonth() + 1).toString().length == 1
-? "0" + (date.getMonth() + 1).toString()
+        ? "0" + (date.getMonth() + 1).toString()
         : (date.getMonth() + 1).toString()) +
       (date.getUTCDate().toString().length == 1
         ? "0" + date.getUTCDate().toString()
@@ -122,6 +122,7 @@ export class ProductImportPage implements OnInit {
   }
 
   gotoproductsupplier() {
+    this.show1 = this.show2 = false;
     let bill_code = this.exportSoHD();
     this.storage.set("soHD", bill_code);
     this.firebaseQuery
@@ -153,8 +154,9 @@ export class ProductImportPage implements OnInit {
     this.router.navigateByUrl("product-import-suppliers");
   }
   //xem chi tiet bill
-  gotodetail(bill){
-    console.log(bill);
+  gotodetail(bill) {
+    //console.log(bill);
+    this.show1 = this.show2 = false;
     let data: NavigationExtras = {
       state: bill
     }

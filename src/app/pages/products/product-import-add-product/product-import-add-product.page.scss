@@ -39,13 +39,13 @@
     }
     .add_btn{
         text-align: center;
-        button{
-            font-size: 1rem;
-            color: white;
-            width: 20vh;
-            background-color: orange;
-            border-radius: 10px;
-            height: 3rem;
+        ion-button {
+            width: 121px;
+            height: 33px;
+            margin: 39px 0;
+            --background: #F29500;
+            --background-activated: #F29500;
+            --color: white;
           
         }
     }

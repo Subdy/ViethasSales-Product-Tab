@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar >
     <ion-buttons slot="start" >
-      <ion-button (click)="back()">
+      <ion-button (click)="back()" class="back">
         <ion-icon name="chevron-back" style="font-size: 2rem;" color="primary"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -29,7 +29,7 @@
     <ion-label>Nhà Cung Cấp</ion-label>
     <ion-label><span>{{ supplier.name }} - {{ supplier.phone }}</span></ion-label>
   </div>
-  <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 250px;">
+  <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 250px;" *ngIf="show_prod">
     <ion-item *ngFor="let item of list_product">
       <button class="icon" (click)="deleteItem(item)"><ion-icon name="close"></ion-icon></button>
     <ion-label>
@@ -63,7 +63,7 @@
       <ion-col size="10">
         <ion-card class="ion-padding" style="z-index: 9999; background: white">
           <div class="txt-card-tt1">
-            <h5 class="ion-text-center">Bạn muốn xóa?</h5>
+            <h5 class="ion-text-center">Mọi thay đổi sẽ không được lưu?</h5>
             <ion-grid class="popupContent">
               <ion-row>
                 <ion-col>

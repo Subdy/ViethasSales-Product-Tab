@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar *ngIf="show">
     <ion-buttons slot="start" >
-      <ion-button (click)="delete_bill()">
+      <ion-button (click)="delete_bill()" class="back">
         <ion-icon name="chevron-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -71,7 +71,7 @@
       <ion-col size="10">
         <ion-card class="ion-padding" style="z-index: 9999; background: white">
           <div class="txt-card-tt1">
-            <h5 class="ion-text-center">Bạn muốn xóa?</h5>
+            <h5 class="ion-text-center">Bạn muốn xóa đơn nhập này?</h5>
             <ion-grid class="popupContent">
               <ion-row>
                 <ion-col>

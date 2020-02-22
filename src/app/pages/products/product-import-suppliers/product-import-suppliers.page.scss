@@ -15,6 +15,9 @@ ion-header {
   }
   ion-buttons {
     margin-top: 1vw;
+    .back {
+      --color: #00A859;
+    }
   }
 }
 .conten_suppliers{

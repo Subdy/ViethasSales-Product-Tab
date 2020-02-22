@@ -22,6 +22,9 @@ ion-header {
     }
     ion-buttons{
         margin: 0 1rem;
+        .back{
+            --color: #00A859;
+        }
     }
 }
 .conteiner_import_cart{
