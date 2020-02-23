@@ -28,12 +28,12 @@ export class ProductImportPage implements OnInit {
         console.log(item.data()); 
       }
     }); */
-   /*  this.firebaseQuery.getTasks("bill_details").then(res => {
-      for (let item of res.docs) {
-        //this.firebaseQuery.deleteTask('bill_details', item.id);
-        console.log(item.data()); 
-      }
-    }); */
+    /*  this.firebaseQuery.getTasks("bill_details").then(res => {
+       for (let item of res.docs) {
+         //this.firebaseQuery.deleteTask('bill_details', item.id);
+         console.log(item.data()); 
+       }
+     }); */
     /* this.firebaseQuery.getTasks("products").then(res => {
       for (let item of res.docs) {
         this.firebaseQuery.deleteTask('products', item.id);
@@ -60,6 +60,7 @@ export class ProductImportPage implements OnInit {
   }
 
   getBill() {
+    delete this.bills;
     this.bills = new Array();
     this.firebaseQuery
       .getTasks_Field("bills", "bill_type", 2, "==")
@@ -72,7 +73,7 @@ export class ProductImportPage implements OnInit {
             .then(res1 => {
               this.bills[i].supplier_name = res1.data().name;
               if (this.bills.length == res.docs.length) {
-                this.dismissLoading();
+                this.dismissLoading();                            
                 this.show2 = true;
                 this.show1 = !this.show2;
               }
@@ -94,7 +95,20 @@ export class ProductImportPage implements OnInit {
   }
 
   ngOnInit() { }
-
+  // sort 
+  sort($event) {
+    ($event.detail.value == 0) ? this.sortAZ() : this.sortZA();
+  }
+  sortAZ() {
+    this.bills.sort((prev, next) => {
+      return prev.date.seconds - next.date.seconds;
+    });
+  }
+  sortZA() {
+    this.bills.sort((prev, next) => {
+      return next.date.seconds - prev.date.seconds;
+    });
+  }
   //ham tao so hoa don
   exportSoHD() {
     let date = new Date();
