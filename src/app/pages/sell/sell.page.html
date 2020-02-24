@@ -1,13 +1,13 @@
 <ion-header>
   <ion-button slot="start">
-    <ion-back-button></ion-back-button>
+    <ion-back-button text=""></ion-back-button>
   </ion-button>
   <ion-searchbar placeholder="Tìm tên, mã, barcode sản phẩm"></ion-searchbar>
 </ion-header>
 
 <ion-content>
   <div class = "no-bill" style="display: none;" >
-    <ion-button (click)= "gotoscan()">
+    <ion-button (click)= "gotosellcart()">
       <ion-icon name="add"></ion-icon>
       Tạo đơn hàng
     </ion-button>
@@ -16,7 +16,7 @@
 
   <div class="bills" >
     <div class="add-bill">
-      <ion-button (click)= "gotoscan()">
+      <ion-button (click)= "gotosellcart()">
         <ion-icon name="add"></ion-icon>
         Tạo đơn hàng
       </ion-button>
