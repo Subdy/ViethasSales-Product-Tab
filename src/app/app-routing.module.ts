@@ -273,7 +273,10 @@ const routes: Routes = [
     path: "staff-list",
     loadChildren:
       "./pages/others/staff-list/staff-list.module#StaffListPageModule"
-  }
+  },
+  { path: 'sell-cart', 
+    loadChildren: './pages/sell/sell-cart/sell-cart.module#SellCartPageModule' }
+
 ];
 
 @NgModule({

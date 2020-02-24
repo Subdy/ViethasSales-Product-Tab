@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button text=""></ion-back-button>
-      </ion-buttons>
-      <ion-buttons class="camera-btn" slot="end" (click)="scan()">
-        <ion-icon name="camera"></ion-icon>
+  <ion-toolbar >
+    <ion-buttons slot="start" >
+      <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-      <ion-searchbar placeholder="Tìm tên, mã, barcode sản phẩm"></ion-searchbar>
+    <ion-searchbar placeholder="Tìm mã sản phẩm, barcode" ></ion-searchbar>
+    <ion-buttons slot="end" (click)= "scan()">
+      <ion-icon slot="end" name="camera"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -14,4 +14,5 @@
   <div class="scan">
     <ion-icon name="barcode"></ion-icon>
   </div>
+  
 </ion-content>
