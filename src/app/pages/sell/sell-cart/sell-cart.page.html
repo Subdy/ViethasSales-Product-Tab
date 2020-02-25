@@ -12,7 +12,10 @@
     <ion-buttons slot="end" style="font-size: 2rem;" (click)="scan()">
       <ion-icon name="camera"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end" style="font-size: 2rem;" *ngIf="show" (click)="gotoProductConfirm()">
+    <!-- <ion-buttons slot="end" style="font-size: 2rem;" *ngIf="show" (click)="gotoProductConfirm()">
+      <ion-icon name="checkmark" color="primary"></ion-icon>
+    </ion-buttons> -->
+    <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoProductConfirm()">
       <ion-icon name="checkmark" color="primary"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
