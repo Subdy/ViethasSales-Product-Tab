@@ -86,8 +86,9 @@ export class ProductImportAddProductPage implements OnInit {
         SKU: this.product.value.SKU,
         color: this.product.value.color,
         unit: this.product.value.unit,
-        barcode: this.product.value.barcode,
-        allow_sell: this.product.value.allow_sell
+        barcode: parseInt(this.product.value.barcode),
+        allow_sell: this.product.value.allow_sell,
+        id_supplier: this.supplier.id
       }).then(res => {
         console.log(res);
         this.bill_detail.push({

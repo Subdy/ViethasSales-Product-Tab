@@ -117,7 +117,7 @@ export class ProductImportCartPage implements OnInit {
       //console.log(bill.id);
       this.barcode.scan().then(res => {
         if (!res.cancelled) {
-          this.firebaseQuery.getTasks_Field("products", "barcode", res.text, "==")
+          this.firebaseQuery.getTasks_Field("products", "barcode", parseInt(res.text), "==")
           .then(res1 => {
             if (res1.empty) {
               alert('Sản phẩm không tồn tại!');

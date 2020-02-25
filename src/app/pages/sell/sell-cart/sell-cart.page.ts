@@ -99,7 +99,7 @@ export class SellCartPage implements OnInit {
         showTorchButton : true, // iOS and Android
       }).then(res => {
         if (!res.cancelled) {
-          this.firebaseQuery.getTasks_Field("products", "barcode", res.text, "==")
+          this.firebaseQuery.getTasks_Field("products", "barcode", parseInt(res.text), "==")
             .then(res1 => {
               if (res1.empty) {
                 alert('Sản phẩm không tồn tại!');

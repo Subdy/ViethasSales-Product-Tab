@@ -10,7 +10,7 @@
 <ion-content>
 <div class="info" >
   <p>Ngày bán : {{ date | date: 'dd/MM/yyyy'}}</p>
-  <p>Nhân viên: Trương Hữu Sang</p>
+  <p>Nhân viên: {{staff.name}}</p>
 </div>
 <div class="top-table">
   <table>
@@ -20,11 +20,11 @@
         <th style="width: 20vw;"><b>Đ.Giá</b></th>
         <th style="width: 25vw; border-radius: 0 5px 5px 0;"><b>T.Tiền</b></th>
       </tr>
-      <tr *ngFor="let item of items">
+      <tr *ngFor="let item of list_bill">
         <td style="width: 45vw;">{{item.name}}</td>
-        <td style="width: 10vw; text-align: center;">{{item.quantity}}</td>
-        <td style="width: 20vw;">{{item.cost | number: '1.0-0'}}</td>
-        <td style="width: 25vw; font-weight: bold;">{{item.quantity*item.cost | number: '1.0-0'}}</td>
+        <td style="width: 10vw; text-align: center;">{{item.number}}</td>
+        <td style="width: 20vw;">{{item.price | number: '1.0-0'}}</td>
+        <td style="width: 25vw; font-weight: bold;">{{item.number*item.price | number: '1.0-0'}}</td>
       </tr>
   </table>
 </div>

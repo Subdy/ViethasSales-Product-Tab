@@ -68,17 +68,18 @@ export class SellPage implements OnInit {
   }
 
   gotosellcart(){
-    let bill_code = this.exportSoHD();
-    let key = "bill";
-    let value = {
-      id_staff: this.firebaseAuth.user.id,
-      bill_type: 1,
-      date: new Date().toString(),
-      bill_code: bill_code,
-    };
-    this.storage.set(key, value).then(res=> {
-      console.log(res);
-      this.router.navigateByUrl('sell-cart');
-    });
+    this.router.navigateByUrl('sell-cart');
+    // let bill_code = this.exportSoHD();
+    // let key = "bill";
+    // let value = {
+    //   id_staff: this.firebaseAuth.user.id,
+    //   bill_type: 1,
+    //   date: new Date().toString(),
+    //   bill_code: bill_code,
+    // };
+    // this.storage.set(key, value).then(res=> {
+    //   console.log(res);
+      
+    // });
   }
 }
