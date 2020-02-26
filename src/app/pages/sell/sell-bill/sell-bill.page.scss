@@ -44,7 +44,14 @@ ion-content {
         margin: 17px 11px;
         .th{
             padding: 8px 11px;
+            .tax_percent {
+                input {
+                    padding: 0;
+                    border-bottom: 1px rgb(206, 206, 206) solid;
+                }
+            }
         }
+        
    }
    .save {
        text-align: center;

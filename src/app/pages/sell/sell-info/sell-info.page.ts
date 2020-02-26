@@ -10,12 +10,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./sell-info.page.scss'],
 })
 export class SellInfoPage implements OnInit {
+  // biến nhận biết khách lẻ(false) và thành viên(true)
   show: boolean;
-  bill;
-  bill_date;
-  list_bill: Array<any>;
+  //lưu trữ list sản phẩm của bill
+  bill_details: Array<any>;
+  //tổng giá và tổng số lượng
   num_total;
   total;
+  //biến cho phép thanh toán
   save_btn = false;
   tax = 0;
   tax_percent = 0;
@@ -33,15 +35,15 @@ export class SellInfoPage implements OnInit {
     private firebaseAuth: FirebaseAuth,
     private router: Router
   ) {
-    this.storage.get("bill").then(res => {
+    /* this.storage.get("bill").then(res => {
       this.bill = res;
       console.log(this.bill);
-    })
-    this.list_bill = new Array();
+    }) */
+    this.bill_details = new Array();
 
     this.storage.get("list_prod").then(res => {
-      this.list_bill = res;
-      console.log(this.list_bill);
+      this.bill_details = res;
+      //console.log(this.bill_details);
       this.getTotal();
     });
     //
@@ -60,10 +62,11 @@ export class SellInfoPage implements OnInit {
         if (res.docs[i].id == 'id_retail') {
           this.guess = res.docs[i].data();
           this.guess.id = res.docs[i].id;
+        } else {
+          this.list_customers.push(res.docs[i].data());
+          this.list_customers[this.list_customers.length - 1].id = res.docs[i].id;
+          this.list_customers[this.list_customers.length - 1].index = this.list_customers.length - 1;
         }
-        this.list_customers.push(res.docs[i].data());
-        this.list_customers[this.list_customers.length - 1].id = res.docs[i].id;
-        this.list_customers[this.list_customers.length - 1].index = this.list_customers.length - 1;
       }
       this.customer_show = new Array();
     });
@@ -86,7 +89,7 @@ export class SellInfoPage implements OnInit {
 
   setDate(event) {
     this.customer.controls['born_date'].setValue(event.detail.value);
-    console.log(this.customer.value.born_date);
+    //console.log(this.customer.value.born_date);
   }
   change($event) {
     // Nếu là khách lẻ
@@ -99,25 +102,26 @@ export class SellInfoPage implements OnInit {
       this.show = true;
     }
   }
-
+  // hàm xóa từng sp
   deleteItem(item) {
-    let index = this.findIndex(this.list_bill, item);
-    this.list_bill.splice(index, 1);
-    this.storage.set("list_prod", this.list_bill);
+    let index = this.findIndex(this.bill_details, item);
+    this.bill_details.splice(index, 1);
+    this.storage.set("list_prod", this.bill_details);
     //this.taxCalculate();
   }
-
+  //tìm vị trí i trong array
   findIndex(array, i) {
     let index = array.findIndex((item) => {
       return (item.name == i.name) && (item.id == i.id);
     });
     return index;
   }
-
+  // tìm kiếm khách hàng bắng sđt
   searchPhone() {
     if (this.customer.value.phone != null) {
+      console.log(this.list_customers);
       this.customer_show = this.list_customers.filter(item => {
-        return item.phone.indexOf(this.customer.value.phone.toString()) != -1;
+        return item.phone.indexOf(this.customer.value.phone) != -1;
       });
       this.show_searchbar = true;
       if (this.customer_show.length == 0) {
@@ -132,9 +136,9 @@ export class SellInfoPage implements OnInit {
   disableSearchBar() {
     this.show_searchbar = false;
   }
-  // select customer
+  // Chọn thành viên đã tồn tại
   select(item) {
-    console.log(item);
+    //console.log(item);
     //Lưu thông tin thành viên vào storage
     this.storage.set("customer", item);
     //Đổ dữ liệu vào form
@@ -142,7 +146,9 @@ export class SellInfoPage implements OnInit {
     this.customer.controls['code'].setValue(item.code);
     this.customer.controls['name'].setValue(item.name);
     this.customer.controls['phone'].setValue(parseInt(item.phone));
-    this.customer.controls['address'].setValue(item.address);
+    this.customer.controls['sex'].setValue(item.sex);
+    this.customer.controls['email'].setValue(item.email);
+    this.customer.controls['born_date'].setValue(item.born_date);
     //
     this.create_status = false; //Don't create customer
     this.disableSearchBar();
@@ -151,7 +157,7 @@ export class SellInfoPage implements OnInit {
   getTotal() {
     this.total = 0;
     this.num_total = 0;
-    for (let item of this.list_bill) {
+    for (let item of this.bill_details) {
       this.total += parseInt(item.price) * item.number;
       this.num_total += item.number;
     }
@@ -161,26 +167,27 @@ export class SellInfoPage implements OnInit {
   save() {
 
   }
-  // Thanh toán
+  // Di chuyển qua bill
   gotoSellBill() {
     if (!this.show) {
+      // là khách lẻ
       this.storage.set("customer", this.guess).then(res => {
         this.router.navigateByUrl('sell-bill');
       });
     } else {
-      if (this.create_status) {
+      if (this.create_status) { // tạo thành viên mới
         // chuyển phone -> string
         let customer = this.customer.value;
         customer.phone = "0" + this.customer.value.phone.toString();
         this.firebaseQuery.createTask("customers", customer).then(res => {
-          console.log(res.id);
+          //console.log(res.id);
           customer.id = res.id;
           this.create_status = !this.create_status;
           this.storage.set("customer", customer).then(res => {
             this.router.navigateByUrl('sell-bill');
           });
         }).catch(err => {
-          console.log(err);
+          alert(err);
         });
       } else {
         this.router.navigateByUrl('sell-bill');
@@ -212,41 +219,10 @@ export class SellInfoPage implements OnInit {
         : date.getSeconds().toString());
     return soHD;
   }
-  //Lưu tạm 
-  temporaryBill() {
 
-    this.temporary_status = !this.temporary_status;
-    this.storage.get('customer').then(res=> {
-      this.firebaseQuery.createTask("bills", {
-        id_customer: res.id,
-        id_staff: this.firebaseAuth.user.id,
-        //discount_value: this.discount_value,
-        //tax_value: this.tax,
-        date: new Date(),
-        bill_type: 5,
-        total: this.total,
-        //fee: this.ship_cost,
-        bill_code: this.exportSoHD(),
-        //id_payment: ""
-      }).then(res => {
-        console.log(res);
-        this.list_bill.forEach(item => {
-          this.firebaseQuery.createTask("bill_details", {
-            name: item.id,
-            price: item.price,
-            id_bill: res.id,
-            number: item.number
-          }).then(res => {
-            
-          }).catch(err => {
-            alert("bill_details: " + err);
-          })
-        });
-        this.router.navigateByUrl('sell');
-      }).catch(err => {
-        alert("bills: " + err);
-      });
-    });
+  //Thêm sản phẩm vào bill
+  addProduct() {
+    this.router.navigateByUrl('sell-cart');
   }
 
   /* taxCalculate() {

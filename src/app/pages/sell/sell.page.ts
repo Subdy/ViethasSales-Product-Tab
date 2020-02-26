@@ -25,7 +25,9 @@ export class SellPage implements OnInit {
     private firebaseAuth: FirebaseAuth,
     private storage: Storage,
     private loadingController: LoadingController
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
   }
@@ -80,10 +82,10 @@ export class SellPage implements OnInit {
                   break;
                 }
               }
-              console.log(res2.id);
-              console.log(res2.data());
+              //console.log(res2.id);
+              //console.log(res2.data());
               //Kiểm tra khách lẻ hoặc thành viên
-              res2.id == "id_khachle" ?
+              res2.id == "id_retail" ?
                 this.bills[this.bills.length - 1].customer_type = "Khách lẻ" :
                 this.bills[this.bills.length - 1].customer_type = "Thành viên";
             }).catch(err1 => {
@@ -92,7 +94,7 @@ export class SellPage implements OnInit {
             })
           }
           // kết thúc show kết quả
-          if (parseInt(i) == res.docs.length - 1){}
+          if (parseInt(i) == res.docs.length - 1) { }
         }
         console.log(this.bills);
       }
@@ -136,7 +138,6 @@ export class SellPage implements OnInit {
   }
 
   gotosellcart() {
-    this.show1 = this.show2 = false;
     this.router.navigateByUrl('sell-cart');
     // let bill_code = this.exportSoHD();
     // let key = "bill";
