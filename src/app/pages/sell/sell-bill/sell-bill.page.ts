@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { FirebaseQuery, FirebaseAuth } from 'src/app/database/firebase.database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sell-bill',
@@ -13,16 +14,18 @@ export class SellBillPage implements OnInit {
   staff;
   customer;
   total;
-  tax;
+  tax = 0;
   num_total;
   tax_percent;
   ship_cost = 0;
   discount_value = 0;
   pay_total = 0;
+  pay_status = false;
   constructor(
     private storage: Storage,
     private firebaseQuery: FirebaseQuery,
-    private firebaseAuth: FirebaseAuth
+    private firebaseAuth: FirebaseAuth,
+    private router: Router
   ) {
     //get bill()
     this.getListBill();
@@ -41,6 +44,7 @@ export class SellBillPage implements OnInit {
       this.storage.get('list_prod').then(res => {
         this.list_bill = res;
         this.getTotal();
+        this.getPay();
       });
     });
   }
@@ -91,6 +95,7 @@ export class SellBillPage implements OnInit {
     this.pay_total = this.total + this.ship_cost;
   }
   save() {
+    this.pay_status = !this.pay_status;
     this.firebaseQuery.createTask("bills", {
       id_customer: this.customer.id,
       id_staff: this.staff.id,
@@ -100,10 +105,11 @@ export class SellBillPage implements OnInit {
       bill_type: 1,
       total: this.pay_total,
       fee: this.ship_cost,
-      bill_cost: this.exportSoHD,
+      bill_code: this.exportSoHD(),
       id_payment: ""
     }).then(res => {
       console.log(res);
+      this.router.navigateByUrl('sell');
     }).catch(err => {
       alert(err);
     });

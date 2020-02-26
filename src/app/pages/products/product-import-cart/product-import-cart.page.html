@@ -35,7 +35,7 @@
     <ion-label>
       <h3 class="name_title1">{{item.name}}</h3>
       <div class="txt_money">
-        <h2 class="name_title">{{item.price | number: '1.0-0'}}</h2>
+        <h2 class="name_title">{{item.price_import | number: '1.0-0'}}</h2>
         <p class="name_title" style="width: 10%;">x</p>
         <!-- <div class="down_up"> -->
           <button class="btn_icon1" (click)="decrease(item)">
@@ -46,7 +46,7 @@
           <ion-icon name="arrow-up"></ion-icon>
         </button>
         <!-- </div> -->
-      <ion-label class="txtname_title">{{item.price * item.number | number: '1.0-0'}}</ion-label>
+      <ion-label class="txtname_title">{{item.price_import * item.number | number: '1.0-0'}}</ion-label>
       </div>
       
     </ion-label>

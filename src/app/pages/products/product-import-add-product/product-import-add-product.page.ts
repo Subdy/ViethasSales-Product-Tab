@@ -53,7 +53,7 @@ export class ProductImportAddProductPage implements OnInit {
       SKU: ['', Validators.required],
       unit: ['', Validators.required],
       color: ['', Validators.required],
-      barcode: ['', Validators.compose([Validators.minLength(10), Validators.required])],
+      barcode: [null, Validators.compose([Validators.minLength(10), Validators.required])],
       price_import: ['', Validators.required],
       id_supplier: [this.supplier.name],
       allow_sell: [true]
@@ -70,7 +70,7 @@ export class ProductImportAddProductPage implements OnInit {
     })
   }
   save() {
-    if (this.product.value.barcode == '') {
+    if (this.product.value.barcode == null) {
       alert('Vui lòng nhập barcode sản phẩm');
     } else {
       this.save_btn = true;

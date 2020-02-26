@@ -9,7 +9,7 @@
     </ion-button> -->
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content (click)="disableSearchBar()">
   <ion-list class="list">
     <div>
       <div class="item1" *ngFor="let item of list_bill">
@@ -111,7 +111,7 @@
     <ion-button>THÊM</ion-button>
   </div>
   <div class="save">
-    <ion-button>LƯU TẠM</ion-button>
+    <ion-button [disabled]="temporary_status">LƯU TẠM</ion-button>
   </div>
   <div class="pay">
     <ion-button (click)="gotoSellBill()">THANH TOÁN</ion-button>

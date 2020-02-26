@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FirebaseQuery } from 'src/app/database/firebase.database';
+import { FirebaseQuery, FirebaseAuth } from 'src/app/database/firebase.database';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,11 +23,14 @@ export class SellInfoPage implements OnInit {
   create_status: boolean;
   show_searchbar: boolean = false;
   list_customers: Array<any>;
+  guess;
   customer_show;
+  temporary_status = false;
   constructor(
     private storage: Storage,
     private formBuilder: FormBuilder,
     private firebaseQuery: FirebaseQuery,
+    private firebaseAuth: FirebaseAuth,
     private router: Router
   ) {
     this.storage.get("bill").then(res => {
@@ -54,6 +57,10 @@ export class SellInfoPage implements OnInit {
     this.list_customers = new Array();
     this.firebaseQuery.getTasks('customers').then(res => {
       for (let i in res.docs) {
+        if (res.docs[i].id == 'id_retail') {
+          this.guess = res.docs[i].data();
+          this.guess.id = res.docs[i].id;
+        }
         this.list_customers.push(res.docs[i].data());
         this.list_customers[this.list_customers.length - 1].id = res.docs[i].id;
         this.list_customers[this.list_customers.length - 1].index = this.list_customers.length - 1;
@@ -82,7 +89,12 @@ export class SellInfoPage implements OnInit {
     console.log(this.customer.value.born_date);
   }
   change($event) {
-    if ($event.detail.value == 'guess') this.show = false;
+    // Nếu là khách lẻ
+    if ($event.detail.value == 'guess') {
+      this.show = false;
+      //Lưu thông tin khách hàng là khách lẻ vào storage
+      this.storage.set("customer", this.guess);
+    }
     else {
       this.show = true;
     }
@@ -105,7 +117,7 @@ export class SellInfoPage implements OnInit {
   searchPhone() {
     if (this.customer.value.phone != null) {
       this.customer_show = this.list_customers.filter(item => {
-        return item.phone.toString().indexOf(this.customer.value.phone.toString()) != -1;
+        return item.phone.indexOf(this.customer.value.phone.toString()) != -1;
       });
       this.show_searchbar = true;
       if (this.customer_show.length == 0) {
@@ -117,8 +129,13 @@ export class SellInfoPage implements OnInit {
     }
   }
 
+  disableSearchBar() {
+    this.show_searchbar = false;
+  }
+  // select customer
   select(item) {
     console.log(item);
+    //Lưu thông tin thành viên vào storage
     this.storage.set("customer", item);
     //Đổ dữ liệu vào form
     this.customer.controls['address'].setValue(item.address);
@@ -127,8 +144,8 @@ export class SellInfoPage implements OnInit {
     this.customer.controls['phone'].setValue(parseInt(item.phone));
     this.customer.controls['address'].setValue(item.address);
     //
-    this.show_searchbar = false;
-    this.create_status = false;
+    this.create_status = false; //Don't create customer
+    this.disableSearchBar();
   }
   //Get Total from detail bill
   getTotal() {
@@ -144,23 +161,92 @@ export class SellInfoPage implements OnInit {
   save() {
 
   }
-
+  // Thanh toán
   gotoSellBill() {
-    if (this.create_status && this.show) {
-      this.firebaseQuery.createTask("customers", this.customer.value).then(res => {
-        console.log(res.id);
-        let customer = this.customer.value;
-        customer.id = res.id;
-        this.create_status = !this.create_status;
-        this.storage.set("customer", customer).then(res => {
-          this.router.navigateByUrl('sell-bill');
-        });
-      }).catch(err => {
-        console.log(err);
+    if (!this.show) {
+      this.storage.set("customer", this.guess).then(res => {
+        this.router.navigateByUrl('sell-bill');
       });
     } else {
-      this.router.navigateByUrl('sell-bill');
+      if (this.create_status) {
+        // chuyển phone -> string
+        let customer = this.customer.value;
+        customer.phone = "0" + this.customer.value.phone.toString();
+        this.firebaseQuery.createTask("customers", customer).then(res => {
+          console.log(res.id);
+          customer.id = res.id;
+          this.create_status = !this.create_status;
+          this.storage.set("customer", customer).then(res => {
+            this.router.navigateByUrl('sell-bill');
+          });
+        }).catch(err => {
+          console.log(err);
+        });
+      } else {
+        this.router.navigateByUrl('sell-bill');
+      }
     }
+  }
+  //tạo số HD
+  exportSoHD() {
+    let date = new Date();
+    const soHD =
+      date
+        .getFullYear()
+        .toString()
+        .slice(2, 4) +
+      ((date.getMonth() + 1).toString().length == 1
+        ? "0" + (date.getMonth() + 1).toString()
+        : (date.getMonth() + 1).toString()) +
+      (date.getUTCDate().toString().length == 1
+        ? "0" + date.getUTCDate().toString()
+        : date.getUTCDate().toString()) +
+      (date.getHours().toString().length == 1
+        ? "0" + date.getHours().toString()
+        : date.getHours().toString()) +
+      (date.getMinutes().toString().length == 1
+        ? "0" + date.getMinutes().toString()
+        : date.getMinutes().toString()) +
+      (date.getSeconds().toString().length == 1
+        ? "0" + date.getSeconds().toString()
+        : date.getSeconds().toString());
+    return soHD;
+  }
+  //Lưu tạm 
+  temporaryBill() {
+
+    this.temporary_status = !this.temporary_status;
+    this.storage.get('customer').then(res=> {
+      this.firebaseQuery.createTask("bills", {
+        id_customer: res.id,
+        id_staff: this.firebaseAuth.user.id,
+        //discount_value: this.discount_value,
+        //tax_value: this.tax,
+        date: new Date(),
+        bill_type: 5,
+        total: this.total,
+        //fee: this.ship_cost,
+        bill_code: this.exportSoHD(),
+        //id_payment: ""
+      }).then(res => {
+        console.log(res);
+        this.list_bill.forEach(item => {
+          this.firebaseQuery.createTask("bill_details", {
+            name: item.id,
+            price: item.price,
+            id_bill: res.id,
+            number: item.number
+          }).then(res => {
+            
+          }).catch(err => {
+            alert("bill_details: " + err);
+          })
+        });
+        this.router.navigateByUrl('sell');
+      }).catch(err => {
+        alert("bills: " + err);
+      });
+    });
   }
 
   /* taxCalculate() {
@@ -169,5 +255,6 @@ export class SellInfoPage implements OnInit {
     this.tax = (this.tax_percent * this.total) / 100;
     this.total += this.tax;
   } */
+
 
 }

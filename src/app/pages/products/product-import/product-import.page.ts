@@ -11,7 +11,7 @@ import { LoadingController } from "@ionic/angular";
 export class ProductImportPage implements OnInit {
   startDay = "2019-12-07";
   endDay = "2019-12-08";
-  number = 0;
+  // trạng thái show1 (chưa có bill), show2 (có bill)
   show1 = false;
   show2 = false;
   bills: Array<any>;
@@ -41,24 +41,33 @@ export class ProductImportPage implements OnInit {
         console.log(item.data()); 
       }
     }); */
-   /*  this.firebaseQuery.getTasks("bills").then(res => {
+    /* this.firebaseQuery.getTasks("bills").then(res => {
       for (let item of res.docs) {
         this.firebaseQuery.deleteTask('bills', item.id);
         console.log(item.data()); 
       }
     }); */
-    /* this.firebaseQuery.getTasks("customers").then(res => {
-      for (let item of res.docs) {
-        this.firebaseQuery.deleteTask('customers', item.id);
-        console.log(item.data());
-      }
-    }); */
+    // this.firebaseQuery.getTasks("customers").then(res => {
+    //   for (let item of res.docs) {
+    //     if (item.id != "id_retail") {
+    //       this.firebaseQuery.deleteTask('customers', item.id);
+    //     }
+    //     console.log(item.data());
+    //   }
+    // });
     /* this.firebaseQuery.getTasks("suppliers").then(res => {
       for (let item of res.docs) {
         this.firebaseQuery.deleteTask('suppliers', item.id);
         console.log(item.data()); 
       }
     }); */
+    // this.firebaseQuery.createTask('customers', {
+    //   id_discount : '',
+    //   name: 'Khách lẻ',
+    //   phone: '',
+    //   address: '',
+    //   code: 'KL'
+    // });
   }
 
   ionViewWillEnter() {
@@ -118,37 +127,12 @@ export class ProductImportPage implements OnInit {
       return next.date.seconds - prev.date.seconds;
     });
   }
-  //ham tao so hoa don
-  exportSoHD() {
-    let date = new Date();
-    const soHD =
-      date
-        .getFullYear()
-        .toString()
-        .slice(2, 4) +
-      ((date.getMonth() + 1).toString().length == 1
-        ? "0" + (date.getMonth() + 1).toString()
-        : (date.getMonth() + 1).toString()) +
-      (date.getUTCDate().toString().length == 1
-        ? "0" + date.getUTCDate().toString()
-        : date.getUTCDate().toString()) +
-      (date.getHours().toString().length == 1
-        ? "0" + date.getHours().toString()
-        : date.getHours().toString()) +
-      (date.getMinutes().toString().length == 1
-        ? "0" + date.getMinutes().toString()
-        : date.getMinutes().toString()) +
-      (date.getSeconds().toString().length == 1
-        ? "0" + date.getSeconds().toString()
-        : date.getSeconds().toString());
-    return soHD;
-  }
 
   gotoproductsupplier() {
     this.show1 = this.show2 = false;
-    let bill_code = this.exportSoHD();
-    this.storage.set("soHD", bill_code);
-    this.firebaseQuery
+    //let bill_code = this.exportSoHD();
+    //this.storage.set("soHD", bill_code);
+    /* this.firebaseQuery
       .createTask("bills", {
         id_staff: this.firebaseAuth.user.id,
         bill_type: 2,
@@ -173,7 +157,7 @@ export class ProductImportPage implements OnInit {
       )
       .catch(err => {
         console.log(err);
-      });
+      }); */
     this.router.navigateByUrl("product-import-suppliers");
   }
   //xem chi tiet bill

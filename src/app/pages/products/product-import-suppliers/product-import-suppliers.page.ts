@@ -16,9 +16,7 @@ export class ProductImportSuppliersPage implements OnInit {
   constructor(
     private router: Router,
     private firebaseQuery: FirebaseQuery,
-    private alertCtrl: AlertController,
     private storage: Storage,
-    private navCtrl: NavController,
     private loadingController: LoadingController
     ) {
       //this.getDataSuppliers();
@@ -52,28 +50,6 @@ export class ProductImportSuppliersPage implements OnInit {
     this.storage.set("supplier", item);
   }
   
-  delete_bill() {
-    this.trigger_popup = true;
-  }
-  deteleSupplier() {
-    this.storage.get("bill").then(res => {
-    this.firebaseQuery.deleteTask("bills", res.id).then(res => {
-        console.log(res);
-        this.storage.remove("bill");
-        this.storage.remove("soHD");
-        this.storage.remove("list_prod");
-        this.storage.remove("supplier");
-        this.navCtrl.pop();
-      }, err => {
-        console.log(err);
-      }).catch(err=> {
-        console.log(err);
-      })
-  });
-  }
-  cancel(){
-    this.trigger_popup = false;
-  }
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: "Please wait..."

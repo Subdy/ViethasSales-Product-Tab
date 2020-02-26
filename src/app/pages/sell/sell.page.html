@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content>
-  <div class = "no-bill" style="display: none;" >
+  <div class = "no-bill" *ngIf="show1" >
     <ion-button (click)= "gotosellcart()">
       <ion-icon name="add"></ion-icon>
       Tạo đơn hàng
@@ -14,7 +14,7 @@
     <p>Bạn chưa có đơn hàng nào!</p>
   </div>
 
-  <div class="bills" >
+  <div class="bills" *ngIf="show2">
     <div class="add-bill">
       <ion-button (click)= "gotosellcart()">
         <ion-icon name="add"></ion-icon>
@@ -26,15 +26,15 @@
     <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 75vh; width: 95vw;">
       <div class="detail" *ngFor="let item of bills">
         <div class="bill">
-          <div class = "info-bill">
-            <div class = "left"><b>{{item.id_bill}}</b></div>
-            <div class = "right" style="color:#00A859"><b>{{item.cost | number: '1.0-0'}}</b></div>
+          <div class = "info-bill"> 
+            <div class = "left"><b>{{item.bill_code}}</b></div>
+            <div class = "right" style="color:#00A859"><b>{{item.total | number: '1.0-0'}}</b></div>
           </div>
           <div class = "status-bill">
-            <div class = "left">{{item.customer}}</div>
-            <div class = "right">{{item.status}}</div>
+            <div class = "left">{{item.customer_type}}</div>
+            <div class = "right">{{item.status_bill}}</div>
           </div>
-          <div class = "date">{{item.date | date: 'dd/MM/yyyy hh:mm'}}</div>
+          <div class = "date">{{item.date.toDate() | date: 'dd/MM/yyyy HH:mm'}}</div>
         </div>
       </div>
     </div>
