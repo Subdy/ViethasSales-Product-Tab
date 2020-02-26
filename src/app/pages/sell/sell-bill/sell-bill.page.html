@@ -32,8 +32,8 @@
   <table>
       <tr class= 'th'>
         <td style="width: 45vw; "><b>Tổng</b></td>
-        <td style="width: 10vw; text-align: center;">19</td>
-        <td style="width: 45vw; text-align: center;"><b>{{9999999 | number: '1.0-0'}}</b></td>
+        <td style="width: 10vw; text-align: center;">{{num_total}}</td>
+        <td style="width: 45vw; text-align: center;"><b>{{total | number: '1.0-0'}}</b></td>
       </tr>
       <tr class= 'th'>
         <td style="width: 45vw;"><b>VAT</b></td>
@@ -46,17 +46,17 @@
       </tr><tr class= 'th'>
         <td style="width: 45vw; border-radius: 10px 0 0 10px;"><b>Phí vận chuyển</b></td>
         <td style="width: 10vw; text-align: center;"></td>
-        <td style="width: 45vw; text-align: center;"><b>{{9999999 | number: '1.0-0'}}</b></td>
+        <td style="width: 45vw; text-align: center;"><b><ion-input type="number" (change)="getPay()" [(ngModel)]="ship_cost"></ion-input></b></td>
       </tr>
       <tr class= 'th'>
         <td style="width: 45vw; border-radius: 10px 0 0 10px; color: red"><b>THANH TOÁN</b></td>
         <td style="width: 10vw; text-align: center;"></td>
-        <td style="width: 45vw; text-align: center; color: red"><b>{{9999999 | number: '1.0-0'}}</b></td>
+        <td style="width: 45vw; text-align: center; color: red"><b>{{pay_total | number: '1.0-0'}}</b></td>
       </tr>
   </table>
 </div>
 <div class="save">
   <div><ion-button>SỬA</ion-button></div>
-  <div><ion-button>IN</ion-button></div>
+  <div><ion-button (click)="save()" [disabled]="pay_status">IN</ion-button></div>
 </div>
 </ion-content>
