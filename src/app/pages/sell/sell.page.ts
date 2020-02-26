@@ -9,12 +9,16 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./sell.page.scss'],
 })
 export class SellPage implements OnInit {
+  //Tính tổng số bill
   number: number;
+  // list chứa bill
   bills: Array<any>;
+  //Hôm nay 0h- 23h59
   startDateTime = new Date();
   endDateTime = new Date();
-  show1 = false;
-  show2 = false;
+  //biến cờ show
+  show1;
+  show2;
   constructor(
     private router: Router,
     private firebaseQuery: FirebaseQuery,
@@ -26,6 +30,9 @@ export class SellPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
+    //khởi tạo biến cờ
+    this.show1 = false;
+    this.show2 = false;
     this.presentLoading();
     this.getData();
   }
@@ -35,20 +42,22 @@ export class SellPage implements OnInit {
     this.bills = new Array();
     this.number = 0;
     this.firebaseQuery.getTasks_2Field("bills", "date", this.startDateTime, ">=", "date", this.endDateTime, "<=").then(res => {
-      this.number = res.docs.length;
       if (res.empty) {
         this.show1 = true;
         this.dismissLoading();
         console.log("empty");
       } else {
         for (let i in res.docs) {
-          if (res.docs[i].data().bill_type != 2 && 
-              res.docs[i].data().bill_type != 6 && 
-              res.docs[i].data().bill_type != 7 && 
-              res.docs[i].data().bill_type != 8) {
+          if (res.docs[i].data().bill_type != 2 &&
+            res.docs[i].data().bill_type != 6 &&
+            res.docs[i].data().bill_type != 7 &&
+            res.docs[i].data().bill_type != 8) {
+            this.number++;
+            //thêm loại khách hàng
             this.firebaseQuery.getTask_byID('customers', res.docs[i].data().id_customer).then(res2 => {
               this.bills.push(res.docs[i].data());
               this.bills[this.bills.length - 1].id = res.docs[i].id;
+              //kiểm tra loại hóa đơn
               switch (res.docs[i].data().bill_type) {
                 //ban hang
                 case 1: {
@@ -77,26 +86,28 @@ export class SellPage implements OnInit {
               res2.id == "id_khachle" ?
                 this.bills[this.bills.length - 1].customer_type = "Khách lẻ" :
                 this.bills[this.bills.length - 1].customer_type = "Thành viên";
-              // kết thúc show kết quả
-              if (parseInt(i) == res.docs.length - 1) {
-                this.show2 = true;
-                this.dismissLoading();
-              }
             }).catch(err1 => {
               alert('customers: ' + err1)
               this.dismissLoading();
-            });
+            })
           }
+          // kết thúc show kết quả
+          if (parseInt(i) == res.docs.length - 1){}
         }
         console.log(this.bills);
       }
     }).catch(err2 => {
       alert("bills: " + err2);
       this.dismissLoading();
+    }).finally(() => {
+      if (this.number == 0) {
+        this.show1 = true;
+        this.dismissLoading();
+      } else {
+        this.show2 = true;
+        this.dismissLoading();
+      }
     })
-  }
-  gotoscan() {
-    this.router.navigateByUrl('scan');
   }
 
   exportSoHD() {
@@ -125,6 +136,7 @@ export class SellPage implements OnInit {
   }
 
   gotosellcart() {
+    this.show1 = this.show2 = false;
     this.router.navigateByUrl('sell-cart');
     // let bill_code = this.exportSoHD();
     // let key = "bill";

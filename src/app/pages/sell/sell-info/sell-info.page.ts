@@ -57,7 +57,7 @@ export class SellInfoPage implements OnInit {
     this.list_customers = new Array();
     this.firebaseQuery.getTasks('customers').then(res => {
       for (let i in res.docs) {
-        if (res.docs[i].data().name == 'Khách lẻ' && res.docs[i].data().code == 'KL') {
+        if (res.docs[i].id == 'id_retail') {
           this.guess = res.docs[i].data();
           this.guess.id = res.docs[i].id;
         }
@@ -89,7 +89,12 @@ export class SellInfoPage implements OnInit {
     console.log(this.customer.value.born_date);
   }
   change($event) {
-    if ($event.detail.value == 'guess') this.show = false;
+    // Nếu là khách lẻ
+    if ($event.detail.value == 'guess') {
+      this.show = false;
+      //Lưu thông tin khách hàng là khách lẻ vào storage
+      this.storage.set("customer", this.guess);
+    }
     else {
       this.show = true;
     }
@@ -112,7 +117,7 @@ export class SellInfoPage implements OnInit {
   searchPhone() {
     if (this.customer.value.phone != null) {
       this.customer_show = this.list_customers.filter(item => {
-        return item.phone.toString().indexOf(this.customer.value.phone.toString()) != -1;
+        return item.phone.indexOf(this.customer.value.phone.toString()) != -1;
       });
       this.show_searchbar = true;
       if (this.customer_show.length == 0) {
@@ -130,6 +135,7 @@ export class SellInfoPage implements OnInit {
   // select customer
   select(item) {
     console.log(item);
+    //Lưu thông tin thành viên vào storage
     this.storage.set("customer", item);
     //Đổ dữ liệu vào form
     this.customer.controls['address'].setValue(item.address);
@@ -208,35 +214,38 @@ export class SellInfoPage implements OnInit {
   }
   //Lưu tạm 
   temporaryBill() {
+
     this.temporary_status = !this.temporary_status;
-    this.firebaseQuery.createTask("bills", {
-      id_customer: this.customer.id,
-      id_staff: this.firebaseAuth.user.id,
-      //discount_value: this.discount_value,
-      //tax_value: this.tax,
-      date: new Date(),
-      bill_type: 5,
-      total: this.total,
-      //fee: this.ship_cost,
-      bill_code: this.exportSoHD(),
-      //id_payment: ""
-    }).then(res => {
-      console.log(res);
-      this.list_bill.forEach(item => {
-        this.firebaseQuery.createTask("bill_details", {
-          name: item.id,
-          price: item.price,
-          id_bill: res.id,
-          number: item.number
-        }).then(res => {
-          
-        }).catch(err => {
-          alert("bill_details: " + err);
-        })
+    this.storage.get('customer').then(res=> {
+      this.firebaseQuery.createTask("bills", {
+        id_customer: res.id,
+        id_staff: this.firebaseAuth.user.id,
+        //discount_value: this.discount_value,
+        //tax_value: this.tax,
+        date: new Date(),
+        bill_type: 5,
+        total: this.total,
+        //fee: this.ship_cost,
+        bill_code: this.exportSoHD(),
+        //id_payment: ""
+      }).then(res => {
+        console.log(res);
+        this.list_bill.forEach(item => {
+          this.firebaseQuery.createTask("bill_details", {
+            name: item.id,
+            price: item.price,
+            id_bill: res.id,
+            number: item.number
+          }).then(res => {
+            
+          }).catch(err => {
+            alert("bill_details: " + err);
+          })
+        });
+        this.router.navigateByUrl('sell');
+      }).catch(err => {
+        alert("bills: " + err);
       });
-      this.router.navigateByUrl('sell');
-    }).catch(err => {
-      alert("bills: " + err);
     });
   }
 
