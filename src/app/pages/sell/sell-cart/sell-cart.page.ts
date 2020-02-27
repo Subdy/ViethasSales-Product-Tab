@@ -3,6 +3,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { FirebaseQuery } from 'src/app/database/firebase.database';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-sell-cart',
@@ -19,6 +20,7 @@ export class SellCartPage implements OnInit {
     private router: Router,
     private barcode: BarcodeScanner,
     private firebaseQuery: FirebaseQuery,
+    private event: Events
   ) {
     // kiểm tra danh sách sản phẩm lưu trong storage
     this.storage.get('list_prod').then(res => {
@@ -34,6 +36,9 @@ export class SellCartPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+  goBack() {
+    this.event.publish("back", true);
   }
   ionViewWillEnter() {
     // lấy danh sách sp trong storage

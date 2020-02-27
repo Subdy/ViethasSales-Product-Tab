@@ -2,7 +2,7 @@ import { FirebaseQuery, FirebaseAuth } from './../../database/firebase.database'
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router'
 import { Storage } from '@ionic/storage';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Events } from '@ionic/angular';
 @Component({
   selector: 'app-sell',
   templateUrl: './sell.page.html',
@@ -24,22 +24,32 @@ export class SellPage implements OnInit {
     private firebaseQuery: FirebaseQuery,
     private firebaseAuth: FirebaseAuth,
     private storage: Storage,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private event: Events
   ) {
-
+    //bắt sự kiện load lại bill
+    this.event.subscribe("back", res => {
+      console.log(res);
+      res == true ? this.getData() : null;
+    });
   }
 
   ngOnInit() {
     
   }
   ionViewWillEnter() {
-    //khởi tạo biến cờ
+    this.getData();
+  }
+  ngOnDestroy() {
+    //hủy sự kiện
+    this.event.unsubscribe("back");
+  }
+  getData() {
+    //khởi tạo biến cờ  
     this.show1 = false;
     this.show2 = false;
     this.presentLoading();
-    this.getData();
-  }
-  getData() {
+    //settime today
     this.startDateTime.setUTCHours(0, 0, 0);
     this.endDateTime.setUTCHours(23, 59, 59);
     this.bills = new Array();

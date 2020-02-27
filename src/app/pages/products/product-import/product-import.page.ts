@@ -22,45 +22,45 @@ export class ProductImportPage implements OnInit {
     private storage: Storage,
     private loadingController: LoadingController
   ) {
-    // this.firebaseQuery.getTasks("warehouses").then(res => {
-    //   for (let item of res.docs) {
-    //     this.firebaseQuery.deleteTask('warehouses', item.id);
-    //     console.log(item.data()); 
-    //   }
-    // });
-    //  this.firebaseQuery.getTasks("bill_details").then(res => {
-    //    for (let item of res.docs) {
-    //      this.firebaseQuery.deleteTask('bill_details', item.id);
-    //      console.log(item.data()); 
-    //    }
-    //  });
-    // this.firebaseQuery.getTasks("products").then(res => {
-    //   console.log(res);
-    //   for (let item of res.docs) {
-    //     this.firebaseQuery.deleteTask('products', item.id);
-    //     console.log(item.data()); 
-    //   }
-    // });
-    // this.firebaseQuery.getTasks("bills").then(res => {
-    //   for (let item of res.docs) {
-    //     this.firebaseQuery.deleteTask('bills', item.id);
-    //     console.log(item.data()); 
-    //   }
-    // });
-    // this.firebaseQuery.getTasks("customers").then(res => {
-    //   for (let item of res.docs) {
-    //     if (item.id != "id_retail") {
-    //       this.firebaseQuery.deleteTask('customers', item.id);
-    //     }
-    //     console.log(item.data());
-    //   }
-    // });
-    // this.firebaseQuery.getTasks("suppliers").then(res => {
-    //   for (let item of res.docs) {
-    //     this.firebaseQuery.deleteTask('suppliers', item.id);
-    //     console.log(item.data()); 
-    //   }
-    // });
+    this.firebaseQuery.getTasks("warehouses").then(res => {
+      for (let item of res.docs) {
+        this.firebaseQuery.deleteTask('warehouses', item.id);
+        console.log(item.data());
+      }
+    });
+    this.firebaseQuery.getTasks("bill_details").then(res => {
+      for (let item of res.docs) {
+        this.firebaseQuery.deleteTask('bill_details', item.id);
+        console.log(item.data());
+      }
+    });
+    this.firebaseQuery.getTasks("products").then(res => {
+      console.log(res);
+      for (let item of res.docs) {
+        this.firebaseQuery.deleteTask('products', item.id);
+        console.log(item.data());
+      }
+    });
+    this.firebaseQuery.getTasks("bills").then(res => {
+      for (let item of res.docs) {
+        this.firebaseQuery.deleteTask('bills', item.id);
+        console.log(item.data());
+      }
+    });
+    this.firebaseQuery.getTasks("customers").then(res => {
+      for (let item of res.docs) {
+        if (item.id != "id_retail") {
+          this.firebaseQuery.deleteTask('customers', item.id);
+        }
+        console.log(item.data());
+      }
+    });
+    this.firebaseQuery.getTasks("suppliers").then(res => {
+      for (let item of res.docs) {
+        this.firebaseQuery.deleteTask('suppliers', item.id);
+        console.log(item.data());
+      }
+    });
     // this.firebaseQuery.createTask('customers', {
     //   id_discount : '',
     //   name: 'Khách lẻ',

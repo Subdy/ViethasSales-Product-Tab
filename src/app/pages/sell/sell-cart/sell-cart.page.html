@@ -1,18 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" (click)="goBack()">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoCreateProduct()">
       <ion-icon name="search"></ion-icon>
     </ion-buttons>
-    <!-- <ion-buttons slot="end" style="font-size: 2rem;" (click)="scan()">
+    <ion-buttons slot="end" style="font-size: 2rem;" (click)="scan()">
       <ion-icon name="camera"></ion-icon>
-    </ion-buttons> -->
-    <ion-buttons slot="end" style="font-size: 2rem;" *ngIf="show" (click)="gotoProductConfirm()">
-      <ion-icon name="checkmark" color="primary"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoProductConfirm()">
+    <ion-buttons slot="end" style="font-size: 2rem;" *ngIf="show" (click)="gotoProductConfirm()">
       <ion-icon name="checkmark" color="primary"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
@@ -49,7 +46,7 @@
       </ion-item>
     </div>
   </div>
-  <<<<<<< HEAD <!-- <div *ngIf="trigger_popup"=======<div *ngIf="trigger_popup">>>>>>> master
+  <!-- <div *ngIf="trigger_popup"=======<div *ngIf="trigger_popup">>>>>>> master
     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: gray; opacity: .5; z-index: 999"
     (click)="cancel()">
     </div>

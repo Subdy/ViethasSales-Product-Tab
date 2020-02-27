@@ -69,7 +69,7 @@ export class ProductImportConfirmPage implements OnInit {
     this.total = 0;
     this.num_total = 0;
     for (let item of this.bill_detail) {
-      this.total += parseInt(item.price) * item.number;
+      this.total += parseInt(item.price_import) * item.number;
       this.num_total += item.number;
     }
     //console.log(this.num_total, this.total);
@@ -93,7 +93,7 @@ export class ProductImportConfirmPage implements OnInit {
     this.storage.remove("supplier");
     this.router.navigateByUrl('product-import');
   }
-  
+
   //ham tao so hoa don
   exportSoHD() {
     let date = new Date();
@@ -123,9 +123,9 @@ export class ProductImportConfirmPage implements OnInit {
   save() {
     //disable btn
     this.save_btn = true;
-    // tạo bill
+    // tạo bill mới
     this.firebaseQuery.createTask("bills", {
-      id_staff : this.firebaseAuth.user.id,
+      id_staff: this.firebaseAuth.user.id,
       tax_value: this.tax,
       date: this.bill_date,
       bill_type: 2,
@@ -134,32 +134,56 @@ export class ProductImportConfirmPage implements OnInit {
       bill_code: this.bill_code
     }).then(res => {
       //tạo detail bill
-      for (let item of this.bill_detail) {
+      for (let i in this.bill_detail) {
         this.firebaseQuery.createTask("bill_details", {
-          name: item.name,
+          name: this.bill_detail[i].name,
           id_bill: res.id,
-          price: item.price,
-          number: item.number
+          price: this.bill_detail[i].price_import,
+          number: this.bill_detail[i].number
         }).then(res => {
           console.log(res);
         }).catch(err => {
-          alert("bill_details: " +  err);
+          alert("bill_details: " + err);
         });
-        //nhập kho
-        this.firebaseQuery.createTask("warehouses", {
-          date: this.bill_date,
-          id_product: item.id,
-          price: item.price_import,
-          number: item.number
-        }).then(res => {
-          //console.log(res);
-          //delete storage
-          this.storage.remove("list_prod");
-          this.storage.remove("supplier");
-          this.router.navigateByUrl('product-import');
-        }).catch(err => {
-          alert("warehouses: " + err);
-        })
+        if (!this.bill_detail[i].update_status) {
+          //nhập kho
+          this.firebaseQuery.createTask("warehouses", {
+            date: this.bill_date,
+            id_product: this.bill_detail[i].id,
+            price: this.bill_detail[i].price_import,
+            number: this.bill_detail[i].number
+          }).then(res => {
+            //console.log(res);
+            //delete storage with condition
+            if (parseInt(i) == this.bill_detail.length - 1) {
+              this.storage.remove("list_prod");
+              this.storage.remove("supplier");
+              this.router.navigateByUrl('product-import');
+            }
+          }).catch(err => {
+            alert("warehouses: " + err);
+          });
+        } else {
+          //cập nhật khp
+          // lấy id kho
+          this.firebaseQuery.getTasks_Field("warehouses", "id_product", this.bill_detail[i].id, "==").then(res => {
+            this.firebaseQuery.updateTask("warehouse", res.docs[0].id, {
+              date: this.bill_date,
+              id_product: this.bill_detail[i].id,
+              price: this.bill_detail[i].price_import,
+              number: this.bill_detail[i].number + res.docs[0].data().number // cập nhật lại số lượng
+            }).then(res => {
+              //delete storage with condition
+              if (parseInt(i) == this.bill_detail.length - 1) {
+                this.storage.remove("list_prod");
+                this.storage.remove("supplier");
+                this.router.navigateByUrl('product-import');
+              }
+            }).catch(err => {
+              alert('update warehouse: ' + err);
+            });
+          });
+        }
       }
     })
   }
