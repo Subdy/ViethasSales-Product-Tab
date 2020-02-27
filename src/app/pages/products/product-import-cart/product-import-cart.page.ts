@@ -74,7 +74,7 @@ export class ProductImportCartPage implements OnInit {
   }
 
   deleteItem(item) {
-    let index = this.findIndex(this.list_product,item);
+    let index = this.findIndex(this.list_product, item);
     this.list_product.splice(index, 1);
     if (this.list_product.length == 0) this.show = false;
     this.storage.set("list_prod", this.list_product);
@@ -113,41 +113,41 @@ export class ProductImportCartPage implements OnInit {
     if (this.list_product == undefined) {
       this.list_product = new Array();
     }
-    this.storage.get("bill").then(bill => {
-      //console.log(bill.id);
-      this.barcode.scan().then(res => {
-        if (!res.cancelled) {
-          this.firebaseQuery.getTasks_Field("products", "barcode", parseInt(res.text), "==")
+    //console.log(bill.id);
+    //scan sp
+    this.barcode.scan().then(res => {
+      if (!res.cancelled) {
+        this.firebaseQuery.getTasks_Field("products", "barcode", parseInt(res.text), "==")
           .then(res1 => {
             if (res1.empty) {
               alert('Sản phẩm không tồn tại!');
             } else {
-              //console.log(res1.docs[0].data());
+              console.log(res1.docs[0].data());
               this.firebaseQuery.getTasks_Field("warehouses", "id_product", res1.docs[0].id, "==").then(res2 => {
                 if (res2.empty) {
-                  alert('Sản phẩm không chứa kho!');
-                } else {
-                  //show V
-                  this.show_prod = true;
-                  this.show = true;
-                  //console.log(res2.docs[0].data());
-                  let index = this.list_product.findIndex( (item) => {
-                    return item.barcode == res.text;
+                  alert('Sản phẩm không chứa kho! Vui lòng nhập giá nhập');
+                }
+                //show V
+                this.show_prod = true;
+                this.show = true;
+                //console.log(res2.docs[0].data());
+                //lấy vị trí sản phẩm trong list sp
+                let index = this.list_product.findIndex((item) => {
+                  return item.barcode == res.text;
+                });
+                if (index == -1) { // sản phẩm không tồn tại trong list sp
+                  this.list_product.push({
+                    name: res1.docs[0].data().name,
+                    id: res1.docs[0].id,
+                    price: res1.docs[0].data().price,
+                    price_import: res2.empty ? 0 :res2.docs[0].data().price,
+                    number: 1,
+                    barcode: res1.docs[0].data().barcode,
+                    old_number: res2.docs[0].data().number
                   });
-                  if (index == -1) {
-                    this.list_product.push({
-                      name: res1.docs[0].data().name,
-                      id: res1.docs[0].id,
-                      id_bill: bill.id,
-                      price: res1.docs[0].data().price,
-                      price_import: res2.docs[0].data().price,
-                      number: 1,
-                      barcode: res1.docs[0].data().barcode
-                    });
-                    this.storage.set('list_prod', this.list_product);
-                  } else {
-                    alert ("Sản phẩm đã tồn tại trong danh sách!");
-                  }
+                  this.storage.set('list_prod', this.list_product);
+                } else {
+                  alert("Sản phẩm đã tồn tại trong danh sách!");
                 }
               }).catch(err => {
                 alert("warehouses: " + err);
@@ -156,12 +156,11 @@ export class ProductImportCartPage implements OnInit {
           }).catch(err => {
             alert("products: " + err);
           });
-        } else {
-          this.router.navigateByUrl('product-import-cart');
-        }
-      }).catch(err => {
-        alert(err);
-      });
+      } else {
+        this.router.navigateByUrl('product-import-cart');
+      }
+    }).catch(err => {
+      alert(err);
     });
   }
 

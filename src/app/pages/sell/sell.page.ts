@@ -28,6 +28,7 @@ export class SellPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
   ionViewWillEnter() {
     //khởi tạo biến cờ
@@ -108,31 +109,6 @@ export class SellPage implements OnInit {
         this.dismissLoading();
       }
     })
-  }
-
-  exportSoHD() {
-    let date = new Date();
-    const soHD =
-      date
-        .getFullYear()
-        .toString()
-        .slice(2, 4) +
-      ((date.getMonth() + 1).toString().length == 1
-        ? "0" + (date.getMonth() + 1).toString()
-        : (date.getMonth() + 1).toString()) +
-      (date.getUTCDate().toString().length == 1
-        ? "0" + date.getUTCDate().toString()
-        : date.getUTCDate().toString()) +
-      (date.getHours().toString().length == 1
-        ? "0" + date.getHours().toString()
-        : date.getHours().toString()) +
-      (date.getMinutes().toString().length == 1
-        ? "0" + date.getMinutes().toString()
-        : date.getMinutes().toString()) +
-      (date.getSeconds().toString().length == 1
-        ? "0" + date.getSeconds().toString()
-        : date.getSeconds().toString());
-    return soHD;
   }
 
   gotosellcart() {
