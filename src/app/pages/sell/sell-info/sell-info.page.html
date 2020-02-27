@@ -12,7 +12,7 @@
 <ion-content (click)="disableSearchBar()">
   <ion-list class="list">
     <div>
-      <div class="item1" *ngFor="let item of list_bill">
+      <div class="item1" *ngFor="let item of bill_details">
         <ion-button slot="start" (click)="deleteItem(item)">
           <ion-icon name="close">
           </ion-icon>
@@ -87,10 +87,10 @@
       </div>
       <ion-input formControlName="name" placeholder="Họ và tên" required></ion-input>
       <ion-input formControlName="code" placeholder="Mã khách hàng"></ion-input>
-      <ion-datetime [value]="born_date" (ionChange)="setDate($event)" displayFormat="DD/MM/YYYY" placeholder="Ngày, tháng, năm sinh"></ion-datetime>
-      <ion-select formControlName="sex" placeholder="Giới tính">
-        <ion-select-option value="Nam">Nữ</ion-select-option>
-        <ion-select-option value="Nữ">Nam</ion-select-option>
+      <ion-datetime formControlName="born_date" (ionChange)="setDate($event)" displayFormat="DD/MM/YYYY" placeholder="Ngày, tháng, năm sinh"></ion-datetime>
+      <ion-select formControlName="sex" placeholder="Giới tính" interface="popover">
+        <ion-select-option value="Nữ">Nữ</ion-select-option>
+        <ion-select-option value="Nam">Nam</ion-select-option>
       </ion-select>
       <ion-input formControlName="email" placeholder="Email"></ion-input>
       <ion-input formControlName="address" placeholder="Số nhà, tên đường"></ion-input>
@@ -108,12 +108,12 @@
 
 <ion-footer class="btn">
   <div class="add">
-    <ion-button>THÊM</ion-button>
+    <ion-button (click)="addProduct()">THÊM</ion-button>
   </div>
-  <div class="save">
-    <ion-button [disabled]="temporary_status">LƯU TẠM</ion-button>
-  </div>
+  <!-- <div class="save">
+    <ion-button [disabled]="temporary_status" (click)="temporaryBill()">LƯU TẠM</ion-button>
+  </div> -->
   <div class="pay">
-    <ion-button (click)="gotoSellBill()">THANH TOÁN</ion-button>
+    <ion-button (click)="gotoSellBill()">TIẾP TỤC</ion-button>
   </div>
 </ion-footer>

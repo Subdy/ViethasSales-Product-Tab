@@ -1,13 +1,16 @@
 <ion-header>
-  <ion-button slot="start">
-    <ion-back-button text=""></ion-back-button>
-  </ion-button>
-  <ion-searchbar placeholder="Tìm tên, mã, barcode sản phẩm"></ion-searchbar>
+    <ion-buttons slot="start">
+      <ion-button></ion-button>
+    </ion-buttons>
+    <ion-searchbar placeholder="Tìm tên, mã, barcode sản phẩm"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button></ion-button>
+    </ion-buttons>
 </ion-header>
 
 <ion-content>
-  <div class = "no-bill" *ngIf="show1" >
-    <ion-button (click)= "gotosellcart()">
+  <div class="no-bill" *ngIf="show1">
+    <ion-button (click)="gotosellcart()">
       <ion-icon name="add"></ion-icon>
       Tạo đơn hàng
     </ion-button>
@@ -16,28 +19,28 @@
 
   <div class="bills" *ngIf="show2">
     <div class="add-bill">
-      <ion-button (click)= "gotosellcart()">
+      <ion-button (click)="gotosellcart()">
         <ion-icon name="add"></ion-icon>
         Tạo đơn hàng
       </ion-button>
     </div>
     <p>Tổng <span>{{ number }}</span> đơn hàng trong ngày</p>
-    
+
     <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 75vh; width: 95vw;">
       <div class="detail" *ngFor="let item of bills">
         <div class="bill">
-          <div class = "info-bill"> 
-            <div class = "left"><b>{{item.bill_code}}</b></div>
-            <div class = "right" style="color:#00A859"><b>{{item.total | number: '1.0-0'}}</b></div>
+          <div class="info-bill">
+            <div class="left"><b>{{item.bill_code}}</b></div>
+            <div class="right" style="color:#00A859"><b>{{item.total | number: '1.0-0'}}</b></div>
           </div>
-          <div class = "status-bill">
-            <div class = "left">{{item.customer_type}}</div>
-            <div class = "right">{{item.status_bill}}</div>
+          <div class="status-bill">
+            <div class="left">{{item.customer_type}}</div>
+            <div class="right">{{item.status_bill}}</div>
           </div>
-          <div class = "date">{{item.date.toDate() | date: 'dd/MM/yyyy HH:mm'}}</div>
+          <div class="date">{{item.date.toDate() | date: 'dd/MM/yyyy HH:mm'}}</div>
         </div>
       </div>
     </div>
-        
+
   </div>
 </ion-content>
