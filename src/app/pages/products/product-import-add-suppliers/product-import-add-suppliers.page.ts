@@ -10,6 +10,7 @@ import { NavController } from '@ionic/angular';
 })
 export class ProductImportAddSuppliersPage implements OnInit {
   addSupplier: FormGroup;
+  supplier_status: boolean = false;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -29,6 +30,7 @@ export class ProductImportAddSuppliersPage implements OnInit {
   ngOnInit() {
   }
   createSupplier() {
+    this.supplier_status = true;
     this.firebaseQuery.createTask('suppliers', this.addSupplier.value)
     .then(res => {
       //console.log(res);

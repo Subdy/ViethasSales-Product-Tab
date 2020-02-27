@@ -9,7 +9,7 @@
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-searchbar placeholder="Tìm đơn hàng nhập theo mã, NCC"></ion-searchbar>
+    <ion-searchbar placeholder="Tìm đơn hàng nhập theo mã, NCC" (ionChange)="searchBill($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -41,14 +41,14 @@
       <div class="date date_start">
         <span class="txt_date1">Từ</span>
         <div ion-item no-lines class="select_date">
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="startDay"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" [value]="startDay.toDateString()" (ionChange)="setStartTime($event)"></ion-datetime>
           <ion-icon item-content name="calendar" slot="end" color="primary"></ion-icon>
         </div>
       </div>
       <div class="date date_end">
         <span class="txt_date2">đến</span>
         <div ion-item no-lines class="select_date">
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="endDay"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" [value]="endDay.toDateString()" (ionChange)="setEndTime($event)"></ion-datetime>
           <ion-icon item-content name="calendar" slot="end" color="primary"></ion-icon>
         </div>
       </div>
@@ -58,7 +58,7 @@
 
 
     <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 75vh;">
-      <div class="detail" *ngFor="let item of bills" (click)="gotodetail(item)">
+      <div class="detail" *ngFor="let item of show_bills" (click)="gotodetail(item)">
         <div class="bill">
           <div class="info-bill">
             <div class="left"><b>{{item.bill_code}}</b></div>

@@ -23,7 +23,7 @@ export class SellBillPage implements OnInit {
   ship_cost = 0;
   //giảm giá
   discount_value = 0;
-  discount_percent= 0;
+  discount_percent = 0;
   //tổng trả
   pay_total = 0;
   //biến cờ hàm pay
@@ -41,7 +41,7 @@ export class SellBillPage implements OnInit {
     this.getListBill();
     //this.getPay();
   }
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.bill_date = new Date();
   }
   ngOnInit() {
@@ -65,7 +65,7 @@ export class SellBillPage implements OnInit {
     this.pay_total = 0;
     this.tax = 0;
     this.getTotal();
-    
+
     this.tax = (this.tax_percent * this.total) / 100;
     this.pay_total += this.discount_value + this.total + this.tax + this.ship_cost;
   }
@@ -74,13 +74,13 @@ export class SellBillPage implements OnInit {
     this.pay_total = 0;
     this.discount_value = 0;
     this.getTotal();
-    this.discount_value = (this.discount_percent * this.total)/100;
+    this.discount_value = (this.discount_percent * this.total) / 100;
     this.pay_total += this.discount_value + this.total + this.tax + this.ship_cost;
   }
   discountPercentCalculate() {
     this.pay_total = 0;
     this.getTotal();
-    this.discount_percent = (this.discount_value / this.total)*100;
+    this.discount_percent = (this.discount_value / this.total) * 100;
     this.pay_total += this.discount_value + this.total + this.tax + this.ship_cost;
   }
 
@@ -150,7 +150,21 @@ export class SellBillPage implements OnInit {
           alert("bill_details: " + err);
         })
       });
+      //cập nhật ngày mua hàng gần nhầt với thành viên
+      if (this.customer.id != 'id_retail') {
+        let data = { ...this.customer };
+        delete data.id;
+        data.near_date = this.bill_date;
+        console.log(data);
+        this.firebaseQuery.updateTask('customers', this.customer.id, data)
+          .then(res => {
+
+          }).catch(err => {
+            alert('customer: ' + err);
+          });
+      }
       //xóa storage
+      this.storage.remove('customer');
       this.storage.remove('list_prod');
       //biến cờ reload 
       this.event.publish('back', true);
@@ -162,39 +176,40 @@ export class SellBillPage implements OnInit {
   //Lưu tạm 
   temporaryBill() {
     this.temporary_status = !this.temporary_status;
-      this.firebaseQuery.createTask("bills", {
-        id_customer: this.customer.id,
-        id_staff: this.firebaseAuth.user.id,
-        discount_value: this.discount_value,
-        tax_value: this.tax,
-        date: this.bill_date,
-        bill_type: 5,
-        total: this.pay_total,
-        fee: this.ship_cost,
-        bill_code: this.exportSoHD(),
-        id_payment: ""
-      }).then(res => {
-        console.log(res);
-        this.bill_details.forEach(item => {
-          this.firebaseQuery.createTask("bill_details", {
-            name: item.id,
-            price: item.price,
-            id_bill: res.id,
-            number: item.number
-          }).then(res => {
-            //console.log(res);
-          }).catch(err => {
-            alert("bill_details: " + err);
-          })
-        });
-        //xóa storage
-        this.storage.remove('list_prod');
-        //biến cờ reload 
-        this.event.publish('back', true);
-        this.router.navigateByUrl('tabs/sell');
-      }).catch(err => {
-        alert("bills: " + err);
+    this.firebaseQuery.createTask("bills", {
+      id_customer: this.customer.id,
+      id_staff: this.firebaseAuth.user.id,
+      discount_value: this.discount_value,
+      tax_value: this.tax,
+      date: this.bill_date,
+      bill_type: 5,
+      total: this.pay_total,
+      fee: this.ship_cost,
+      bill_code: this.exportSoHD(),
+      id_payment: ""
+    }).then(res => {
+      console.log(res);
+      this.bill_details.forEach(item => {
+        this.firebaseQuery.createTask("bill_details", {
+          name: item.id,
+          price: item.price,
+          id_bill: res.id,
+          number: item.number
+        }).then(res => {
+          //console.log(res);
+        }).catch(err => {
+          alert("bill_details: " + err);
+        })
       });
+      //xóa storage
+      this.storage.remove('customer');
+      this.storage.remove('list_prod');
+      //biến cờ reload 
+      this.event.publish('back', true);
+      this.router.navigateByUrl('tabs/sell');
+    }).catch(err => {
+      alert("bills: " + err);
+    });
   }
 
 }
