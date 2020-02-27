@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { FirebaseQuery, FirebaseAuth } from 'src/app/database/firebase.database';
 import { Router } from '@angular/router';
+import { Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-sell-bill',
@@ -33,7 +34,8 @@ export class SellBillPage implements OnInit {
     private storage: Storage,
     private firebaseQuery: FirebaseQuery,
     private firebaseAuth: FirebaseAuth,
-    private router: Router
+    private router: Router,
+    private event: Events
   ) {
     //get bill()
     this.getListBill();
@@ -136,6 +138,22 @@ export class SellBillPage implements OnInit {
       id_payment: ""
     }).then(res => {
       //console.log(res);
+      this.bill_details.forEach(item => {
+        this.firebaseQuery.createTask("bill_details", {
+          name: item.id,
+          price: item.price,
+          id_bill: res.id,
+          number: item.number
+        }).then(res => {
+          //console.log(res);
+        }).catch(err => {
+          alert("bill_details: " + err);
+        })
+      });
+      //xóa storage
+      this.storage.remove('list_prod');
+      //biến cờ reload 
+      this.event.publish('back', true);
       this.router.navigateByUrl('tabs/sell');
     }).catch(err => {
       alert(err);
@@ -169,6 +187,10 @@ export class SellBillPage implements OnInit {
             alert("bill_details: " + err);
           })
         });
+        //xóa storage
+        this.storage.remove('list_prod');
+        //biến cờ reload 
+        this.event.publish('back', true);
         this.router.navigateByUrl('tabs/sell');
       }).catch(err => {
         alert("bills: " + err);
