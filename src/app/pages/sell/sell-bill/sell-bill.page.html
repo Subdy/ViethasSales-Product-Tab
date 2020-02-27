@@ -8,55 +8,63 @@
 </ion-header>
 
 <ion-content>
-<div class="info" >
-  <p>Ngày bán : {{ date | date: 'dd/MM/yyyy'}}</p>
-  <p>Nhân viên: {{staff.name}}</p>
-</div>
-<div class="top-table">
-  <table>
-      <tr class= 'th'>
+  <div class="info">
+    <p>Ngày bán : {{ bill_date | date: 'dd/MM/yyyy'}}</p>
+    <p>Nhân viên: {{staff.name}}</p>
+  </div>
+  <div class="top-table">
+    <table>
+      <tr class='th'>
         <th style="width: 45vw; border-radius: 5px 0 0 5px;"><b>Tên sản phẩm</b></th>
         <th style="width: 10vw; text-align: center;"><b>SL</b></th>
         <th style="width: 20vw;"><b>Đ.Giá</b></th>
         <th style="width: 25vw; border-radius: 0 5px 5px 0;"><b>T.Tiền</b></th>
       </tr>
-      <tr *ngFor="let item of list_bill">
+      <tr *ngFor="let item of bill_details">
         <td style="width: 45vw;">{{item.name}}</td>
         <td style="width: 10vw; text-align: center;">{{item.number}}</td>
         <td style="width: 20vw;">{{item.price | number: '1.0-0'}}</td>
         <td style="width: 25vw; font-weight: bold;">{{item.number*item.price | number: '1.0-0'}}</td>
       </tr>
-  </table>
-</div>
-<div class="sub-table">
-  <table>
-      <tr class= 'th'>
+    </table>
+  </div>
+  <div class="sub-table">
+    <table>
+      <tr class='th'>
         <td style="width: 45vw; "><b>Tổng</b></td>
         <td style="width: 10vw; text-align: center;">{{num_total}}</td>
         <td style="width: 45vw; text-align: center;"><b>{{total | number: '1.0-0'}}</b></td>
       </tr>
-      <tr class= 'th'>
+      <tr class='th'>
         <td style="width: 45vw;"><b>VAT</b></td>
-        <td style="width: 10vw; text-align: center;">19</td>
-        <td style="width: 45vw; text-align: center;"></td>
-      </tr><tr class= 'th'>
+        <td style="width: 10vw; text-align: center;"><ion-input class="tax_percent" (keyup)="taxCalculate()" [(ngModel)]="tax_percent" type="number"></ion-input></td>
+        <td style="width: 45vw; text-align: center;">{{tax | number: '1.0-0'}}</td>
+      </tr>
+      <tr class='th'>
         <td style="width: 45vw; "><b>Giảm giá</b></td>
-        <td style="width: 10vw; text-align: center;">19</td>
-        <td style="width: 45vw; text-align: center;"><b>{{9999999 | number: '1.0-0'}}</b></td>
-      </tr><tr class= 'th'>
+        <td style="width: 10vw; text-align: center;"><ion-input class="tax_percent" (keyup)="discountCalculate()" [(ngModel)]="discount_percent" type="number"></ion-input></td>
+        <td style="width: 45vw; text-align: center;"><b><ion-input class="tax_percent" (keyup)="discountPercentCalculate()" [(ngModel)]="discount_value" type="number"></ion-input></b></td>
+      </tr>
+      <tr class='th'>
         <td style="width: 45vw; border-radius: 10px 0 0 10px;"><b>Phí vận chuyển</b></td>
         <td style="width: 10vw; text-align: center;"></td>
-        <td style="width: 45vw; text-align: center;"><b><ion-input type="number" (change)="getPay()" [(ngModel)]="ship_cost"></ion-input></b></td>
+        <td style="width: 45vw; text-align: center;"><b>
+            <ion-input type="number" (keyup)="getPay()" [(ngModel)]="ship_cost"></ion-input>
+          </b></td>
       </tr>
-      <tr class= 'th'>
+      <tr class='th'>
         <td style="width: 45vw; border-radius: 10px 0 0 10px; color: red"><b>THANH TOÁN</b></td>
         <td style="width: 10vw; text-align: center;"></td>
         <td style="width: 45vw; text-align: center; color: red"><b>{{pay_total | number: '1.0-0'}}</b></td>
       </tr>
-  </table>
-</div>
-<div class="save">
-  <div><ion-button>SỬA</ion-button></div>
-  <div><ion-button (click)="save()" [disabled]="pay_status">IN</ion-button></div>
-</div>
+    </table>
+  </div>
+  <div class="save">
+    <div >
+      <ion-button [disabled]="temporary_status" (click)="temporaryBill()">LƯU TẠM</ion-button>
+    </div>
+    <div>
+      <ion-button (click)="save()" [disabled]="pay_status">IN</ion-button>
+    </div>
+  </div>
 </ion-content>

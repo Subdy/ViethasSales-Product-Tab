@@ -17,7 +17,7 @@ import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule , IonicModule.forRoot({mode: 'ios', hardwareBackButton: false}), AppRoutingModule, IonicStorageModule.forRoot()],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot({ mode: 'ios', hardwareBackButton: false }), AppRoutingModule, IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,
@@ -32,4 +32,4 @@ import { IonicStorageModule } from '@ionic/storage';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
