@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar >
-    <ion-buttons slot="start" >
-      <ion-button (click)="back()" class="back">
-        <ion-icon name="chevron-back" style="font-size: 2rem;" color="primary"></ion-icon>
-      </ion-button>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="back()">
+      <ion-buttons class="back" slot="start">
+        <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
     </ion-buttons>
     <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoCreateProduct()">
       <ion-icon name="search"></ion-icon>
@@ -21,39 +21,44 @@
 </ion-header>
 
 <ion-content class="conteiner_import_cart">
-<div class="txt_scan">
-  <ion-icon name="barcode"></ion-icon>
-</div>
-<div class="txt_list_name">
-  <div class="txt_supplier_name">
-    <ion-label>Nhà Cung Cấp</ion-label>
-    <ion-label><span>{{ supplier.name }} - {{ supplier.phone }}</span></ion-label>
+  <div class="txt_scan">
+    <ion-icon name="barcode"></ion-icon>
   </div>
-  <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 45vh;" *ngIf="show_prod">
-    <ion-item *ngFor="let item of list_product">
-      <button class="icon" (click)="deleteItem(item)"><ion-icon name="close"></ion-icon></button>
-    <ion-label>
-      <h3 class="name_title1">{{item.name}}</h3>
-      <div class="txt_money">
-        <h2 class="name_title">{{item.price_import | number: '1.0-0'}}</h2>
-        <p class="name_title" style="width: 10%;">x</p>
-        <!-- <div class="down_up"> -->
-          <button class="btn_icon1" (click)="decrease(item)">
-            <ion-icon name="arrow-down"></ion-icon>
-          </button>
-         <span class="name_title2">{{item.number}}</span>
-         <button class="btn_icon1" (click)="increase(item)">
-          <ion-icon name="arrow-up"></ion-icon>
+  <div class="txt_list_name">
+    <div class="txt_supplier_name">
+      <ion-label>Nhà Cung Cấp</ion-label>
+      <ion-label><span>{{ supplier.name }} - {{ supplier.phone }}</span></ion-label>
+    </div>
+    <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 45vh;" *ngIf="show_prod">
+      <ion-item *ngFor="let item of list_product">
+        <button class="icon" (click)="deleteItem(item)">
+          <ion-icon name="close"></ion-icon>
         </button>
-        <!-- </div> -->
-      <ion-label class="txtname_title">{{item.price_import * item.number | number: '1.0-0'}}</ion-label>
-      </div>
-      
-    </ion-label>
-  </ion-item> 
+
+        <div class="label">
+          <h3 class="name_title1">{{item.name}}</h3>
+          <div class="txt_money">
+            <h2 class="name_title">
+              <input type="number" [(ngModel)]="item.price_import">
+            </h2>
+            <p class="x">x</p>
+            <!-- <div class="down_up"> -->
+            <button class="btn_icon1" (click)="decrease(item)">
+              <ion-icon name="arrow-down"></ion-icon>
+            </button>
+            <span class="name_title2">{{item.number}}</span>
+            <button class="btn_icon1" (click)="increase(item)">
+              <ion-icon name="arrow-up"></ion-icon>
+            </button>
+            <!-- </div> -->
+            <ion-label class="txtname_title">{{item.price_import * item.number | number: '1.0-0'}}</ion-label>
+          </div>
+        </div>
+
+      </ion-item>
+    </div>
   </div>
-</div>
-<div *ngIf="trigger_popup"
+  <div *ngIf="trigger_popup"
     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: gray; opacity: .5; z-index: 999"
     (click)="cancel()">
   </div>

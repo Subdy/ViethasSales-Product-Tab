@@ -32,7 +32,7 @@ ion-content {
             --color-focused: black;
             --color-activated: black;
             border-radius: 100px;
-            box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
+            box-shadow: 0px 2px 5px 0px rgb(148, 148, 148);
             &:active {
                 --background: rgba(223, 223, 223, 0.63);
             }
@@ -61,7 +61,7 @@ ion-content {
                 --color: black;
                 --color-focused: black;
                 --color-activated: black;
-                box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
+                box-shadow: 0px 2px 5px 0px rgb(148, 148, 148);
                 height: 32px;
                 width: 175px;
                 font-size: 1rem;
@@ -101,7 +101,7 @@ ion-content {
                 font-weight: bold;
                 display: flex;
                 width: fit-content;
-                box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
+                box-shadow: 0px 2px 3px 0px rgb(148, 148, 148);
                 border-radius:10px ;
                 padding: 5px;
                 min-height: 0;

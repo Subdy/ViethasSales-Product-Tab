@@ -98,7 +98,8 @@ export class ProductImportAddProductPage implements OnInit {
           price: this.product.value.price,
           price_import: this.product.value.price_import,
           number: 1,
-          barcode: this.product.value.barcode
+          barcode: this.product.value.barcode,
+          update_status: false // tạo kho mới
         });
         this.storage.set('list_prod', this.bill_detail);
         this.router.navigateByUrl('product-import-cart');

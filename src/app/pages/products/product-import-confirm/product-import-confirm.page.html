@@ -46,10 +46,10 @@
       <div class="info">
         <div class="label">{{item.name}}</div>
         <div class="sub-info">
-          <div class="cost" style="width: 25%;">{{item.price | number: "1.0-0"}}</div>
+          <div class="cost" style="width: 25%;">{{item.price_import | number: "1.0-0"}}</div>
           <div class="cost" style="width: 20%; text-align: center;" >x</div>
           <div class="cost" style="width: 20%; text-align: center;">{{item.number}}</div>
-          <div class="total_cost" style="width: 35%;">{{item.price*item.number | number: "1.0-0"}}</div>
+          <div class="total_cost" style="width: 35%;">{{item.price_import*item.number | number: "1.0-0"}}</div>
         </div>
       </div>
     </div>
