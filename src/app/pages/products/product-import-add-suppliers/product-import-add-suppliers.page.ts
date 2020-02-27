@@ -31,7 +31,7 @@ export class ProductImportAddSuppliersPage implements OnInit {
     this.supplier_status = true;
     //chuyển đổi phone number -> string
     let data = this.addSupplier.value;
-    data.phone = this.addSupplier.value.phone.toString();
+    data.phone = "0" + this.addSupplier.value.phone.toString();
     this.firebaseQuery.createTask('suppliers', data)
       .then(res => {
         //console.log(res);

@@ -64,7 +64,7 @@ export class ProductImportSuppliersPage implements OnInit {
   searchSupplier(event) {
     this.show_suppliers = this.list_suppliers.filter(item => {
       return this.change_alias(item.name.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1 ||
-        item.phone.indexOf(event.detail.value.toString()) != -1 ||
+        item.phone.indexOf(event.detail.value) != -1 ||
         this.change_alias(item.email.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1 ||
         this.change_alias(item.tax_number.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1;
     });

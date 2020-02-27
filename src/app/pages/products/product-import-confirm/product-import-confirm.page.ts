@@ -170,7 +170,7 @@ export class ProductImportConfirmPage implements OnInit {
             this.firebaseQuery.updateTask("warehouse", res.docs[0].id, {
               date: this.bill_date,
               id_product: this.bill_detail[i].id,
-              price: this.bill_detail[i].price_import,
+              price: this.bill_detail[i].price_import, // giá mới nếu có thay đổi
               number: this.bill_detail[i].number + res.docs[0].data().number // cập nhật lại số lượng
             }).then(res => {
               //delete storage with condition
