@@ -13,6 +13,7 @@ export class SellPage implements OnInit {
   number: number;
   // list chứa bill
   bills: Array<any>;
+  show_bills: Array<any>;
   //Hôm nay 0h- 23h59
   startDateTime = new Date();
   endDateTime = new Date();
@@ -35,7 +36,7 @@ export class SellPage implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
   ionViewWillEnter() {
     this.getData();
@@ -52,7 +53,9 @@ export class SellPage implements OnInit {
     //settime today
     this.startDateTime.setUTCHours(0, 0, 0);
     this.endDateTime.setUTCHours(23, 59, 59);
+    //khỏi tạo
     this.bills = new Array();
+    this.show_bills = new Array();
     this.number = 0;
     this.firebaseQuery.getTasks_2Field("bills", "date", this.startDateTime, ">=", "date", this.endDateTime, "<=").then(res => {
       if (res.empty) {
@@ -99,44 +102,69 @@ export class SellPage implements OnInit {
               res2.id == "id_retail" ?
                 this.bills[this.bills.length - 1].customer_type = "Khách lẻ" :
                 this.bills[this.bills.length - 1].customer_type = "Thành viên";
+              // Xử lí dữ liệu
+              if (parseInt(i) == res.docs.length - 1) {
+                //console.log(this.bills);
+                //SẮP XẾP MỚI NHẤT -> CŨ NHẤT
+                this.bills = this.bills.sort((a, b) => {
+                  return b.date.seconds - a.date.seconds;
+                });
+
+                this.show_bills = this.bills;
+                // biến cờ
+                if (this.number == 0) {
+                  this.show1 = true;
+                  this.dismissLoading();
+                } else {
+                  this.show2 = true;
+                  this.dismissLoading();
+                }
+              }
             }).catch(err1 => {
               alert('customers: ' + err1)
               this.dismissLoading();
-            })
+            });
           }
-          // kết thúc show kết quả
-          if (parseInt(i) == res.docs.length - 1) { }
         }
-        console.log(this.bills);
+        //console.log(this.bills);
       }
     }).catch(err2 => {
       alert("bills: " + err2);
       this.dismissLoading();
-    }).finally(() => {
-      if (this.number == 0) {
-        this.show1 = true;
-        this.dismissLoading();
-      } else {
-        this.show2 = true;
-        this.dismissLoading();
-      }
-    })
+    });
+  }
+
+  //searchbill
+  searchBill(event) {
+    this.show_bills = this.bills.filter(item => {
+      return this.change_alias(item.bill_code.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1 ||
+        this.change_alias(item.customer_type.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1 ||
+        this.change_alias(item.status_bill.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1
+    });
+  }
+
+  //hàm chuyển tiếng việt thành tiếng anh
+  change_alias(alias) {
+    let str = alias;
+    str = str.toLowerCase();
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    str = str.replace(
+      /!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g,
+      " "
+    );
+    str = str.replace(/ + /g, " ");
+    str = str.trim();
+    return str;
   }
 
   gotosellcart() {
     this.router.navigateByUrl('sell-cart');
-    // let bill_code = this.exportSoHD();
-    // let key = "bill";
-    // let value = {
-    //   id_staff: this.firebaseAuth.user.id,
-    //   bill_type: 1,
-    //   date: new Date().toString(),
-    //   bill_code: bill_code,
-    // };
-    // this.storage.set(key, value).then(res=> {
-    //   console.log(res);
-
-    // });
   }
 
   //ham loading

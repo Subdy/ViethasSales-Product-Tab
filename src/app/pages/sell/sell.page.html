@@ -1,11 +1,12 @@
 <ion-header>
-    <ion-buttons slot="start">
-      <ion-button></ion-button>
-    </ion-buttons>
-    <ion-searchbar placeholder="Tìm tên, mã, barcode sản phẩm"></ion-searchbar>
-    <ion-buttons slot="end">
-      <ion-button></ion-button>
-    </ion-buttons>
+  <ion-buttons slot="start">
+    <ion-button></ion-button>
+  </ion-buttons>
+  <ion-searchbar (ionChange)="searchBill($event)" placeholder="Tìm mã HĐ, loại khách hàng, trạng thái HĐ ">
+  </ion-searchbar>
+  <ion-buttons slot="end">
+    <ion-button></ion-button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content>
@@ -27,7 +28,7 @@
     <p>Tổng <span>{{ number }}</span> đơn hàng trong ngày</p>
 
     <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 75vh; width: 95vw;">
-      <div class="detail" *ngFor="let item of bills">
+      <div class="detail" *ngFor="let item of show_bills">
         <div class="bill">
           <div class="info-bill">
             <div class="left"><b>{{item.bill_code}}</b></div>

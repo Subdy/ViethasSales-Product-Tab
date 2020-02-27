@@ -1,26 +1,26 @@
 <ion-header>
   <ion-toolbar *ngIf="show">
-    <ion-buttons slot="start" >
+    <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-searchbar placeholder="Tìm nhà cung cấp" ></ion-searchbar>
-    <ion-buttons slot="end" (click)= "gotoproductaddsupplier()">
+    <ion-searchbar placeholder="Tìm nhà cung cấp"></ion-searchbar>
+    <ion-buttons slot="end" (click)="gotoproductaddsupplier()">
       <ion-icon slot="end" name="add"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar color="primary" *ngIf="!show">
-    <ion-buttons slot="start" >
+    <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-title>Nhà Cung Cấp</ion-title>
-    <ion-buttons slot="end" (click)= "gotoproductaddsupplier()">
+    <ion-buttons slot="end" (click)="gotoproductaddsupplier()">
       <ion-icon slot="end" name="add"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="conten_suppliers">
-  <div class = "no-supplier" *ngIf="!show">
+  <div class="no-supplier" *ngIf="!show">
     <p>Bạn chưa có nhà cung cấp nào!</p>
   </div>
   <div class="txt_suppliers" *ngIf="show">
@@ -28,7 +28,7 @@
       <div class="add">
         <p><span style="color:red;">* </span>Bạn chưa chọn NCC cho đơn nhập hàng</p>
       </div>
-     
+
       <div class="txt_select3">
         <ion-select class="txt_name_select3" interface="popover" value="Mới nhất">
           <ion-select-option class="select_1" value="Mới nhất">Mới nhất</ion-select-option>
@@ -36,23 +36,23 @@
         </ion-select>
       </div>
     </div>
-    
-     
+
+
     <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 85vh; ">
       <div class="txt_name1" *ngFor="let i of list_suppliers" (click)="gotoproductimportcart(i)">
-          <div class="txt_name">
-            <h1>{{i.name}}</h1>
-            <div class="txt_icon" style="float: right;">
-              <ion-icon  name="chevron-forward"></ion-icon>
-             </div>
-          </div>
-          <div class="txt_id_smat">
-            <h2>{{i.phone}}</h2>
-           <div class="txt_gmail">
-            <p>{{i.email}}</p>
-           </div>
+        <div class="txt_name">
+          <h1>{{i.name}}</h1>
+          <div class="txt_icon" style="float: right;">
+            <ion-icon name="chevron-forward"></ion-icon>
           </div>
         </div>
+        <div class="txt_id_smat">
+          <h2>{{i.phone}}</h2>
+          <div class="txt_gmail">
+            <p>{{i.email}}</p>
+          </div>
+        </div>
+      </div>
     </div>
 
 

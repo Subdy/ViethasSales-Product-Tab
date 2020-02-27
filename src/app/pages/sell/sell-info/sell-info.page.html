@@ -4,9 +4,9 @@
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-title>Đơn Hàng</ion-title>
-    <!-- <ion-button slot="end">
+    <ion-buttons slot="end">
       <ion-icon name="trash"></ion-icon>
-    </ion-button> -->
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content (click)="disableSearchBar()">
@@ -49,13 +49,13 @@
         <ion-radio slot="start" value="cash" mode="md"></ion-radio>
         <ion-icon name="cash"></ion-icon>
         <ion-label class="sub-title">
-            Tiền mặt</ion-label>
+          Tiền mặt</ion-label>
       </ion-item>
       <ion-item>
         <ion-radio slot="start" value="card" mode="md"></ion-radio>
         <ion-icon name="card"></ion-icon>
         <ion-label class="sub-title">
-            Quét thẻ tín dung/ ghi nợ/ ATM</ion-label>
+          Quét thẻ tín dung/ ghi nợ/ ATM</ion-label>
       </ion-item>
     </ion-radio-group>
   </div>
@@ -78,7 +78,8 @@
       </div>
     </ion-radio-group>
     <form *ngIf="show" [formGroup]="customer">
-      <ion-input type="number" formControlName="phone" placeholder="Số điện thoại" (keyup)="searchPhone()" required style="position: relative;"></ion-input>
+      <ion-input type="number" formControlName="phone" placeholder="Số điện thoại" (keyup)="searchPhone()" required
+        style="position: relative;"></ion-input>
       <div class="search-area" *ngIf="show_searchbar" style="overflow-x: auto; height: fit-content;">
         <div class="item" *ngFor="let item of customer_show" (click)="select(item)">
           <div class="name">{{item.name}}</div>
@@ -87,7 +88,8 @@
       </div>
       <ion-input formControlName="name" placeholder="Họ và tên" required></ion-input>
       <ion-input formControlName="code" placeholder="Mã khách hàng"></ion-input>
-      <ion-datetime formControlName="born_date" (ionChange)="setDate($event)" displayFormat="DD/MM/YYYY" placeholder="Ngày, tháng, năm sinh"></ion-datetime>
+      <ion-datetime formControlName="born_date" (ionChange)="setDate($event)" displayFormat="DD/MM/YYYY"
+        placeholder="Ngày, tháng, năm sinh"></ion-datetime>
       <ion-select formControlName="sex" placeholder="Giới tính" interface="popover">
         <ion-select-option value="Nữ">Nữ</ion-select-option>
         <ion-select-option value="Nam">Nam</ion-select-option>

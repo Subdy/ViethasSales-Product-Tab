@@ -1,9 +1,12 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-button slot="start">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
-    </ion-button>
+    </ion-buttons>
     <ion-title>Hóa Đơn </ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="trash"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -37,13 +40,21 @@
       </tr>
       <tr class='th'>
         <td style="width: 45vw;"><b>VAT</b></td>
-        <td style="width: 10vw; text-align: center;"><ion-input class="tax_percent" (keyup)="taxCalculate()" [(ngModel)]="tax_percent" type="number"></ion-input></td>
+        <td style="width: 10vw; text-align: center;">
+          <ion-input class="tax_percent" (keyup)="taxCalculate()" [(ngModel)]="tax_percent" type="number"></ion-input>
+        </td>
         <td style="width: 45vw; text-align: center;">{{tax | number: '1.0-0'}}</td>
       </tr>
       <tr class='th'>
         <td style="width: 45vw; "><b>Giảm giá</b></td>
-        <td style="width: 10vw; text-align: center;"><ion-input class="tax_percent" (keyup)="discountCalculate()" [(ngModel)]="discount_percent" type="number"></ion-input></td>
-        <td style="width: 45vw; text-align: center;"><b><ion-input class="tax_percent" (keyup)="discountPercentCalculate()" [(ngModel)]="discount_value" type="number"></ion-input></b></td>
+        <td style="width: 10vw; text-align: center;">
+          <ion-input class="tax_percent" (keyup)="discountCalculate()" [(ngModel)]="discount_percent" type="number">
+          </ion-input>
+        </td>
+        <td style="width: 45vw; text-align: center;"><b>
+            <ion-input class="tax_percent" (keyup)="discountPercentCalculate()" [(ngModel)]="discount_value"
+              type="number"></ion-input>
+          </b></td>
       </tr>
       <tr class='th'>
         <td style="width: 45vw; border-radius: 10px 0 0 10px;"><b>Phí vận chuyển</b></td>
@@ -60,7 +71,7 @@
     </table>
   </div>
   <div class="save">
-    <div >
+    <div>
       <ion-button [disabled]="temporary_status" (click)="temporaryBill()">LƯU TẠM</ion-button>
     </div>
     <div>
