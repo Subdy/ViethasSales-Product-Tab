@@ -1,14 +1,14 @@
 <ion-header>
-  <ion-toolbar *ngIf="show">
+  <ion-toolbar *ngIf="show1">
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-searchbar placeholder="Tìm nhà cung cấp"></ion-searchbar>
+    <ion-searchbar (ionChange)="searchSupplier($event)" placeholder="Tìm nhà cung cấp"></ion-searchbar>
     <ion-buttons slot="end" (click)="gotoproductaddsupplier()">
       <ion-icon slot="end" name="add"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar color="primary" *ngIf="!show">
+  <ion-toolbar color="primary" *ngIf="show2">
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
@@ -20,10 +20,10 @@
 </ion-header>
 
 <ion-content class="conten_suppliers">
-  <div class="no-supplier" *ngIf="!show">
+  <div class="no-supplier" *ngIf="show2">
     <p>Bạn chưa có nhà cung cấp nào!</p>
   </div>
-  <div class="txt_suppliers" *ngIf="show">
+  <div class="txt_suppliers" *ngIf="show1">
     <div class="add-bill">
       <div class="add">
         <p><span style="color:red;">* </span>Bạn chưa chọn NCC cho đơn nhập hàng</p>

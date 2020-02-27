@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule} from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseQuery } from '../../../database/firebase.database';
-import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-product-import-add-suppliers',
   templateUrl: './product-import-add-suppliers.page.html',
@@ -14,31 +13,33 @@ export class ProductImportAddSuppliersPage implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private firebaseQuery: FirebaseQuery,
-    private navCtrl: NavController
-    ) {
-      this.addSupplier = this.formBuilder.group({
-        name: ['', Validators.required],
-        phone: ['', Validators.required],
-        address: ['', Validators.required],
-        email: ['', Validators.required],
-        tax_number: ['', Validators.required],
-        policy: ['', Validators.required]
-      });
-    }
+    private firebaseQuery: FirebaseQuery
+  ) {
+    this.addSupplier = this.formBuilder.group({
+      name: ['', Validators.required],
+      phone: [null, Validators.required],
+      address: ['', Validators.required],
+      email: ['', Validators.required],
+      tax_number: ['', Validators.required],
+      policy: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
   }
   createSupplier() {
     this.supplier_status = true;
-    this.firebaseQuery.createTask('suppliers', this.addSupplier.value)
-    .then(res => {
-      //console.log(res);
-      this.navCtrl.pop();
-    }, err => {
-      console.log('Error: ', err);
-    }).catch(err => {
-      console.log(err);
-    });
+    //chuyển đổi phone number -> string
+    let data = this.addSupplier.value;
+    data.phone = this.addSupplier.value.phone.toString();
+    this.firebaseQuery.createTask('suppliers', data)
+      .then(res => {
+        //console.log(res);
+        this.router.navigateByUrl('product-import-suppliers');
+      }, err => {
+        console.log('Error: ', err);
+      }).catch(err => {
+        console.log(err);
+      });
   }
 }

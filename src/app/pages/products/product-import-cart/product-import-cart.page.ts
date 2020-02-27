@@ -147,7 +147,7 @@ export class ProductImportCartPage implements OnInit {
                     price_import: res2.empty ? 0 : res2.docs[0].data().price,
                     number: 1,
                     barcode: res1.docs[0].data().barcode,
-                    old_number: res2.docs[0].data().number,
+                    old_number: res2.empty ? 0 : res2.docs[0].data().number,
                     update_status: res2.empty ? false : true // báo hiệu false(create), true (update)
                   });
                   this.storage.set('list_prod', this.list_product);

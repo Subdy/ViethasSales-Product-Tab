@@ -55,7 +55,7 @@ export class ProductImportPage implements OnInit {
     // this.firebaseQuery.getTasks("customers").then(res => {
     //   for (let item of res.docs) {
     //     if (item.id != "id_retail") {
-    //       //this.firebaseQuery.deleteTask('customers', item.id);
+    //       this.firebaseQuery.deleteTask('customers', item.id);
     //     }
     //     console.log(item.data());
     //   }
