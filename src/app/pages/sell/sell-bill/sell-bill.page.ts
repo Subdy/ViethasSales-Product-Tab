@@ -67,7 +67,7 @@ export class SellBillPage implements OnInit {
     this.getTotal();
 
     this.tax = (this.tax_percent * this.total) / 100;
-    this.pay_total += this.discount_value + this.total + this.tax + this.ship_cost;
+    this.pay_total += this.total + this.tax + this.ship_cost - this.discount_value;
   }
   // tính giảm giá
   discountCalculate() {
@@ -75,13 +75,13 @@ export class SellBillPage implements OnInit {
     this.discount_value = 0;
     this.getTotal();
     this.discount_value = (this.discount_percent * this.total) / 100;
-    this.pay_total += this.discount_value + this.total + this.tax + this.ship_cost;
+    this.pay_total += this.total + this.tax + this.ship_cost - this.discount_value;
   }
   discountPercentCalculate() {
     this.pay_total = 0;
     this.getTotal();
     this.discount_percent = (this.discount_value / this.total) * 100;
-    this.pay_total += this.discount_value + this.total + this.tax + this.ship_cost;
+    this.pay_total += this.total + this.tax + this.ship_cost - this.discount_value;
   }
 
   getTotal() {
@@ -120,7 +120,7 @@ export class SellBillPage implements OnInit {
   }
   getPay() {
     this.pay_total = 0;
-    this.pay_total += this.discount_value + this.total + this.tax + this.ship_cost;
+    this.pay_total += this.total + this.tax + this.ship_cost - this.discount_value;
   }
   //thanh toán
   save() {
@@ -140,7 +140,7 @@ export class SellBillPage implements OnInit {
       //console.log(res);
       this.bill_details.forEach(item => {
         this.firebaseQuery.createTask("bill_details", {
-          name: item.id,
+          name: item.name,
           price: item.price,
           id_bill: res.id,
           number: item.number
@@ -191,7 +191,7 @@ export class SellBillPage implements OnInit {
       console.log(res);
       this.bill_details.forEach(item => {
         this.firebaseQuery.createTask("bill_details", {
-          name: item.id,
+          name: item.name,
           price: item.price,
           id_bill: res.id,
           number: item.number

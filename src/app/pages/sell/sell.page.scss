@@ -1,121 +1,106 @@
 ion-header {
-    display: flex;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 19px 0px;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 19px 0px;
+  text-align: left;
+
+  ion-title {
+    padding: 0 40px;
+    margin: 10px 0;
+    font-size: 0.8rem;
     text-align: left;
-    
-    ion-searchbar{
-        height: 7.7vw;
-        --background: white;
-        padding: 0;
-        border: 1px rgba(112, 112, 112, 0.2) solid;
-        border-radius: 5px;
+    ion-searchbar {
+      height: 7.7vw;
+      --background: white;
+      padding: 0;
+      border: 1px rgba(112, 112, 112, 0.2) solid;
+      border-radius: 5px;
     }
-    ion-icon {
-        color: black;
-        padding: 0;
-        margin: 0;
-    }
+  }
+}
+ion-content {
+  font-family: Arial, Helvetica, sans-serif;
+  .no-bill {
+    margin-top: 40%;
+    text-align: center;
     ion-button {
+      text-align: center;
+      --background: none;
+      --background-focused: none;
+      --background-activated: none;
+      --color: black;
+      --color-focused: black;
+      --color-activated: black;
+      border-radius: 100px;
+      box-shadow: 0px 2px 5px 0px rgb(148, 148, 148);
+      height: 38px;
+      width: 177px;
+    }
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
+  .bills {
+    //text-align: center;
+    .scroll {
+      overflow-x: auto;
+      position: relative;
+    }
+    padding: 0 11px;
+    .add-bill {
+      text-align: center;
+      ion-button {
+        text-align: center;
+        --background: none;
+        --background-focused: none;
+        --background-activated: none;
         --color: black;
         --color-focused: black;
         --color-activated: black;
-        padding: 0;
-        margin: 0;
-        --background: white;
-        --background-focused: white;
-        --background-activated: white;
-        height: 8vw;
-        width: 14vw;
+        border-radius: 100px;
+        height: 38px;
+        width: 178px;
+        margin: 15px 0px 0px 0px;
+        box-shadow: 0px 2px 5px 0px rgb(148, 148, 148);
+      }
     }
-}   
-ion-content {
-    font-family: Arial, Helvetica, sans-serif;
-    .no-bill {
-        margin-top: 40%;
-        text-align: center;
-        ion-button {
-            text-align: center;
-            --background: none;
-            --background-focused: none;
-            --background-activated: none;
-            --color: black;
-            --color-focused: black;
-            --color-activated: black;
-            border-radius: 100px;
-            box-shadow: 0px 2px 5px 0px rgb(148, 148, 148);
-            height: 38px;
-            width: 177px;
-        }
-        p {
-            font-size: 0.8rem;
-        }
-        
-        
+    p {
+      font-size: 12px;
+      margin-top: 30px;
+      span {
+        color: red;
+      }
     }
-
-    .bills {
-        //text-align: center;
-        .scroll {
-            overflow-x: auto ;
-            position: relative;
+    .detail {
+      margin-top: 23px;
+      .bill {
+        border-bottom: 1px rgba(112, 112, 112, 0.2) solid;
+        .info-bill {
+          display: flex;
+          font-size: 15px;
+          padding-bottom: 5px;
         }
-        padding: 0 11px;
-        .add-bill {
-            text-align: center;
-            ion-button {
-                text-align: center;
-                --background: none;
-                --background-focused: none;
-                --background-activated: none;
-                --color: black;
-                --color-focused: black;
-                --color-activated: black;
-                border-radius: 100px;
-                height: 38px;
-                width: 178px;
-                margin: 15px 0px 0px 0px;
-                box-shadow: 0px 2px 5px 0px rgb(148, 148, 148)
-            }
+        .status-bill {
+          display: flex;
+          font-size: 12px;
+          padding-bottom: 5px;
         }
-        p {
-            font-size: 12px;
-            margin-top: 30px;
-            span {
-                color:red;
-            }
+        .date {
+          text-align: left;
+          font-size: 12px;
+          opacity: 0.5;
+          padding-bottom: 5px;
         }
-        .detail {
-            margin-top: 23px;
-           .bill {
-                border-bottom: 1px rgba(112, 112, 112, 0.2) solid;
-               .info-bill{  
-                   display: flex;
-                   font-size: 15px;
-                   padding-bottom: 5px;
-               }
-               .status-bill{
-                   display: flex;
-                   font-size: 12px;
-                   padding-bottom: 5px;
-               }
-               .date {
-                   text-align: left;
-                   font-size: 12px;
-                   opacity: 0.5;
-                   padding-bottom: 5px;
-               }
-           } 
-           .left {
-            flex-grow: 1;
-            text-align: left;
-            }
-            .right {
-                flex-grow: 1;
-                text-align: right;
-            }
-        }
-        
+      }
+      .left {
+        flex-grow: 1;
+        text-align: left;
+      }
+      .right {
+        flex-grow: 1;
+        text-align: right;
+      }
     }
-
+  }
 }
