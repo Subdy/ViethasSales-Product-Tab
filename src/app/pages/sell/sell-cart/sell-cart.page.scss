@@ -7,27 +7,57 @@ ion-header {
     --border-color: white;
   }
   ion-searchbar {
-    width: 85vw;
-    height: 7.7vw;
+    transition: 5s ease-in;
+    height: 40px;
     --background: white;
     padding: 0;
-    margin: 0;
     border: 1px rgba(112, 112, 112, 0.2) solid;
-    border-radius: 5px;
-  }
+    border-radius: 10px;
+  } 
   ion-icon {
     color: black;
     padding: 0;
     margin: 0;
   }
   ion-buttons {
-    margin: 0 1rem;
+    margin: 0 10px;
     .back {
       --color: #00a859;
     }
   }
 }
 .conteiner_import_cart {
+  .search_list {
+    z-index: 999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    ion-item {
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        box-shadow: 2px 2px 5px 0 rgba($color: #000000, $alpha: 0.16);
+      }
+      ion-label {
+        margin-left: 8px;
+        color: black;
+        margin-bottom: 20px;
+        h1 {
+          font-size: 1rem;
+        }
+        h2 {
+          font-size: 0.8rem;
+          b {
+            color: red;
+          }
+        }
+      }
+    }
+    
+  }
   .txt_scan {
     text-align: -webkit-center;
     ion-icon {

@@ -63,11 +63,14 @@ export class SellPage implements OnInit {
         this.dismissLoading();
         console.log("empty");
       } else {
+        let status = false;
         for (let i in res.docs) {
           if (res.docs[i].data().bill_type != 2 &&
             res.docs[i].data().bill_type != 6 &&
             res.docs[i].data().bill_type != 7 &&
             res.docs[i].data().bill_type != 8) {
+            // đã có bill
+            status = true;
             this.number++;
             //thêm loại khách hàng
             this.firebaseQuery.getTask_byID('customers', res.docs[i].data().id_customer).then(res2 => {
@@ -114,9 +117,11 @@ export class SellPage implements OnInit {
                 // biến cờ
                 if (this.number == 0) {
                   this.show1 = true;
+                  this.show2 = !this.show1;
                   this.dismissLoading();
                 } else {
                   this.show2 = true;
+                  this.show1 = !this.show2;
                   this.dismissLoading();
                 }
               }
@@ -124,6 +129,12 @@ export class SellPage implements OnInit {
               alert('customers: ' + err1)
               this.dismissLoading();
             });
+          }
+          // chưa có bill
+          if (status == false && parseInt(i) == res.docs[i].length - 1) {
+            this.show1 = true;
+            this.show2 = !this.show1;
+            this.dismissLoading();
           }
         }
         //console.log(this.bills);

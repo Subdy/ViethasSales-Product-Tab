@@ -1,12 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" (click)="goBack()">
+    <ion-buttons *ngIf="!show_searchbar" slot="start" (click)="goBack()">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoCreateProduct()">
+    <ion-buttons *ngIf="!show_searchbar" slot="end" style="font-size: 2rem;" (click)="searchProd()">
       <ion-icon name="search"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end" style="font-size: 2rem;" (click)="scan()">
+    <ion-title *ngIf="show_searchbar" style="padding: 0 10px; text-align: left;">
+      <ion-searchbar (ionChange)="searchProduct($event)" animated #autofocus placeholder="Tìm sản phẩm"></ion-searchbar>
+    </ion-title>
+    <ion-buttons *ngIf="!show_searchbar" slot="end" style="font-size: 2rem;" (click)="scan()">
       <ion-icon name="camera"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end" style="font-size: 2rem;" *ngIf="show" (click)="gotoProductConfirm()">
@@ -16,6 +19,18 @@
 </ion-header>
 
 <ion-content class="conteiner_import_cart">
+  <!-- show searchbar -->
+  <div class="search_list" *ngIf="show_searchbar" (click)="dismissSearchProd()" [ngStyle]="{opacity: 1}">
+    <ion-list>
+      <ion-item *ngFor="let item of search_product" (click)="selectProduct(item)">
+        <img [src]="item.img" width="50px" height="50px" >
+        <ion-label>
+          <h1><b>{{item.name}}</b></h1>
+          <h2>Giá bán: <b>{{item.price | number: '1.0-0'}}</b></h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
   <div class="txt_scan">
     <ion-icon name="barcode"></ion-icon>
   </div>

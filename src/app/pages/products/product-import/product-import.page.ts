@@ -66,13 +66,6 @@ export class ProductImportPage implements OnInit {
     //     console.log(item.data());
     //   }
     // });
-    // this.firebaseQuery.createTask('customers', {
-    //   id_discount : '',
-    //   name: 'Khách lẻ',
-    //   phone: '',
-    //   address: '',
-    //   code: 'KL'
-    // });
   }
 
   ionViewWillEnter() {
