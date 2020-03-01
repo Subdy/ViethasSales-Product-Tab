@@ -1,28 +1,34 @@
 ion-header {
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
-  margin: 19px 0px;
   text-align: left;
+  height: 55px;
   ion-toolbar {
     --border-color: white;
   }
-  ion-searchbar {
-    transition: 5s ease-in;
-    height: 40px;
-    --background: white;
-    padding: 0;
-    border: 1px rgba(112, 112, 112, 0.2) solid;
-    border-radius: 10px;
-  } 
+  ion-title {
+    padding: 0 10px;
+    text-align: left;
+    height: 55px;
+    ion-searchbar {
+      transition: 5s ease-in-out;
+      height: 30px;
+      --background: white;
+      padding: 0;
+      border: 1px rgba(112, 112, 112, 0.2) solid;
+      border-radius: 5px;
+    }
+  }
   ion-icon {
     color: black;
     padding: 0;
     margin: 0;
   }
   ion-buttons {
-    margin: 0 10px;
+    margin: 10px;
+    font-size: 2rem;
     .back {
-      --color: #00a859;
+      --color: black;
     }
   }
 }
@@ -56,7 +62,6 @@ ion-header {
         }
       }
     }
-    
   }
   .txt_scan {
     text-align: -webkit-center;

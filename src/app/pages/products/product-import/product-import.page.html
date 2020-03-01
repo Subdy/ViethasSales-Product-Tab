@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary" *ngIf="show1">
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" style="margin: 0 10px;">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-title>Nhập Hàng</ion-title>
@@ -9,7 +9,9 @@
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-searchbar placeholder="Tìm đơn hàng nhập theo mã, NCC" (ionChange)="searchBill($event)"></ion-searchbar>
+    <ion-title>
+      <ion-searchbar animated placeholder="Tìm theo mã ĐH, tên NCC" (ionChange)="searchBill($event)"></ion-searchbar>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -41,14 +43,16 @@
       <div class="date date_start">
         <span class="txt_date1">Từ</span>
         <div ion-item no-lines class="select_date">
-          <ion-datetime displayFormat="DD/MM/YYYY" [value]="startDay.toDateString()" (ionChange)="setStartTime($event)"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" [value]="startDay.toDateString()" (ionChange)="setStartTime($event)">
+          </ion-datetime>
           <ion-icon item-content name="calendar" slot="end" color="primary"></ion-icon>
         </div>
       </div>
       <div class="date date_end">
         <span class="txt_date2">đến</span>
         <div ion-item no-lines class="select_date">
-          <ion-datetime displayFormat="DD/MM/YYYY" [value]="endDay.toDateString()" (ionChange)="setEndTime($event)"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" [value]="endDay.toDateString()" (ionChange)="setEndTime($event)">
+          </ion-datetime>
           <ion-icon item-content name="calendar" slot="end" color="primary"></ion-icon>
         </div>
       </div>
@@ -57,7 +61,7 @@
     <!-- <p>Tổng <span>{{ number }}</span> đơn hàng trong ngày</p> -->
 
 
-    <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 75vh;">
+    <div class="scroll" scrollX=“true” scrollEvents=“true” scrollY=“false” style="height: 70%;">
       <div class="detail" *ngFor="let item of show_bills" (click)="gotodetail(item)">
         <div class="bill">
           <div class="info-bill">

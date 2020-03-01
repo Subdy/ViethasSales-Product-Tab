@@ -3,7 +3,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { FirebaseQuery } from 'src/app/database/firebase.database';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
-import { Events, IonSearchbar } from '@ionic/angular';
+import { Events, IonSearchbar, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sell-cart',
@@ -11,22 +11,27 @@ import { Events, IonSearchbar } from '@ionic/angular';
   styleUrls: ['./sell-cart.page.scss'],
 })
 export class SellCartPage implements OnInit {
-  @ViewChild('autofocus', { static: false }) searchbar: IonSearchbar;
+  // document searchbar
+  @ViewChild('searchInput', { static: false }) searchInput: IonSearchbar;
   //măng chứa tất cả thông tin sản phẩm
   search_product: Array<any>;
   products: Array<any>;
   list_product: Array<any>;
   show = false;
+  //biến cờ popup
+  trigger_popup = false;
   //biến cờ ẩn list sản phẩm
   show_prod;
   //biến cờ searchbar
+  opacity: boolean = false;
   show_searchbar: boolean = false;
   constructor(
     private storage: Storage,
     private router: Router,
     private barcode: BarcodeScanner,
     private firebaseQuery: FirebaseQuery,
-    private event: Events
+    private event: Events,
+    private navCtrl: NavController
   ) {
     // kiểm tra danh sách sản phẩm lưu trong storage
     this.storage.get('list_prod').then(res => {
@@ -43,6 +48,25 @@ export class SellCartPage implements OnInit {
 
   ngOnInit() {
   }
+  ionViewWillEnter() {
+    //lấy toàn bộ thông tin sản phẩm
+    this.getDataProducts();
+    // lấy danh sách sp trong storage
+    this.storage.get('list_prod').then(res => {
+      if (res != null) {
+        delete this.list_product;
+        this.list_product = new Array();
+        this.list_product = res;
+        this.show_prod = true;
+        //hiển thị dấu V xác nhận
+        if (res.length == 0) {
+          this.show = false;
+        } else {
+          this.show = true;
+        }
+      }
+    });
+  }
   //get DataProducts
   getDataProducts() {
     this.products = new Array();
@@ -52,23 +76,6 @@ export class SellCartPage implements OnInit {
         this.products[this.products.length - 1].id = res.docs[i].id;
       }
       console.log(this.products);
-    });
-  }
-  // hàm search sản phẩm 
-  searchProd() { //kích hoạt thanh search
-    this.show_searchbar = true;
-  }
-  dismissSearchProd() { // hủy kích hoạt thanh search
-    delete this.search_product;
-    this.show_searchbar = false;
-    console.log('dismiss')
-  }
-  searchProduct(event) {
-    this.search_product = new Array();
-    this.search_product = this.products.filter((item) => {
-      return this.change_alias(item.name.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1 ||
-        this.change_alias(item.price.toString().toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1 ||
-        this.change_alias(item.barcode.toString().toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1
     });
   }
   //hàm chuyển tiếng việt thành tiếng anh
@@ -89,6 +96,40 @@ export class SellCartPage implements OnInit {
     str = str.replace(/ + /g, " ");
     str = str.trim();
     return str;
+  }
+  //hàm focus searchbar
+  focusButton() {
+    setTimeout(() => {
+      this.searchInput.setFocus();
+    }, 400);
+  }
+  // hàm kích hoạt search sản phẩm 
+  searchProd() { //kích hoạt thanh search
+    this.show_searchbar = true;
+    this.focusButton();
+    this.opacity = true;
+    this.show = !this.show_searchbar;
+  }
+  dismissSearchProd() { // hủy kích hoạt thanh search
+    delete this.search_product;
+    this.show_searchbar = false;
+    this.list_product.length > 0 ? this.show = true : this.show = false;
+    console.log('dismiss');
+  }
+  // hàm search product
+  searchProduct(event) {
+    if (event.detail.value == "") {
+      this.opacity = true;
+      delete this.search_product;
+    } else {
+      this.search_product = new Array();
+      this.search_product = this.products.filter((item) => {
+        return this.change_alias(item.name.toLowerCase()).indexOf(this.change_alias(event.detail.value.toLowerCase())) != -1 ||
+          item.price.toString().toLowerCase().indexOf(this.change_alias(event.detail.value.toLowerCase())) != -1 ||
+          this.change_alias(item.barcode.toString().toLowerCase()).indexOf(this.change_alias(event.detail.value.toLowerCase())) != -1
+      });
+      this.search_product.length > 0 ? this.opacity = false : this.opacity = true;
+    }
   }
   //ham chon san pham bang search
   selectProduct(item) {
@@ -117,27 +158,20 @@ export class SellCartPage implements OnInit {
       this.storage.set('list_prod', this.list_product);
     }
   }
+
+  // back về hiện popup
   goBack() {
     this.event.publish("back", true);
+    this.trigger_popup = true;
   }
-  ionViewWillEnter() {
-    //lấy toàn bộ thông tin sản phẩm
-    this.getDataProducts();
-    // lấy danh sách sp trong storage
-    this.storage.get('list_prod').then(res => {
-      if (res != null) {
-        delete this.list_product;
-        this.list_product = new Array();
-        this.list_product = res;
-        this.show_prod = true;
-        //hiển thị dấu V xác nhận
-        if (res.length == 0) {
-          this.show = false;
-        } else {
-          this.show = true;
-        }
-      }
-    });
+  //Đồng ý xóa hết bill trong storage
+  deteleBillDetail() {
+    this.storage.remove("list_prod");
+    this.navCtrl.pop();
+  }
+  //Hủy popup
+  cancel() {
+    this.trigger_popup = false;
   }
   //hàm xóa từng sp
   deleteItem(item) {

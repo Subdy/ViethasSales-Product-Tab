@@ -148,9 +148,9 @@ export class SellPage implements OnInit {
   //searchbill
   searchBill(event) {
     this.show_bills = this.bills.filter(item => {
-      return this.change_alias(item.bill_code.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1 ||
-        this.change_alias(item.customer_type.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1 ||
-        this.change_alias(item.status_bill.toLowerCase()).indexOf(event.detail.value.toLowerCase()) != -1
+      return this.change_alias(item.bill_code.toLowerCase()).indexOf(this.change_alias(event.detail.value.toLowerCase())) != -1 ||
+        this.change_alias(item.customer_type.toLowerCase()).indexOf(this.change_alias(event.detail.value.toLowerCase())) != -1 ||
+        this.change_alias(item.status_bill.toLowerCase()).indexOf(this.change_alias(event.detail.value.toLowerCase())) != -1
     });
   }
 

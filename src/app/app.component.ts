@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,4 +35,5 @@ export class AppComponent {
       }, 4000);
     });    
   }
+  
 }

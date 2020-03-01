@@ -1,33 +1,66 @@
 ion-header {
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
-  margin: 19px 0px;
   text-align: left;
+  height: 55px;
   ion-toolbar {
     --border-color: white;
   }
-  ion-searchbar {
-    width: 85vw;
-    height: 7.7vw;
-    --background: white;
-    padding: 0;
-    margin: 0;
-    border: 1px rgba(112, 112, 112, 0.2) solid;
-    border-radius: 5px;
+  ion-title {
+    padding: 0 10px;
+    text-align: left;
+    height: 55px;
+    ion-searchbar {
+      transition: 5s ease-in-out;
+      height: 30px;
+      --background: white;
+      padding: 0;
+      border: 1px rgba(112, 112, 112, 0.2) solid;
+      border-radius: 5px;
+    }
   }
   ion-icon {
-    color: black;
     padding: 0;
     margin: 0;
   }
   ion-buttons {
-    margin: 0 1rem;
-    .back {
-      --color: #00a859;
-    }
+    margin: 10px;
+    font-size: 2rem;
+    --color: black;
   }
 }
 .conteiner_import_cart {
+  --overflow: hidden;
+  .search_list {
+    z-index: 999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    ion-item {
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        box-shadow: 2px 2px 5px 0 rgba($color: #000000, $alpha: 0.16);
+      }
+      ion-label {
+        margin-left: 8px;
+        color: black;
+        margin-bottom: 20px;
+        h1 {
+          font-size: 1rem;
+        }
+        h2 {
+          font-size: 0.8rem;
+          b {
+            color: red;
+          }
+        }
+      }
+    }
+  }
   .txt_scan {
     text-align: -webkit-center;
     ion-icon {
@@ -97,7 +130,7 @@ ion-header {
             color: #00a859;
             width: 10%;
             text-align: center;
-          } 
+          }
 
           .btn_icon1 {
             border-radius: 100%;

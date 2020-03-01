@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-toolbar *ngIf="show1">
+  <ion-toolbar class="supplier" *ngIf="show1">
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-searchbar (ionChange)="searchSupplier($event)" placeholder="Tìm nhà cung cấp"></ion-searchbar>
+    <ion-title>
+      <ion-searchbar animated (ionChange)="searchSupplier($event)" placeholder="Tìm nhà cung cấp"></ion-searchbar>
+    </ion-title>
     <ion-buttons slot="end" (click)="gotoproductaddsupplier()">
       <ion-icon slot="end" name="add"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar color="primary" *ngIf="show2">
+  <ion-toolbar class="no-supplier" color="primary" *ngIf="show2">
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>

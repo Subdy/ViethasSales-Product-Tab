@@ -1,128 +1,140 @@
-ion-content{
-    .txt_confirm{
-        margin: 20px 12px 0px 12px;
-        .txt_code{
-            display: flex;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-bottom: 18px;
-        }
-        ion-label{
-            width: 47%;
-            flex-grow: 1;
-            padding-left: 12px;
-        }
-        .txt_code1{
-            flex-grow: 2;
-           text-align: left;
-           font-size: 1rem;
-           width: 53%;
-           font-weight: bold;
-           color: #00A859;
-        }
-        .date{
-            display: flex;
-            margin-bottom: 18px;
-            .txt_date{
-            font-size: 1rem;
-            font-weight: bold;
-            flex-grow: 1;
-            width: 45%;
-            padding-left: 12px;
-            padding-top: 5px;
-            }
-            .select {
-                width: 55%;
-                color: #00A859;
-                flex-grow: 2;
-                .select_date{
-                    font-size: 1rem;
-                    padding: 4px;
-                    box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
-                    border-radius:100px ;
-                    width:fit-content;
-                    font-weight: bold;
-                }
-            }  
-            ion-icon{
-                color: #00A859;
-                margin: 0 7.8px;
-                font-size: 0.8rem;
-            }
-        }
-        .txt_name_4{
-            border-radius: 10px;
-            padding-bottom: 20px;
-            box-shadow: 0px 2px 6px 0px rgb(201, 201, 201);
-            .item {
-                border-bottom: 1px rgba(112,112,112,0.2) solid;
-                padding-top: 25px;
-                display: flex;
-                ion-button {
-                    flex-grow: 1;
-                    --background: none;
-                    --background-activated: none;
-                    --color : red;
-                    width: 15%;
-                }
-                .info {
-                    flex-grow: 9;
-                    width: 85%;
-                    margin-right: 12px;
-                    .label{
-                        margin-bottom: 17px;
-                        font-weight: bold;
-                    }
-                    .sub-info {
-                        font-size: 0.8rem;
-                        display: flex;
-                        margin-bottom: 16px;
-                        .cost {
-                            flex-grow: 1;
-                        }
-                        .total_cost {
-                            flex-grow: 1;
-                            text-align: right;
-                            font-weight: bold;
-                        }
-                    }
-                }
-            }
-            .line {
-                margin-top: 12px;
-                margin-left: 12px;
-                margin-right: 5px;
-                display: flex;
-                .label {
-                    flex-grow: 5;
-                    width: 50%;
-                }
-                .number {
-                    flex-grow: 1;
-                    width: 10%;
-                    text-align: right;
-                    border: none;
-                    font-size: 0.8rem;
-                }
-                .total {
-                    flex-grow: 4;
-                    width: 40%;
-                    text-align: right;
-                    font-size: 0.8rem;
-                    font-weight: bold;
-                }
-            }
-        }
-        .save {
-            ion-button {
-                width: 121px;
-                height: 33px;
-                margin: 39px 0;
-                --background: #F29500;
-                --background-activated: #F29500;
-                --color: white;
-            }
-            text-align: center;
-        }
+ion-header {
+  ion-toolbar {
+    ion-buttons {
+      margin: 0 10px;
+      ion-icon {
+        font-size: 2rem;
+        padding: 0;
+        margin: 0;
+      }
     }
+  }
+}
+ion-content {
+  .txt_confirm {
+    margin: 20px 12px 0px 12px;
+    .txt_code {
+      display: flex;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+    ion-label {
+      width: 47%;
+      flex-grow: 1;
+      padding-left: 12px;
+    }
+    .txt_code1 {
+      flex-grow: 2;
+      text-align: left;
+      font-size: 1rem;
+      width: 53%;
+      font-weight: bold;
+      color: #00a859;
+    }
+    .date {
+      display: flex;
+      margin-bottom: 18px;
+      .txt_date {
+        font-size: 1rem;
+        font-weight: bold;
+        flex-grow: 1;
+        width: 45%;
+        padding-left: 12px;
+        padding-top: 5px;
+      }
+      .select {
+        width: 55%;
+        color: #00a859;
+        flex-grow: 2;
+        .select_date {
+          font-size: 1rem;
+          padding: 4px;
+          box-shadow: 0px 2px 3px 0px rgb(201, 201, 201);
+          border-radius: 100px;
+          width: fit-content;
+          font-weight: bold;
+        }
+      }
+      ion-icon {
+        color: #00a859;
+        margin: 0 7.8px;
+        font-size: 0.8rem;
+      }
+    }
+    .txt_name_4 {
+      border-radius: 10px;
+      padding-bottom: 20px;
+      box-shadow: 0px 2px 6px 0px rgb(201, 201, 201);
+      .item {
+        border-bottom: 1px rgba(112, 112, 112, 0.2) solid;
+        padding-top: 25px;
+        display: flex;
+        ion-button {
+          flex-grow: 1;
+          --background: none;
+          --background-activated: none;
+          --color: red;
+          width: 15%;
+        }
+        .info {
+          flex-grow: 9;
+          width: 85%;
+          margin-right: 12px;
+          .label {
+            margin-bottom: 17px;
+            font-weight: bold;
+          }
+          .sub-info {
+            font-size: 0.8rem;
+            display: flex;
+            margin-bottom: 16px;
+            .cost {
+              flex-grow: 1;
+            }
+            .total_cost {
+              flex-grow: 1;
+              text-align: right;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .line {
+        margin-top: 12px;
+        margin-left: 12px;
+        margin-right: 5px;
+        display: flex;
+        .label {
+          flex-grow: 5;
+          width: 50%;
+        }
+        .number {
+          flex-grow: 1;
+          width: 10%;
+          text-align: right;
+          border: none;
+          font-size: 0.8rem;
+        }
+        .total {
+          flex-grow: 4;
+          width: 40%;
+          text-align: right;
+          font-size: 0.8rem;
+          font-weight: bold;
+        }
+      }
+    }
+    .save {
+      ion-button {
+        width: 121px;
+        height: 33px;
+        margin: 39px 0;
+        --background: #f29500;
+        --background-activated: #f29500;
+        --color: white;
+      }
+      text-align: center;
+    }
+  }
 }

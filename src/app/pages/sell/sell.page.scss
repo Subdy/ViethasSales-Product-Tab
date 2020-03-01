@@ -1,16 +1,18 @@
 ion-header {
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
-  margin: 19px 0px;
   text-align: left;
-
+  height: 55px;
+  ion-toolbar {
+    --border-color: white;
+  }
   ion-title {
     padding: 0 40px;
-    margin: 10px 0;
-    font-size: 0.8rem;
     text-align: left;
+    height: 55px;
     ion-searchbar {
-      height: 7.7vw;
+      transition: 5s ease-in-out;
+      height: 30px;
       --background: white;
       padding: 0;
       border: 1px rgba(112, 112, 112, 0.2) solid;
@@ -20,8 +22,9 @@ ion-header {
 }
 ion-content {
   font-family: Arial, Helvetica, sans-serif;
+  --overflow: hidden;
   .no-bill {
-    margin-top: 40%;
+    margin-top: 50%;
     text-align: center;
     ion-button {
       text-align: center;

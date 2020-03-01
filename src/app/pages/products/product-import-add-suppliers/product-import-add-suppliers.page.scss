@@ -1,3 +1,8 @@
+ion-header {
+  ion-buttons {
+    margin: 0 10px;
+  }
+}
 ion-content {
   .txt_list_add {
     border-radius: 10px;
@@ -6,13 +11,13 @@ ion-content {
       .txt_item1 {
         margin-top: 13px;
         .name_1 {
-          font-size: 1rem;
+          font-size: 0.9rem;
           color: gray;
           // font-weight: 600;
         }
         ion-input {
           text-align: end;
-          font-size: 1rem;
+          font-size: 0.9rem;
         }
       }
     }

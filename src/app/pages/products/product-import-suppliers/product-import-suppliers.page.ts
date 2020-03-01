@@ -53,6 +53,7 @@ export class ProductImportSuppliersPage implements OnInit {
       }
     });
   }
+  //sang page nhập hàng chuyền theo supplier
   gotoproductimportcart(item) {
     let data: NavigationExtras = {
       state: item

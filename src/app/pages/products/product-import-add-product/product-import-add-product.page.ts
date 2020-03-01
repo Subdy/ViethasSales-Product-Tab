@@ -2,7 +2,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FirebaseQuery, FirebaseImage } from 'src/app/database/firebase.database';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Router, RouterModule, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ToastController, LoadingController } from '@ionic/angular';
@@ -17,8 +17,6 @@ export class ProductImportAddProductPage implements OnInit {
   product: FormGroup;
   supplier;
   bill_detail;
-  id_bill;
-  thumbnail = "/assets/imgs/add.png";
   save_btn = false;
   constructor(
     public formBuilder: FormBuilder,
@@ -32,36 +30,30 @@ export class ProductImportAddProductPage implements OnInit {
     private webview: WebView,
     private storage: Storage
   ) {
-    //get id_bill
-    this.storage.get('id_bill').then(res => {
-      this.id_bill = res;
-    })
-    //get list bill_detail 
+    //get list bill_detail trong storage
     this.storage.get("list_prod").then(res => {
       this.bill_detail = res;
     })
     //nha cung cap 
     this.supplier = this.router.getCurrentNavigation().extras.state;
-
     //khoi tao form
     this.product = this.formBuilder.group({
+      img: ['/assets/imgs/add.png'],
       name: ['', Validators.required],
-      id_category: ['', Validators.required],
-      size: ['', Validators.required],
-      price: ['', Validators.required],
-      id_discount: ['', Validators.required],
-      SKU: ['', Validators.required],
+      barcode: ['', Validators.required],
       unit: ['', Validators.required],
-      color: ['', Validators.required],
-      barcode: [null, Validators.compose([Validators.minLength(10), Validators.required])],
       price_import: ['', Validators.required],
-      id_supplier: [this.supplier.name],
+      price: ['', Validators.required],
+      id_category: ['', Validators.required],
+      id_discount: ['', Validators.required],
+      id_supplier: [this.supplier.id],
       allow_sell: [true]
     });
   }
 
   ngOnInit() {
   }
+  // hàm lấy barcode
   scan() {
     this.barcode.scan().then(data => {
       this.product.controls['barcode'].setValue(data.text);
@@ -69,8 +61,9 @@ export class ProductImportAddProductPage implements OnInit {
       alert(err);
     })
   }
+  //hàm lưu sản phẩm
   save() {
-    if (this.product.value.barcode == null) {
+    if (this.product.value.barcode.length == 0) {
       alert('Vui lòng nhập barcode sản phẩm');
     } else {
       this.save_btn = true;
@@ -79,34 +72,37 @@ export class ProductImportAddProductPage implements OnInit {
       this.firebaseQuery.createTask('products', {
         id_category: this.product.value.id_category,
         name: this.product.value.name,
-        size: this.product.value.size,
         price: this.product.value.price,
-        img: this.thumbnail,
+        price_import: this.product.value.price_import,
+        img: this.product.value.img,
         id_discount: this.product.value.id_discount,
-        SKU: this.product.value.SKU,
-        color: this.product.value.color,
         unit: this.product.value.unit,
-        barcode: parseInt(this.product.value.barcode),
+        barcode: this.product.value.barcode,
         allow_sell: this.product.value.allow_sell,
-        id_supplier: this.supplier.id
+        id_supplier: this.product.value.id_supplier
       }).then(res => {
         console.log(res);
         this.bill_detail.push({
-          name: this.product.value.name,
           id: res.id,
-          id_bill: this.id_bill,
+          id_category: this.product.value.id_category,
+          name: this.product.value.name,
           price: this.product.value.price,
           price_import: this.product.value.price_import,
-          number: 1,
+          img: this.product.value.img,
+          id_discount: this.product.value.id_discount,
+          unit: this.product.value.unit,
           barcode: this.product.value.barcode,
-          update_status: false // tạo kho mới
+          allow_sell: this.product.value.allow_sell,
+          id_supplier: this.product.value.id_supplier,
+          number: 1
         });
+        // set list bill detail sau khi thêm sản phẩm mới vào
         this.storage.set('list_prod', this.bill_detail);
         this.router.navigateByUrl('product-import-cart');
       }, err => {
         console.log('Error: ', err);
       }).catch(err => {
-        console.log(err);
+        console.log('products: ' + err);
       });
     }
   }
@@ -149,7 +145,7 @@ export class ProductImportAddProductPage implements OnInit {
     //uploads img to firebase storage
     this.firebaseImage.uploadThumbnail(image_src, randomId, 128, 128)
       .then(photoURL => {
-        this.thumbnail = photoURL;
+        this.product.controls['img'].setValue(photoURL);
         loading.dismiss();
         toast.present();
       }, err => {

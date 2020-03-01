@@ -1,53 +1,63 @@
-.conteiner_add_pro{
-    .txt_list_addproduct{
-        margin-top: 20px;
-        text-align: -webkit-center;
-        .txt_icon{
-            border-radius: 10px;
-            height: 100px;
-            width: 100px;
-            ion-icon{
-                font-size: 10rem;
-                color: #A1A1A1;
-            }
+ion-header {
+  ion-toolbar {
+    ion-buttons {
+      margin: 0 10px;
+    }
+  }
+}
+.conteiner_add_pro {
+  .txt_list_addproduct {
+    margin: 20px 0;
+    text-align: -webkit-center;
+    .txt_icon img {
+      border-radius: 10px;
+      height: 110px;
+      width: 110px;
+      ion-icon {
+        font-size: 10rem;
+        color: #a1a1a1;
+      }
+    }
+  }
+  .txt_name_2 {
+    .txt_item1 {
+      ion-icon {
+        font-size: 2rem;
+      }
+      margin-right: 10px;
+      .name_1 {
+        font-size: 0.9rem;
+        color: #999;
+      }
+      ion-input {
+        text-align: end;
+        font-size: 0.9rem;
+        color: black;
+      }
+      ion-icon {
+        margin-left: 1vh;
+      }
+      .txt_allow {
+        text-align: end;
+        font-size: 0.9rem;
+      }
+    }
+    .allow_sell {
+        --border-color:white;
+        ion-checkbox {
+            --size: 1rem;
         }
     }
-    .txt_name_2{
-        border-radius: 10px;
-        .txt_item1{
-            ion-icon {
-                font-size: 2rem;
-            }
-            margin: 10px;
-            .name_1{
-                font-size: 1rem;
-               color: #999;
-               
-            }
-            ion-input{
-                text-align: end;
-                font-size: 1rem;
-                color:black;
-            }
-            ion-icon{
-                margin-left: 1vh;
-            }
-            .txt_allow{
-                text-align: end;
-            }
-        }
-       
+  }
+  .add_btn {
+    text-align: center;
+    ion-button {
+      width: 121px;
+      height: 33px;
+      margin: 39px 0;
+      --background: #f29500;
+      --background-activated: #f29500;
+      --color: white;
     }
-    .add_btn{
-        text-align: center;
-        ion-button {
-            width: 121px;
-            height: 33px;
-            margin: 39px 0;
-            --background: #F29500;
-            --background-activated: #F29500;
-            --color: white;
-          
-        }
-    }
+  }
 }

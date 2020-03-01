@@ -1,71 +1,70 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start" >
+    <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-title>Nhập Hàng</ion-title>
-    <ion-buttons slot="end"> 
-      <ion-button (click)="deletebill()">
-        <ion-icon name="trash"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="end" (click)="deletebill()">
+      <ion-icon name="trash"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<div class="txt_confirm">
-  <div class="txt_code">
-    <ion-label>Mã đơn hàng</ion-label>
-    <div class="txt_code1">
-      <ion-label color="primary">{{bill_code}}</ion-label>
+  <div class="txt_confirm">
+    <div class="txt_code">
+      <ion-label>Mã đơn hàng</ion-label>
+      <div class="txt_code1">
+        <ion-label color="primary">{{bill_code}}</ion-label>
+      </div>
     </div>
-  </div>
-  
 
-  <div class="date date_start">
+
+    <div class="date date_start">
       <ion-label class="txt_date">Ngày nhập</ion-label>
       <div class="select">
         <div ion-item no-lines class="select_date">
-          <ion-label >{{bill_date | date: 'dd/MM/yyyy'}}</ion-label>
+          <ion-label>{{bill_date | date: 'dd/MM/yyyy'}}</ion-label>
           <ion-icon name="calendar" slot="end"></ion-icon>
         </div>
       </div>
-  </div>
-  
-  <div class="txt_code">
-    <ion-label>Nhà cung cấp</ion-label>
-    <div class="txt_code1">
-      <ion-label>{{supplier_name}}</ion-label>
     </div>
-  </div>
-  <div class="txt_name_4">
-    <div class="item" *ngFor="let item of bill_detail">
-      <ion-button (click)="deleteItem(item)">
-        <ion-icon name= "close"></ion-icon>
-      </ion-button>
-      <div class="info">
-        <div class="label">{{item.name}}</div>
-        <div class="sub-info">
-          <div class="cost" style="width: 25%;">{{item.price_import | number: "1.0-0"}}</div>
-          <div class="cost" style="width: 20%; text-align: center;" >x</div>
-          <div class="cost" style="width: 20%; text-align: center;">{{item.number}}</div>
-          <div class="total_cost" style="width: 35%;">{{item.price_import*item.number | number: "1.0-0"}}</div>
+
+    <div class="txt_code">
+      <ion-label>Nhà cung cấp</ion-label>
+      <div class="txt_code1">
+        <ion-label>{{supplier_name}}</ion-label>
+      </div>
+    </div>
+    <div class="txt_name_4">
+      <div class="item" *ngFor="let item of bill_detail">
+        <ion-button (click)="deleteItem(item)">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+        <div class="info">
+          <div class="label">{{item.name}}</div>
+          <div class="sub-info">
+            <div class="cost" style="width: 25%;">{{item.price_import | number: "1.0-0"}}</div>
+            <div class="cost" style="width: 20%; text-align: center;">x</div>
+            <div class="cost" style="width: 20%; text-align: center;">{{item.number}}</div>
+            <div class="total_cost" style="width: 35%;">{{item.price_import*item.number | number: "1.0-0"}}</div>
+          </div>
         </div>
       </div>
-    </div>
       <div class="line">
-        <div class="label">Thuế</div> 
-        <input type="number" class="number" (keyup)="taxCalculate()" [(ngModel)]="tax_percent" style="border-bottom: 1px rgb(206, 206, 206) solid; width: 15px;"><span style="margin-left: 3px;">%</span>
+        <div class="label">Thuế</div>
+        <input type="number" class="number" (keyup)="taxCalculate()" [(ngModel)]="tax_percent"
+          style="border-bottom: 1px rgb(206, 206, 206) solid; width: 15px;"><span style="margin-left: 3px;">%</span>
         <div class="total">{{tax | number: "1.0-0"}}</div>
       </div>
-      <div class ="line" style="color:red; font-weight: bold; font-size: 1rem;">
+      <div class="line" style="color:red; font-weight: bold; font-size: 1rem;">
         <div class="label">TỔNG</div>
         <div class="number">{{num_total}}</div>
         <div class="total">{{total | number: "1.0-0"}}</div>
       </div>
+    </div>
+    <div class="save">
+      <ion-button class="save" (click)="save()" [disabled]="save_btn">LƯU</ion-button>
+    </div>
   </div>
-  <div class="save">
-    <ion-button class="save" (click)="save()" [disabled]="save_btn" >LƯU</ion-button>
-  </div>
-</div>
 </ion-content>

@@ -83,9 +83,6 @@ export class ProductImportConfirmPage implements OnInit {
     this.total += this.tax;
   }
 
-  back() {
-    this.router.navigateByUrl('product-import-cart');
-  }
   //hàm xóa hóa đơn
   deletebill() {
     console.log('Deteted');
@@ -136,8 +133,9 @@ export class ProductImportConfirmPage implements OnInit {
       //tạo detail bill
       for (let i in this.bill_detail) {
         this.firebaseQuery.createTask("bill_details", {
-          name: this.bill_detail[i].name,
+          id_product: this.bill_detail[i].id,
           id_bill: res.id,
+          name: this.bill_detail[i].name,
           price: this.bill_detail[i].price_import,
           number: this.bill_detail[i].number
         }).then(res => {
@@ -145,44 +143,18 @@ export class ProductImportConfirmPage implements OnInit {
         }).catch(err => {
           alert("bill_details: " + err);
         });
-        if (!this.bill_detail[i].update_status) {
-          //nhập kho
-          this.firebaseQuery.createTask("warehouses", {
-            date: this.bill_date,
-            id_product: this.bill_detail[i].id,
-            price: this.bill_detail[i].price_import,
-            number: this.bill_detail[i].number
-          }).then(res => {
+        if (this.bill_detail[i].price_import != this.bill_detail[i].old_price_import) {
+          let data = { ...this.bill_detail[i] };
+          delete data.id;
+          delete data.old_price_import;
+          this.firebaseQuery.updateTask("products", this.bill_detail[i].id, data).then(res => {
             //console.log(res);
-            //delete storage with condition
-            if (parseInt(i) == this.bill_detail.length - 1) {
-              this.storage.remove("list_prod");
-              this.storage.remove("supplier");
-              this.router.navigateByUrl('product-import');
-            }
+            this.storage.remove("supplier");
+            this.storage.remove('list_prod');
+            this.router.navigateByUrl('product-import');
           }).catch(err => {
-            alert("warehouses: " + err);
-          });
-        } else {
-          //cập nhật khp
-          // lấy id kho
-          this.firebaseQuery.getTasks_Field("warehouses", "id_product", this.bill_detail[i].id, "==").then(res => {
-            this.firebaseQuery.updateTask("warehouse", res.docs[0].id, {
-              date: this.bill_date,
-              id_product: this.bill_detail[i].id,
-              price: this.bill_detail[i].price_import, // giá mới nếu có thay đổi
-              number: this.bill_detail[i].number + res.docs[0].data().number // cập nhật lại số lượng
-            }).then(res => {
-              //delete storage with condition
-              if (parseInt(i) == this.bill_detail.length - 1) {
-                this.storage.remove("list_prod");
-                this.storage.remove("supplier");
-                this.router.navigateByUrl('product-import');
-              }
-            }).catch(err => {
-              alert('update warehouse: ' + err);
-            });
-          });
+            alert('update products: ' + err);
+          })
         }
       }
     })

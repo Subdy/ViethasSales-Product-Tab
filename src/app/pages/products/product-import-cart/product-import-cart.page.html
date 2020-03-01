@@ -1,24 +1,41 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" (click)="back()">
-      <ion-icon name="chevron-back-outline"></ion-icon>
+    <ion-buttons *ngIf="!show_searchbar" slot="start" (click)="goBack()">
+      <ion-icon name="arrow-back"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoCreateProduct()">
+    <ion-title *ngIf="show_searchbar">
+      <ion-searchbar #searchInput (ionChange)="searchProduct($event)" animated #autofocus placeholder="Tìm sản phẩm">
+      </ion-searchbar>
+    </ion-title>
+    <ion-buttons *ngIf="!show_searchbar" slot="end" (click)="searchProd()">
       <ion-icon name="search"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end" style="font-size: 2rem;" (click)="scan()">
+    <ion-buttons *ngIf="!show_searchbar" slot="end" (click)="scan()">
       <ion-icon name="camera"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end" style="font-size: 2rem;" (click)="gotoCreateProduct()">
+    <ion-buttons *ngIf="!show_searchbar" slot="end" (click)="gotoCreateProduct()">
       <ion-icon name="add"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end" style="font-size: 2rem;" *ngIf="show" (click)="gotoProductConfirm()">
+    <ion-buttons slot="end" *ngIf="show" (click)="gotoProductConfirm()">
       <ion-icon name="checkmark" color="primary"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="conteiner_import_cart">
+  <!-- show searchbar -->
+  <div class="search_list" *ngIf="show_searchbar" (click)="dismissSearchProd()"
+    [ngStyle]="opacity ? {opacity: 0.7}: {opacity: 1}">
+    <ion-list>
+      <ion-item *ngFor="let item of search_product" (click)="selectProduct(item)">
+        <img [src]="item.img" width="50px" height="50px">
+        <ion-label>
+          <h1><b>{{item.name}}</b></h1>
+          <h2>Giá nhập: <b>{{item.price_import | number: '1.0-0'}}</b></h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
   <div class="txt_scan">
     <ion-icon name="barcode"></ion-icon>
   </div>
@@ -57,30 +74,22 @@
     </div>
   </div>
   <div *ngIf="trigger_popup"
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: gray; opacity: .5; z-index: 999"
-    (click)="cancel()">
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: gray; opacity: 0.7; z-index: 999">
   </div>
-  <ion-grid *ngIf="trigger_popup" style="position: absolute; top: 30% ; width: 100%;">
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col size="10">
-        <ion-card class="ion-padding" style="z-index: 9999; background: white">
-          <div class="txt-card-tt1">
-            <h5 class="ion-text-center">Mọi thay đổi sẽ không được lưu?</h5>
-            <ion-grid class="popupContent">
-              <ion-row>
-                <ion-col>
-                  <ion-button (click)="cancel()" color="medium" style="width: 100%">HỦY</ion-button>
-                </ion-col>
-                <ion-col>
-                  <ion-button (click)="deteleBillDetail()" color="warning" style="width: 100%">ĐỒNG Ý</ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card *ngIf="trigger_popup" class="ion-padding"
+    style="position: absolute ;z-index: 9999; background: white; top: 50%; left: 50% ; margin-left: -8rem; margin-top: -7rem; width: 16rem; height: 10rem;">
+    <div class="txt-card-tt1">
+      <h5 class="ion-text-center">Mọi thay đổi sẽ không được lưu?</h5>
+      <ion-grid class="popupContent">
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="cancel()" color="medium" style="width: 100%">HỦY</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="deteleBillDetail()" color="warning" style="width: 100%">ĐỒNG Ý</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-card>
 </ion-content>

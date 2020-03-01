@@ -66,6 +66,13 @@ export class ProductImportPage implements OnInit {
     //     console.log(item.data());
     //   }
     // });
+    // this.firebaseQuery.getTasks("categories").then(res => {
+    //   console.log(res);
+    //   for (let item of res.docs) {
+    //     //this.firebaseQuery.deleteTask('suppliers', item.id);
+    //     console.log(item.data());
+    //   }
+    // });
   }
 
   ionViewWillEnter() {
@@ -87,6 +94,7 @@ export class ProductImportPage implements OnInit {
         for (let i in res.docs) {
           this.bills.push(res.docs[i].data());
           this.bills[this.bills.length - 1].id = res.docs[i].id;
+          //lấy thông tin supplier
           this.firebaseQuery
             .getTask_byID("suppliers", res.docs[i].data().id_supplier)
             .then(res1 => {
@@ -140,7 +148,7 @@ export class ProductImportPage implements OnInit {
     });
   }
   //set StartDate()
-  setStartTime(event) {
+  /* setStartTime(event) {
     //biến cờ
     this.timestart = true;
     this.startDay = new Date(event.detail.value);
@@ -153,7 +161,7 @@ export class ProductImportPage implements OnInit {
     } else {
       alert('Khoảng thời gian không được quá 7 ngày!')
     }
-  }
+  } */
   //set EndDate()
   /* setEndTime(event) {
     delete this.show_bills;
@@ -187,38 +195,10 @@ export class ProductImportPage implements OnInit {
     str = str.trim();
     return str;
   }
-  // 
+  // chuyển trang sang supplier
 
   gotoproductsupplier() {
     this.show1 = this.show2 = false;
-    //let bill_code = this.exportSoHD();
-    //this.storage.set("soHD", bill_code);
-    /* this.firebaseQuery
-      .createTask("bills", {
-        id_staff: this.firebaseAuth.user.id,
-        bill_type: 2,
-        date: new Date(),
-        bill_code: bill_code
-      })
-      .then(
-        res => {
-          let key = "bill";
-          let value = {
-            id_staff: this.firebaseAuth.user.id,
-            bill_type: 2,
-            date: new Date(),
-            bill_code: bill_code,
-            id: res.id
-          };
-          this.storage.set(key, value);
-        },
-        err => {
-          console.log(err);
-        }
-      )
-      .catch(err => {
-        console.log(err);
-      }); */
     this.router.navigateByUrl("product-import-suppliers");
   }
   //xem chi tiet bill
