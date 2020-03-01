@@ -31,7 +31,7 @@ export class ProductImportCartPage implements OnInit {
   opacity: boolean = false;
   show_searchbar: boolean = false;
   backButtonSub;
-  
+
   constructor(private router: Router,
     private storage: Storage,
     private barcode: BarcodeScanner,
@@ -58,13 +58,25 @@ export class ProductImportCartPage implements OnInit {
         //this.navCtrl.pop();
       }
     }); */
+    console.log(this.router.url)
+    if (this.platform.platforms().includes('android')) {
+      console.log('x');
+      this.platform.backButton.subscribeWithPriority(9999999999999, () => {
+        if (this.router.url.includes("/product-import-cart")) {
+          console.log('z');
+          this.goBack();
+        } else {
+          console.log('y');
+          this.navCtrl.back();
+        }
+      });
+    }
   }
 
   ngOnInit() {
   }
 
-
-  ionViewDidEnter() {
+  /* ionViewDidEnter() {
     this.backButtonSub = this.platform.backButton.subscribeWithPriority(
       10000,
       () => this.goBack()
@@ -73,7 +85,7 @@ export class ProductImportCartPage implements OnInit {
 
   ionViewWillLeave() {
     this.backButtonSub.unsubscribe();
-  }
+  } */
 
   ionViewWillEnter() {
     //lấy toàn bộ thông tin sản phẩm
